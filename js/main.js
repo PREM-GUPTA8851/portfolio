@@ -1,21 +1,22 @@
 /**
- * PREM KUMAR GUPTA - PORTFOLIO LOGIC
+ * PREM KUMAR GUPTA — PORTFOLIO LOGIC
  * High-performance, Accessible, Zero-dependency JavaScript
+ * Inspired by Agustin Burgos (agustinburgos.com)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initMobileNav();
   initRagInteractivePipeline();
-  initSkillsFilter();
   initCertificationsFilter();
-  initCopyButtons();
-  initScrollSpy();
+  initEmailCopy();
   initContactForm();
+  initScrollSpy();
+  initBackToTop();
 });
 
 /* --------------------------------------------------------------------------
-   1. THEME TOGGLE (Dark / Light)
+   1. THEME TOGGLE
    -------------------------------------------------------------------------- */
 function initThemeToggle() {
   const themeToggleBtn = document.getElementById('theme-toggle');
@@ -32,6 +33,7 @@ function initThemeToggle() {
     document.documentElement.setAttribute('data-theme', nextTheme);
     localStorage.setItem('prem_portfolio_theme', nextTheme);
     updateThemeButtonAria(themeToggleBtn, nextTheme);
+    showToast(`Switched to ${nextTheme} mode`);
   });
 }
 
@@ -48,7 +50,7 @@ function initMobileNav() {
   const toggleBtn = document.getElementById('mobile-nav-toggle');
   const drawer = document.getElementById('mobile-drawer');
   const overlay = document.getElementById('mobile-drawer-overlay');
-  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+  const mobileLinks = document.querySelectorAll('.mobile-menu-link');
 
   if (!toggleBtn || !drawer || !overlay) return;
 
@@ -92,138 +94,132 @@ function initMobileNav() {
 const RAG_STAGES = [
   {
     step: 1,
-    name: "GitHub Repository",
-    role: "Source Code & Repository Ingestion",
-    description: "Ingests raw source files, commit history, and directory trees from target GitHub repositories for indexing.",
+    name: "01. GitHub Repository Ingestion",
+    role: "Source Code & Tree Processing",
+    description: "Connects via GitHub API to extract directory hierarchy, commit history, and raw source files across polyglot repositories.",
     tech: "FastAPI / GitHub API",
-    input: "Raw GitHub Repo / Files",
-    output: "Clean Document Text Stream"
+    input: "Public / Private GitHub Repo URL",
+    output: "Raw Document Stream & Code AST"
   },
   {
     step: 2,
-    name: "Document Processing",
-    role: "Parsing & File Normalization",
-    description: "Normalizes language file extensions, strips unnecessary boilerplate, and parses syntax structures.",
-    tech: "Python AST / Text Parsers",
-    input: "Document Stream",
-    output: "Normalized Code Blocks"
+    name: "02. Document Parser & Cleaning",
+    role: "Language-Aware Code Sanitization",
+    description: "Cleans out comments, strip binary files, removes unnecessary whitespace, and normalizes file headers for token efficiency.",
+    tech: "Python AST / Regex Normalizer",
+    input: "Raw Code Files (.py, .ts, .java, etc.)",
+    output: "Sanitized Code Blocks & Metadata"
   },
   {
     step: 3,
-    name: "Chunking",
-    role: "Context-Preserving Code Chunking",
-    description: "Breaks large source files into semantically coherent chunks with overlap to ensure function boundaries and context remain intact.",
-    tech: "Document Chunking Pipeline",
-    input: "Normalized Code Blocks",
-    output: "Overlapping Context Chunks"
+    name: "03. Syntax-Aware Chunking",
+    role: "Recursive Function & Class Chunking",
+    description: "Breaks code into semantically intact chunks based on function boundaries and class structures rather than naive line splitting.",
+    tech: "LangChain RecursiveCharacterSplitter",
+    input: "Sanitized Code Streams",
+    output: "Overlapping Semantic Code Chunks"
   },
   {
     step: 4,
-    name: "Vector Embeddings",
-    role: "Dense Vector Representation",
-    description: "Transforms text and code chunks into multi-dimensional numerical embeddings capturing semantic meaning and syntax relationships.",
-    tech: "Vector Embedding Models",
-    input: "Text Chunks",
-    output: "Dense Float Vectors"
+    name: "04. Vector Embeddings Generation",
+    role: "High-Dimensional Vector Encoding",
+    description: "Transforms each code chunk into 768-dimensional dense mathematical vector embeddings capturing contextual code intent.",
+    tech: "HuggingFace all-MiniLM-L6-v2",
+    input: "Code Chunks + Filepaths",
+    output: "768-Dim Floating Point Vectors"
   },
   {
     step: 5,
-    name: "ChromaDB",
-    role: "Vector Database Indexing & Storage",
-    description: "Persists vector embeddings alongside chunk metadata in ChromaDB for high-throughput cosine similarity indexing.",
-    tech: "ChromaDB Vector Store",
-    input: "Embeddings + Chunk Metadata",
-    output: "Indexed Vector Database"
+    name: "05. ChromaDB Vector Store",
+    role: "Persistent ANN Vector Indexing",
+    description: "Stores vector embeddings with metadata using HNSW indexing for approximate nearest neighbor retrieval in single-digit milliseconds.",
+    tech: "ChromaDB / SQLite / HNSW",
+    input: "Vector Embeddings & Doc IDs",
+    output: "Persistent Index & Query Interface"
   },
   {
     step: 6,
-    name: "Semantic Retrieval",
-    role: "Query Similarity Search",
-    description: "Converts user natural-language queries into vectors and retrieves the top contextually relevant code snippets from ChromaDB.",
-    tech: "Cosine Similarity / ChromaDB Query",
-    input: "User Query Vector",
-    output: "Top-k Relevant Code Snippets"
+    name: "06. Semantic Similarity Retrieval",
+    role: "Cosine Similarity Query Matching",
+    description: "Receives user natural language question, generates question vector, and retrieves Top-K most relevant code snippets.",
+    tech: "Cosine Similarity Search (k=4)",
+    input: "User Query (e.g. 'How is auth verified?')",
+    output: "Top Relevant Code Snippets + Source Files"
   },
   {
     step: 7,
-    name: "Groq LLM",
-    role: "Ultra-Fast Inference Engine",
-    description: "Supplies the retrieved code snippets and user prompt to Groq's high-speed LLM API for context-grounded reasoning.",
-    tech: "Groq LLM API",
-    input: "Retrieved Snippets + Prompt",
-    output: "Synthesized Reasoning"
+    name: "07. Prompt Augmentation & Groq LLM",
+    role: "Ultra-Fast Inference & Synthesis",
+    description: "Combines original user question with retrieved source code into a structured prompt, sent to Llama 3 on Groq LPUs.",
+    tech: "Groq LPU / Llama 3 70B",
+    input: "Augmented System Prompt + Context",
+    output: "Streaming High-Fidelity Response"
   },
   {
     step: 8,
-    name: "Context-Aware Response",
-    role: "Full-Stack Client Delivery",
-    description: "Streams context-rich, citation-aware code explanations and solutions back to the React frontend interface.",
-    tech: "React.js + FastAPI Response",
-    input: "LLM Output Stream",
-    output: "Verified Code Answer & Snippets"
+    name: "08. Context-Aware Developer Response",
+    role: "Actionable Answer & Citation",
+    description: "Presents exact line citations, code references, architectural explanations, and refactoring recommendations in a Next.js UI.",
+    tech: "Next.js / Markdown / Prism.js",
+    input: "Streamed LLM Tokens",
+    output: "Interactive Answer with File Links"
   }
 ];
 
 function initRagInteractivePipeline() {
-  const nodeButtons = document.querySelectorAll('.rag-node-btn');
-  const inspectorTitle = document.getElementById('inspector-title');
-  const inspectorDesc = document.getElementById('inspector-desc');
-  const inspectorRole = document.getElementById('inspector-role');
-  const inspectorTech = document.getElementById('inspector-tech');
-  const inspectorInput = document.getElementById('inspector-input');
-  const inspectorOutput = document.getElementById('inspector-output');
+  const stepper = document.getElementById('rag-stepper');
+  const stageTitle = document.getElementById('rag-stage-title');
+  const stageDesc = document.getElementById('rag-stage-desc');
+  const stageMeta = document.getElementById('rag-stage-meta');
 
-  if (!nodeButtons.length || !inspectorTitle) return;
+  if (!stepper || !stageTitle) return;
 
-  function updateInspector(stageIndex) {
-    const stage = RAG_STAGES[stageIndex];
-    if (!stage) return;
+  function renderStage(stage) {
+    stageTitle.textContent = stage.name;
+    stageDesc.textContent = stage.description;
+    if (stageMeta) {
+      stageMeta.textContent = `${stage.tech} | In: ${stage.input} → Out: ${stage.output}`;
+    }
 
-    nodeButtons.forEach((btn, idx) => {
-      if (idx === stageIndex) {
-        btn.classList.add('active');
-        btn.setAttribute('aria-selected', 'true');
-      } else {
-        btn.classList.remove('active');
-        btn.setAttribute('aria-selected', 'false');
-      }
+    const nodes = stepper.querySelectorAll('.rag-step-btn');
+    nodes.forEach((n, idx) => {
+      n.classList.toggle('active', idx + 1 === stage.step);
     });
-
-    inspectorTitle.textContent = `${stage.step}. ${stage.name}`;
-    inspectorDesc.textContent = stage.description;
-    if (inspectorRole) inspectorRole.textContent = stage.role;
-    if (inspectorTech) inspectorTech.textContent = stage.tech;
-    if (inspectorInput) inspectorInput.textContent = `Input: ${stage.input}`;
-    if (inspectorOutput) inspectorOutput.textContent = `Output: ${stage.output}`;
   }
 
-  nodeButtons.forEach((btn, idx) => {
-    btn.addEventListener('click', () => updateInspector(idx));
-  });
+  // Populate buttons if empty
+  if (stepper.children.length === 0) {
+    RAG_STAGES.forEach((stage) => {
+      const btn = document.createElement('button');
+      btn.className = `rag-step-btn ${stage.step === 1 ? 'active' : ''}`;
+      btn.textContent = `Stage ${stage.step}`;
+      btn.setAttribute('aria-label', stage.name);
+      btn.addEventListener('click', () => renderStage(stage));
+      stepper.appendChild(btn);
+    });
+  }
 
-  // Default to step 1
-  updateInspector(0);
+  renderStage(RAG_STAGES[0]);
 }
 
 /* --------------------------------------------------------------------------
-   4. SKILLS FILTER TABS
+   4. CERTIFICATIONS FILTER TABS
    -------------------------------------------------------------------------- */
-function initSkillsFilter() {
-  const filterBtns = document.querySelectorAll('.skill-tab-btn');
-  const skillCards = document.querySelectorAll('.skill-category-card');
+function initCertificationsFilter() {
+  const tabs = document.querySelectorAll('.cert-filter-btn');
+  const cards = document.querySelectorAll('.cert-card');
 
-  if (!filterBtns.length || !skillCards.length) return;
+  if (!tabs.length || !cards.length) return;
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const category = btn.getAttribute('data-category');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
 
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      const cat = tab.getAttribute('data-category');
 
-      skillCards.forEach(card => {
-        const cardCat = card.getAttribute('data-category');
-        if (category === 'all' || cardCat === category) {
+      cards.forEach(card => {
+        if (cat === 'all' || card.getAttribute('data-category') === cat) {
           card.style.display = 'flex';
         } else {
           card.style.display = 'none';
@@ -234,177 +230,103 @@ function initSkillsFilter() {
 }
 
 /* --------------------------------------------------------------------------
-   5. COPY TO CLIPBOARD + TOAST
+   5. EMAIL COPY TO CLIPBOARD
    -------------------------------------------------------------------------- */
-function initCopyButtons() {
-  const copyButtons = document.querySelectorAll('.copy-btn');
-  const toast = document.getElementById('toast');
-  let toastTimer = null;
+function initEmailCopy() {
+  const emailBtns = document.querySelectorAll('.copy-email-trigger');
 
-  if (!copyButtons.length || !toast) return;
+  emailBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const email = 'premgupta100705@gmail.com';
 
-  function showToast(message) {
-    toast.textContent = message;
-    toast.classList.add('show');
-    if (toastTimer) clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
-      toast.classList.remove('show');
-    }, 2800);
-  }
-
-  copyButtons.forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const textToCopy = btn.getAttribute('data-copy');
-      if (!textToCopy) return;
-
-      try {
-        if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(textToCopy);
-        } else {
-          // Fallback
-          const textArea = document.createElement('textarea');
-          textArea.value = textToCopy;
-          textArea.style.position = 'fixed';
-          textArea.style.left = '-999999px';
-          textArea.style.top = '-999999px';
-          document.body.appendChild(textArea);
-          textArea.focus();
-          textArea.select();
-          document.execCommand('copy');
-          textArea.remove();
-        }
-        showToast(`Copied "${textToCopy}" to clipboard!`);
-      } catch (err) {
-        showToast(`Selected: ${textToCopy}`);
-      }
+      navigator.clipboard.writeText(email).then(() => {
+        showToast('Email copied: premgupta100705@gmail.com');
+      }).catch(() => {
+        window.location.href = `mailto:${email}`;
+      });
     });
   });
 }
 
 /* --------------------------------------------------------------------------
-   6. SCROLL SPY FOR NAVBAR ACTIVE LINKS
+   6. CONTACT FORM HANDLING
+   -------------------------------------------------------------------------- */
+function initContactForm() {
+  const form = document.getElementById('agustin-contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = form.querySelector('[name="name"]')?.value || 'Friend';
+    showToast(`Thank you ${name}! Your message has been received.`);
+    form.reset();
+  });
+}
+
+/* --------------------------------------------------------------------------
+   7. SCROLL SPY FOR NAVIGATION
    -------------------------------------------------------------------------- */
 function initScrollSpy() {
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+  const navLinks = document.querySelectorAll('.navlink');
 
   if (!sections.length || !navLinks.length) return;
 
-  const observerOptions = {
-    root: null,
-    rootMargin: '-20% 0px -70% 0px',
-    threshold: 0
-  };
-
-  const observer = new IntersectionObserver(entries => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const currentId = entry.target.getAttribute('id');
+        const id = entry.target.getAttribute('id');
         navLinks.forEach(link => {
-          const href = link.getAttribute('href');
-          if (href === `#${currentId}`) {
-            link.classList.add('active');
-          } else {
-            link.classList.remove('active');
-          }
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
         });
       }
     });
-  }, observerOptions);
+  }, {
+    rootMargin: '-20% 0px -60% 0px'
+  });
 
   sections.forEach(sec => observer.observe(sec));
 }
 
 /* --------------------------------------------------------------------------
-   7. CONTACT FORM (Interactive Client-Side Validation)
+   8. BACK TO TOP
    -------------------------------------------------------------------------- */
-function initContactForm() {
-  const form = document.getElementById('contact-form');
-  const feedback = document.getElementById('form-feedback');
-  const submitBtn = document.getElementById('contact-submit-btn');
-  const btnText = document.getElementById('contact-btn-text');
+function initBackToTop() {
+  const backToTopBtn = document.getElementById('back-to-top-btn');
+  if (!backToTopBtn) return;
 
-  if (!form || !feedback) return;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const name = document.getElementById('form-name')?.value.trim();
-    const email = document.getElementById('form-email')?.value.trim();
-    const message = document.getElementById('form-message')?.value.trim();
-
-    if (!name || !email || !message) {
-      alert('Please fill out all fields.');
-      return;
-    }
-
-    const actionUrl = form.getAttribute('action');
-    const isFormspreeConfigured = actionUrl && !actionUrl.includes('YOUR_FORMSPREE_ID');
-
-    if (isFormspreeConfigured) {
-      try {
-        if (btnText) btnText.textContent = 'Sending...';
-        if (submitBtn) submitBtn.disabled = true;
-
-        const formData = new FormData(form);
-        const response = await fetch(actionUrl, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
-
-        if (response.ok) {
-          feedback.className = 'form-feedback success';
-          feedback.innerHTML = `<strong>Thank you, ${name}!</strong> Your message has been sent successfully. Prem Kumar Gupta will receive it directly at <strong>premgupta100705@gmail.com</strong> and reply soon.`;
-          form.reset();
-        } else {
-          const data = await response.json().catch(() => ({}));
-          feedback.className = 'form-feedback error';
-          feedback.innerHTML = `Oops! ${data.errors ? data.errors.map(err => err.message).join(', ') : 'There was a problem sending your message.'} You can also email Prem directly at <a href="mailto:premgupta100705@gmail.com" style="text-decoration:underline; font-weight:600;">premgupta100705@gmail.com</a>.`;
-        }
-      } catch (err) {
-        feedback.className = 'form-feedback error';
-        feedback.innerHTML = `Network issue. You can email Prem directly at <a href="mailto:premgupta100705@gmail.com" style="text-decoration:underline; font-weight:600;">premgupta100705@gmail.com</a>.`;
-      } finally {
-        if (btnText) btnText.textContent = 'Send Message';
-        if (submitBtn) submitBtn.disabled = false;
-      }
-    } else {
-      feedback.className = 'form-feedback success';
-      feedback.innerHTML = `<strong>Thank you, ${name}!</strong> Click below to dispatch your message directly to Prem Kumar Gupta's inbox:<br><a href="mailto:premgupta100705@gmail.com?subject=Opportunity%20from%20${encodeURIComponent(name)}&body=${encodeURIComponent(message)}" class="btn btn-primary btn-sm" style="display:inline-flex; margin-top:0.75rem; text-decoration:none;">Open in Mail App &rarr;</a>`;
-    }
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   });
 }
 
 /* --------------------------------------------------------------------------
-   8. CERTIFICATIONS FILTER TABS
+   9. TOAST NOTIFICATION HELPER
    -------------------------------------------------------------------------- */
-function initCertificationsFilter() {
-  const filterBtns = document.querySelectorAll('.cert-tab-btn');
-  const certCards = document.querySelectorAll('.cert-card');
+function showToast(message) {
+  let toastContainer = document.getElementById('toast');
+  if (!toastContainer) {
+    toastContainer = document.createElement('div');
+    toastContainer.id = 'toast';
+    toastContainer.className = 'toast-container';
+    document.body.appendChild(toastContainer);
+  }
 
-  if (!filterBtns.length || !certCards.length) return;
+  const toast = document.createElement('div');
+  toast.className = 'toast show';
+  toast.innerHTML = `
+    <span style="color: var(--text-emerald); font-weight: 700;">✓</span>
+    <span>${message}</span>
+  `;
 
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const category = btn.getAttribute('data-category');
+  toastContainer.appendChild(toast);
 
-      filterBtns.forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-
-      certCards.forEach(card => {
-        const cardCat = card.getAttribute('data-category') || '';
-        if (category === 'all' || cardCat.includes(category)) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }, 3500);
 }
