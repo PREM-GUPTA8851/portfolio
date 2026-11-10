@@ -1583,12 +1583,11 @@ button {
   height: 132px;
 }
 
-.leetcode-badges-row .badge-icon-wrap img {
-  animation: badge-slide-horizontal 1.8s ease-in-out infinite alternate;
-}
-
-.leetcode-badges-row .leetcode-badge-item:nth-child(even) .badge-icon-wrap img {
-  animation-direction: alternate-reverse;
+.leetcode-badges-row .badge-icon-wrap img,
+.credential-media--leetcode img,
+.credential-art--medal .leetcode-medal-image {
+  transform-style: preserve-3d;
+  animation: badge-rotate-y 2.4s linear infinite;
 }
 
 .badge-icon-wrap .leetcode-medal-image {
@@ -1622,9 +1621,9 @@ button {
   );
 }
 
-@keyframes badge-slide-horizontal {
-  from { transform: translateX(-9px); }
-  to { transform: translateX(9px); }
+@keyframes badge-rotate-y {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
 }
 
 .badge-name {
@@ -2051,7 +2050,27 @@ button {
   justify-content: space-between;
   backdrop-filter: blur(16px);
   transition: all 0.3s ease;
-  min-height: 290px;
+  min-height: 430px;
+}
+
+.experience-card-image {
+  display: block;
+  width: calc(100% + 2.9rem);
+  height: 150px;
+  margin: -1.45rem -1.45rem 1rem;
+  padding: 0.6rem;
+  border-bottom: 1px solid var(--border-subtle);
+  background: #ffffff;
+  object-fit: contain;
+}
+
+.experience-card-image--photo {
+  padding: 0;
+  object-fit: cover;
+}
+
+.experience-card-image--badge {
+  background: #050b07;
 }
 
 .experience-card:hover {
@@ -2503,6 +2522,7 @@ button {
 .credential-media--leetcode {
   height: 200px;
   background: #07120f;
+  perspective: 900px;
 }
 
 .credential-media--leetcode img {
@@ -2510,11 +2530,6 @@ button {
   height: 180px;
   object-fit: contain;
   filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.45));
-  animation: badge-slide-horizontal 1.8s ease-in-out infinite alternate;
-}
-
-.cert-capsule-item:nth-child(even) .credential-media--leetcode img {
-  animation-direction: alternate-reverse;
 }
 
 .achievement-card .credential-body {
@@ -2570,6 +2585,7 @@ button {
   align-items: flex-start;
   min-height: 220px;
   padding: 1rem 1.2rem;
+  perspective: 700px;
 }
 
 .credential-art--medal .leetcode-medal-image {
@@ -2577,11 +2593,6 @@ button {
   width: 240px;
   height: 154px;
   filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.4));
-  animation: badge-slide-horizontal 1.8s ease-in-out infinite alternate;
-}
-
-.cert-capsule-item:nth-child(even) .credential-art--medal .leetcode-medal-image {
-  animation-direction: alternate-reverse;
 }
 
 .credential-body {
