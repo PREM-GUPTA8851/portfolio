@@ -1534,6 +1534,7 @@ button {
   align-items: center;
   justify-content: center;
   height: 58px;
+  perspective: 700px;
 }
 
 .badge-icon-wrap img {
@@ -1557,19 +1558,21 @@ button {
   perspective: 700px;
 }
 
+.leetcode-badges-row .badge-icon-wrap img {
+  transform-style: preserve-3d;
+  animation: leetcode-medal-spin 1.68s linear infinite;
+}
+
 .badge-icon-wrap .leetcode-medal-image {
   display: block;
   width: min(100%, 210px);
   height: 132px;
   object-fit: fill;
-  transform-style: preserve-3d;
-  animation: leetcode-medal-spin 1.68s linear infinite;
 }
 
 .leetcode-badges-row .badge-icon-wrap:not(.badge-medal-wrap) img[src*="Top_SQL_50"] {
   width: 84px;
   height: 84px;
-  animation: leetcode-medal-spin 1.68s linear infinite;
 }
 
 .leetcode-medal-100 {
@@ -1592,8 +1595,8 @@ button {
 }
 
 @keyframes leetcode-medal-spin {
-  from { transform: rotateZ(0deg); }
-  to { transform: rotateZ(360deg); }
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
 }
 
 .badge-name {
