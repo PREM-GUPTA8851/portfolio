@@ -884,7 +884,7 @@ button {
   align-items: center;
   gap: 1.15rem;
   min-width: 0;
-  padding: 0.7rem 0.9rem;
+  padding: 0.8rem 1.15rem;
   border: 1px solid var(--border-subtle);
   border-radius: 14px;
   background: var(--bg-card);
@@ -903,8 +903,12 @@ button {
 }
 
 .skill-marquee {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 0.2rem 1rem;
+  border-radius: 999px;
   overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
 }
 
 .skill-marquee-track {
@@ -916,7 +920,10 @@ button {
 
 .skill-lane.direction-right .skill-marquee-track {
   animation-name: skill-marquee-right;
-  animation-direction: alternate-reverse;
+}
+
+.skill-lane.direction-left .skill-marquee-track {
+  padding-left: var(--marquee-travel, 0px);
 }
 
 .skill-marquee-track span {
@@ -942,7 +949,7 @@ button {
 }
 
 @keyframes skill-marquee-right {
-  to { transform: translateX(calc(-1 * var(--marquee-travel, 0px))); }
+  to { transform: translateX(var(--marquee-travel, 0px)); }
 }
 
 /* --------------------------------------------------------------------------
@@ -1558,9 +1565,9 @@ button {
   perspective: 700px;
 }
 
-.leetcode-badges-row .badge-icon-wrap img {
+.leetcode-badges-row .badge-icon-wrap img.leetcode-medal-image {
   transform-style: preserve-3d;
-  animation: leetcode-medal-spin 1.68s linear infinite;
+  animation: leetcode-medal-rock 1.68s ease-in-out infinite alternate;
 }
 
 .badge-icon-wrap .leetcode-medal-image {
@@ -1570,7 +1577,7 @@ button {
   object-fit: fill;
 }
 
-.leetcode-badges-row .badge-icon-wrap:not(.badge-medal-wrap) img[src*="Top_SQL_50"] {
+.leetcode-badges-row .badge-icon-wrap:not(.badge-medal-wrap) img.leetcode-medal-image {
   width: 84px;
   height: 84px;
 }
@@ -1594,9 +1601,9 @@ button {
   );
 }
 
-@keyframes leetcode-medal-spin {
-  from { transform: rotateY(0deg); }
-  to { transform: rotateY(360deg); }
+@keyframes leetcode-medal-rock {
+  from { transform: rotateY(-12deg); }
+  to { transform: rotateY(12deg); }
 }
 
 .badge-name {
@@ -2483,7 +2490,7 @@ button {
   object-fit: contain;
   filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.45));
   transform-style: preserve-3d;
-  animation: leetcode-medal-spin 1.68s linear infinite;
+  animation: leetcode-medal-rock 1.68s ease-in-out infinite alternate;
 }
 
 .achievement-card .credential-body {
@@ -2547,7 +2554,7 @@ button {
   width: 240px;
   height: 154px;
   filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.4));
-  animation: leetcode-medal-spin 1.68s linear infinite;
+  animation: leetcode-medal-rock 1.68s ease-in-out infinite alternate;
 }
 
 .credential-body {
@@ -3196,5 +3203,9 @@ button {
 @media (prefers-reduced-motion: reduce) {
   .skill-marquee-track {
     animation: none !important;
+  }
+
+  .skill-lane.direction-left .skill-marquee-track {
+    padding-left: 0;
   }
 }

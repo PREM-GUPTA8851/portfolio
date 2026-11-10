@@ -36,10 +36,12 @@ function initSkillMarquees() {
   const updateDurations = () => {
     tracks.forEach((track) => {
       const marquee = track.parentElement;
-      const overflow = track.scrollWidth - marquee.clientWidth;
-      const travelDistance = overflow > 0
-        ? overflow
-        : Math.min(track.scrollWidth, marquee.clientWidth) * 0.4;
+      const paddingLeft = Number.parseFloat(getComputedStyle(track).paddingLeft) || 0;
+      const contentWidth = Math.max(0, track.scrollWidth - paddingLeft);
+      const availableSpace = Math.max(0, marquee.clientWidth - contentWidth);
+      const travelDistance = contentWidth > marquee.clientWidth
+        ? contentWidth - marquee.clientWidth
+        : Math.min(contentWidth * 0.4, availableSpace);
       track.style.setProperty('--marquee-travel', `${travelDistance}px`);
       track.style.setProperty('--marquee-duration', `${travelDistance / pixelsPerSecond}s`);
     });
