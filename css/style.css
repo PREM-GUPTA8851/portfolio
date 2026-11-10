@@ -535,25 +535,43 @@ button {
   pointer-events: none;
 }
 
-/* Custom Interactive Follower Cursor on Intro Screen */
-#intro-cursor-ring {
+/* Global circular pointer for mouse and trackpad users */
+#global-cursor-ring {
   position: fixed;
   width: 48px;
   height: 48px;
   border-radius: 50%;
   border: 1.5px solid rgba(255, 255, 255, 0.45);
   pointer-events: none;
-  z-index: 999999;
+  z-index: 100001;
+  opacity: 0;
   transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  transition: opacity 0.2s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background 0.3s ease;
   mix-blend-mode: difference;
 }
 
-#intro-cursor-ring.cursor-active {
+#global-cursor-ring.cursor-visible {
+  opacity: 1;
+}
+
+#global-cursor-ring.cursor-active {
   width: 72px;
   height: 72px;
   border-color: #ffffff;
   background: rgba(255, 255, 255, 0.15);
+}
+
+@media (hover: none), (pointer: coarse) {
+  #global-cursor-ring {
+    display: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body,
+  body *:not(input):not(textarea):not([contenteditable="true"]) {
+    cursor: none !important;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -2351,11 +2369,12 @@ button {
 .mini-project-image {
   display: block;
   width: 100%;
-  aspect-ratio: 2.45 / 1;
-  object-fit: cover;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
   border: 1px solid var(--border-subtle);
   border-radius: 10px;
   margin: 0.25rem 0 0.8rem;
+  background: #ffffff;
 }
 
 .mini-project-card:hover {

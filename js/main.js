@@ -16,6 +16,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initSkillMarquees();
+  initGlobalCursor();
   initIntroGate();
   initBackground3DCanvas();
   initHorizontalScrollEngine();
@@ -29,6 +30,52 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initPortfolioAgent();
 });
+
+function initGlobalCursor() {
+  const cursorRing = document.getElementById('global-cursor-ring');
+  if (!cursorRing || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  let targetX = window.innerWidth / 2;
+  let targetY = window.innerHeight / 2;
+  let cursorX = targetX;
+  let cursorY = targetY;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  window.addEventListener('pointermove', (event) => {
+    if (event.pointerType !== 'mouse') return;
+    targetX = event.clientX;
+    targetY = event.clientY;
+    cursorRing.classList.add('cursor-visible');
+  });
+
+  window.addEventListener('pointerout', (event) => {
+    if (!event.relatedTarget) cursorRing.classList.remove('cursor-visible', 'cursor-active');
+  });
+
+  document.addEventListener('pointerover', (event) => {
+    if (event.pointerType !== 'mouse') return;
+    const target = event.target instanceof Element
+      ? event.target.closest('a, button, input, textarea, select, [role="button"], .mini-project-card')
+      : null;
+    cursorRing.classList.toggle('cursor-active', Boolean(target));
+  });
+
+  function animateCursor() {
+    if (prefersReducedMotion) {
+      cursorX = targetX;
+      cursorY = targetY;
+    } else {
+      cursorX += (targetX - cursorX) * 0.18;
+      cursorY += (targetY - cursorY) * 0.18;
+    }
+
+    cursorRing.style.left = `${cursorX}px`;
+    cursorRing.style.top = `${cursorY}px`;
+    requestAnimationFrame(animateCursor);
+  }
+
+  animateCursor();
+}
 
 function initSkillMarquees() {
   const pixelsPerSecond = 24;
@@ -77,7 +124,6 @@ function initTheme() {
 function initIntroGate() {
   const gate = document.getElementById('intro-gate');
   const enterBtn = document.getElementById('intro-enter-btn');
-  const cursorRing = document.getElementById('intro-cursor-ring');
   const warpCanvas = document.getElementById('intro-warp-canvas');
   const replayBtn = document.getElementById('replay-intro-btn');
 
@@ -91,31 +137,6 @@ function initIntroGate() {
     width = warpCanvas.width = window.innerWidth;
     height = warpCanvas.height = window.innerHeight;
   });
-
-  // Follower Cursor Logic on Intro
-  let mouseX = width / 2;
-  let mouseY = height / 2;
-  let cursorX = mouseX;
-  let cursorY = mouseY;
-
-  window.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-
-  if (cursorRing) {
-    function animateCursor() {
-      cursorX += (mouseX - cursorX) * 0.18;
-      cursorY += (mouseY - cursorY) * 0.18;
-      cursorRing.style.left = `${cursorX}px`;
-      cursorRing.style.top = `${cursorY}px`;
-      requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
-    enterBtn.addEventListener('mouseenter', () => cursorRing.classList.add('cursor-active'));
-    enterBtn.addEventListener('mouseleave', () => cursorRing.classList.remove('cursor-active'));
-  }
 
   // 3D Warp Stars Canvas
   const NUM_STARS = 450;
