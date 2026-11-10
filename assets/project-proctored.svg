@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" role="img" aria-labelledby="title">
+  <title id="title">ProctorEd project illustration</title>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111715"/><stop offset="1" stop-color="#26211b"/></linearGradient></defs>
+  <rect width="640" height="260" rx="22" fill="url(#bg)"/>
+  <rect x="40" y="38" width="356" height="178" rx="15" fill="#0b100f" stroke="#746647" stroke-width="2"/>
+  <rect x="56" y="54" width="324" height="143" rx="10" fill="#121a16"/>
+  <circle cx="218" cy="122" r="47" fill="#18382d" stroke="#54d7a2" stroke-width="2"/>
+  <ellipse cx="218" cy="113" rx="21" ry="25" fill="#70c6a0"/>
+  <path d="M181 164c8-24 66-24 74 0" fill="#70c6a0"/>
+  <path d="M174 80h24M174 80v24m88-24h-24m24 0v24m-88 38h24m-24 0v-24m88 24h-24m24 0v-24" fill="none" stroke="#f3bf64" stroke-width="3"/>
+  <path d="M112 216v10m210-10v10M184 226h66" stroke="#746647" stroke-width="5" stroke-linecap="round"/>
+  <rect x="427" y="62" width="174" height="45" rx="10" fill="#19221e" stroke="#3d755e"/>
+  <circle cx="449" cy="84" r="7" fill="#53dca4"/>
+  <path d="M467 79h112M467 90h76" stroke="#a4cdb9" stroke-width="4" stroke-linecap="round"/>
+  <rect x="427" y="122" width="174" height="45" rx="10" fill="#211e18" stroke="#79643e"/>
+  <path d="m446 145 7 7 13-16" fill="none" stroke="#e8bd70" stroke-width="3"/>
+  <path d="M477 140h102M477 151h70" stroke="#d6c6a4" stroke-width="4" stroke-linecap="round"/>
+  <text x="427" y="199" fill="#d1c29f" font-family="Arial,sans-serif" font-size="13" letter-spacing="2">LIVE EXAM MONITOR</text>
+</svg>

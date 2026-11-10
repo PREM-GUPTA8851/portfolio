@@ -3,6 +3,8 @@
 > **Aspiring AI Software Engineer & Full-Stack Web Developer**  
 > *GSSoC’26 Contributor | SSoC Season 5 Contributor | Open Source Contributor | Full-Stack Web Developer | DSA (Java) | Aspiring AI Software Engineer*
 
+**Live portfolio:** [portfolio-3qaf.vercel.app](https://portfolio-3qaf.vercel.app/)
+
 A modern, high-performance, accessible, and responsive personal developer portfolio website designed for software engineering internship and full-time role evaluations.
 
 ---
@@ -36,13 +38,20 @@ A modern, high-performance, accessible, and responsive personal developer portfo
   - Academic Committee Member (Hostel Representative) — Lovely Professional University (BH-3)
   - Community Volunteer — Pentaomnia Private Limited
   - Student Minister — ABVP, CMA Higher Secondary School
-- **19 Accredited Certifications**: Categorized into filterable tabs (*AI & Cloud*, *DSA & Programming*, *Web & Databases*, *Systems & Professional*) with credential verification details.
+- **Credential Gallery**: Image-led cards for the supplied certifications, coding badges, and awards, with direct credential links.
+- **Education**: B.Tech Computer Engineering at Lovely Professional University (CGPA 8.0), JEE Mains qualification, and CMA School (CBSE).
 - **National Competitive Milestones**:
   - Flipkart GRiD 8.0 Round 2 Qualifier (Top 10% of 1.6 Lakh+ applicants)
   - Qualified JEE Mains 2024 & Appeared for JEE Advanced 2024
   - 2nd Runner-Up in Debate & Group Discussion (LPU BH-3)
   - Hack-a-Throne 1.0 Qualifier (AIESEC & GeeksforGeeks KIIT)
 - **Dark & Light Mode**: Seamless theme toggle with local storage persistence.
+- **Resume & CV**: Downloadable PDF links on the home page and in a dedicated Resume section.
+- **Resume-Aligned Skills**: Separate animated lanes for languages, frontend, backend, SQL/databases, AI/data, developer tools, core CS, and soft skills.
+- **LeetCode Badge Artwork**: Local blue 100-day and green 50-day badge cutouts rotate like the SQL medal; the 50-day badge is marked ×2.
+- **Eleven-Section Portfolio**: Compact section counter, reordered Projects and Experience, Education, Contact, and Footer panels.
+- **Project Gallery**: Four project-specific illustrations displayed in a two-by-two overview.
+- **Portfolio Assistant**: Theme-matched local Q&A for resume facts; no external AI service or API key is connected.
 - **Zero-Dependency Architecture**: Built with standard semantic HTML5, modern Vanilla CSS, and lightweight Vanilla JavaScript.
 
 ---

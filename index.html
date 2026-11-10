@@ -83,13 +83,17 @@
     <!-- Center Section Navigation Pills -->
     <nav class="header-nav-center" aria-label="Portfolio Sections">
       <ul class="nav-sections-list">
-        <li class="nav-section-item active"><button type="button">01 Home</button></li>
-        <li class="nav-section-item"><button type="button">02 Identity</button></li>
-        <li class="nav-section-item"><button type="button">03 Metrics</button></li>
-        <li class="nav-section-item"><button type="button">04 Experience</button></li>
-        <li class="nav-section-item"><button type="button">05 Work</button></li>
-        <li class="nav-section-item"><button type="button">06 Credentials</button></li>
-        <li class="nav-section-item"><button type="button">07 Contact</button></li>
+        <li class="nav-section-item active" data-target="hero"><button type="button">01 Home</button></li>
+        <li class="nav-section-item" data-target="identity"><button type="button">02 Identity</button></li>
+        <li class="nav-section-item" data-target="metrics"><button type="button">03 Metrics</button></li>
+        <li class="nav-section-item" data-target="skills"><button type="button">04 Skills</button></li>
+        <li class="nav-section-item" data-target="projects"><button type="button">05 Projects</button></li>
+        <li class="nav-section-item" data-target="experience"><button type="button">06 Experience</button></li>
+        <li class="nav-section-item" data-target="credentials"><button type="button">07 Achievements</button></li>
+        <li class="nav-section-item" data-target="education"><button type="button">08 Education</button></li>
+        <li class="nav-section-item" data-target="resume"><button type="button">09 Resume</button></li>
+        <li class="nav-section-item" data-target="contact"><button type="button">10 Contact</button></li>
+        <li class="nav-section-item" data-target="footer"><button type="button">11 Footer</button></li>
       </ul>
     </nav>
 
@@ -198,7 +202,7 @@
               </a>
 
               <!-- 6. All Contributors Badge (Point 8) -->
-              <a href="#experience" class="power-badge" onclick="event.preventDefault(); document.querySelectorAll('.nav-section-item button')[3].click();">
+              <a href="#experience" class="power-badge" onclick="event.preventDefault(); document.getElementById('experience').scrollIntoView({ behavior: 'smooth' });">
                 <span class="badge-icon">🌐</span>
                 <div>
                   <strong>Global Open Source Contributor</strong>
@@ -210,7 +214,7 @@
 
             <!-- CTA Actions -->
             <div class="hero-actions-row">
-              <button type="button" class="btn-primary" onclick="document.querySelectorAll('.nav-section-item button')[4].click()">
+              <button type="button" class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })">
                 <span>Explore Selected Work</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
@@ -224,6 +228,10 @@
                   <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                 </svg>
               </button>
+              <a class="btn-secondary resume-download-link" href="assets/Prem_Kumar_Gupta_Resume.pdf" download="Prem_Kumar_Gupta_Resume.pdf">
+                <span>Download Resume</span>
+                <span aria-hidden="true">↓</span>
+              </a>
             </div>
           </div>
 
@@ -251,7 +259,7 @@
 
               <!-- High-Def Portrait Image Frame (Properly Zoomed-Out Portrait) -->
               <div class="hero-card-image-frame">
-                <img src="assets/prem-portrait.jpg" alt="Prem Kumar Gupta" class="hero-card-img" onerror="this.src='assets/prem-profile.jpg'">
+                <img src="assets/prem-hero-portrait.png" alt="Prem Kumar Gupta" class="hero-card-img">
               </div>
 
               <!-- Profile Details (Name, Role & Location) -->
@@ -357,7 +365,7 @@
                 <span class="pill-handle">PREM-GUPTA8851 ↗</span>
               </div>
             </a>
-            <a href="https://codolio.com/profile/PREM_GUPTA8851" target="_blank" rel="noopener noreferrer" class="prem-profile-pill highlight-pill">
+            <a href="https://codolio.com/profile/PREM_GUPTA8851" target="_blank" rel="noopener noreferrer" class="prem-profile-pill">
               <span class="pill-icon">⚡</span>
               <div class="pill-content">
                 <strong>Codolio</strong>
@@ -412,38 +420,33 @@
             </p>
 
             <div class="leetcode-badges-row">
-              <div class="leetcode-badge-item hacker-badge-item">
-                <div class="badge-icon-wrap" style="display: flex; align-items: center; justify-content: center; height: 38px;">
-                  <img src="assets/hackerrank-java-badge.png" alt="HackerRank Badge" style="width: 34px; height: 34px; object-fit: contain;">
+              <a class="leetcode-badge-item hacker-badge-item" href="https://www.hackerrank.com/skills-verification/java_basic" target="_blank" rel="noopener noreferrer" aria-label="View HackerRank Java Basic certification">
+                <div class="badge-icon-wrap badge-java-wrap">
+                  <img src="assets/hackerrank-java-cropped.png" alt="HackerRank Java two-star badge">
                 </div>
                 <div class="badge-name">Java 2★ • HackerRank</div>
-                <div class="badge-date">HackerRank Certified</div>
-              </div>
-              <div class="leetcode-badge-item">
-                <div class="badge-icon-wrap">🛡️</div>
+                <div class="badge-date">Java Badge</div>
+              </a>
+              <a class="leetcode-badge-item" href="https://leetcode.com/medal/?showImg=0&amp;id=10632764&amp;isLevel=false" target="_blank" rel="noopener noreferrer" aria-label="View the 100 Days LeetCode badge">
+                <div class="badge-icon-wrap badge-medal-wrap"><img class="leetcode-medal-image leetcode-medal-100" src="assets/leetcode-100-days.png" alt="LeetCode 100 Days blue badge"></div>
                 <div class="badge-name">100 Days</div>
-                <div class="badge-date">LeetCode 2026</div>
-              </div>
-              <div class="leetcode-badge-item">
-                <div class="badge-icon-wrap">🏅</div>
-                <div class="badge-name">50 Days</div>
-                <div class="badge-date">LeetCode 2026</div>
-              </div>
-              <div class="leetcode-badge-item">
-                <div class="badge-icon-wrap">🎖️</div>
-                <div class="badge-name">50 Days</div>
-                <div class="badge-date">LeetCode 2025</div>
-              </div>
-              <div class="leetcode-badge-item">
-                <div class="badge-icon-wrap">⚡</div>
+                <div class="badge-date">LeetCode</div>
+              </a>
+              <a class="leetcode-badge-item" href="https://leetcode.com/medal/?showImg=0&amp;id=10413804&amp;isLevel=false" target="_blank" rel="noopener noreferrer" aria-label="View the 50 Days LeetCode badge">
+                <div class="badge-icon-wrap badge-medal-wrap"><img class="leetcode-medal-image leetcode-medal-50" src="assets/leetcode-50-days.png" alt="LeetCode 50 Days green badge"></div>
+                <div class="badge-name">50 Days ×2</div>
+                <div class="badge-date">LeetCode</div>
+              </a>
+              <a class="leetcode-badge-item" href="https://leetcode.com/medal/?showImg=0&amp;id=8588461&amp;isLevel=false" target="_blank" rel="noopener noreferrer" aria-label="View the SQL 50 LeetCode badge">
+                <div class="badge-icon-wrap"><img src="https://assets.leetcode.com/static_assets/others/Top_SQL_50.gif" alt="LeetCode SQL 50 badge"></div>
                 <div class="badge-name">Top SQL 50</div>
-                <div class="badge-date">Database Master</div>
-              </div>
+                <div class="badge-date">LeetCode</div>
+              </a>
             </div>
 
             <!-- Profiles Links Grid (Codolio, LeetCode, InterviewBit, GFG) -->
             <div class="profiles-pill-grid">
-              <a href="https://codolio.com/profile/PREM_GUPTA8851" target="_blank" rel="noopener noreferrer" class="profile-pill-card highlight-pill">
+              <a href="https://codolio.com/profile/PREM_GUPTA8851" target="_blank" rel="noopener noreferrer" class="profile-pill-card">
                 <div>
                   <div class="profile-pill-title">Codolio ⚡</div>
                   <div class="profile-pill-sub">PREM_GUPTA8851</div>
@@ -553,13 +556,69 @@
       </section>
 
       <!-- ================================================================
-           PANEL 4: OPEN SOURCE & INDUSTRY LEADERSHIP (In-Depth Showcase)
+           PANEL 4: SKILLS & TECHNOLOGY STACK
+           ================================================================ -->
+      <section class="h-panel panel-skills" id="skills" aria-label="Skills and Technology Stack">
+        <div class="panel-header-block">
+          <span class="panel-tag-mono">04 / Skills &amp; Tech Stack</span>
+          <h2 class="panel-title-large">Skills &amp; <span class="italic-word">Tech Stack</span>.</h2>
+          <p class="skills-intro">Languages, frontend, backend, databases aur developer tools — based on my resume.</p>
+        </div>
+
+        <div class="skills-marquee-list">
+          <div class="skill-lane direction-right" aria-label="Languages">
+            <h3>Languages</h3>
+            <div class="skill-marquee"><div class="skill-marquee-track">
+              <span>JavaScript</span><span>Java</span><span>Python</span><span>C++</span><span>C</span>
+            </div></div>
+          </div>
+          <div class="skill-lane direction-left" aria-label="Frontend">
+            <h3>Frontend</h3>
+            <div class="skill-marquee"><div class="skill-marquee-track">
+              <span>React.js</span><span>HTML5</span><span>CSS3</span>
+            </div></div>
+          </div>
+          <div class="skill-lane direction-right" aria-label="Backend">
+            <h3>Backend</h3>
+            <div class="skill-marquee"><div class="skill-marquee-track">
+              <span>Node.js</span><span>Express.js</span><span>Spring Boot</span><span>FastAPI</span><span>REST APIs</span>
+            </div></div>
+          </div>
+          <div class="skill-lane direction-left" aria-label="Databases">
+            <h3>Databases</h3>
+            <div class="skill-marquee"><div class="skill-marquee-track">
+              <span>SQL</span><span>MySQL</span><span>MongoDB</span><span>DBMS</span>
+            </div></div>
+          </div>
+          <div class="skill-lane direction-right" aria-label="AI, core computer science, and developer tools">
+            <h3>AI / Data &amp; Core CS</h3>
+            <div class="skill-marquee"><div class="skill-marquee-track">
+              <span>NumPy</span><span>DSA</span><span>OOP</span><span>Operating Systems</span><span>Computer Networks</span>
+            </div></div>
+          </div>
+          <div class="skill-lane direction-left" aria-label="Developer tools">
+            <h3>Developer Tools</h3>
+            <div class="skill-marquee"><div class="skill-marquee-track">
+              <span>Git</span><span>GitHub</span><span>Vercel</span><span>Render</span>
+            </div></div>
+          </div>
+          <div class="skill-lane direction-right" aria-label="Soft skills">
+            <h3>Soft Skills</h3>
+            <div class="skill-marquee"><div class="skill-marquee-track">
+              <span>Problem-Solving</span><span>Communication</span><span>Teamwork</span>
+            </div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           PANEL 6: OPEN SOURCE & INDUSTRY LEADERSHIP (In-Depth Showcase)
            ================================================================ -->
       <section class="h-panel panel-experience" id="experience" aria-label="Experience and Open Source">
         <div class="panel-header-block">
           <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
             <div>
-              <span class="panel-tag-mono">04 / Verified Track Record</span>
+              <span class="panel-tag-mono">06 / Verified Track Record</span>
               <h2 class="panel-title-large">
                 Experience, Open Source &amp; <span class="italic-word">Impact</span>.
               </h2>
@@ -715,7 +774,7 @@
         <div class="panel-header-block">
           <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
             <div>
-              <span class="panel-tag-mono">05 / Production Software</span>
+              <span class="panel-tag-mono">05 / Selected Projects</span>
               <h2 class="panel-title-large">
                 Flagship <span class="italic-word">Architectures</span>.
               </h2>
@@ -776,7 +835,11 @@
 
             <div class="proj-actions-footer">
               <a href="https://github.com/PREM-GUPTA8851" target="_blank" rel="noopener noreferrer" class="btn-primary" id="proj-active-link" style="padding: 0.65rem 1.4rem; font-size: 0.85rem;">
-                <span>View Repository &amp; Architecture</span>
+                <span>View on GitHub</span>
+                <span>↗</span>
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="btn-secondary" id="proj-active-live" hidden>
+                <span>Live Demo</span>
                 <span>↗</span>
               </a>
               <span class="proj-pipeline-badge" id="proj-active-metric">Sub-millisecond ChromaDB retrieval &bull; High throughput</span>
@@ -791,6 +854,7 @@
                 <span class="mini-num">01</span>
                 <span class="mini-chip">AI / RAG</span>
               </div>
+              <img class="mini-project-image" src="assets/project-rag.svg" alt="Illustration of the GitHub RAG Assistant code search pipeline">
               <h4 class="mini-project-title">GitHub RAG Assistant</h4>
               <p class="mini-project-desc">AST code slicing, ChromaDB vector indexing &amp; Groq LPU Llama 3 70B Q&amp;A.</p>
               <div class="mini-tech-row">FastAPI &bull; ChromaDB &bull; Groq</div>
@@ -802,6 +866,7 @@
                 <span class="mini-num">02</span>
                 <span class="mini-chip">Computer Vision</span>
               </div>
+              <img class="mini-project-image" src="assets/project-proctored.svg" alt="Illustration of the ProctorEd exam integrity dashboard">
               <h4 class="mini-project-title">ProctorEd</h4>
               <p class="mini-project-desc">AI proctoring with multi-face gaze mesh, audio spectral anomaly &amp; OCR ID verification.</p>
               <div class="mini-tech-row">MERN &bull; OpenCV &bull; Tesseract OCR</div>
@@ -813,6 +878,7 @@
                 <span class="mini-num">03</span>
                 <span class="mini-chip">WebRTC Mesh</span>
               </div>
+              <img class="mini-project-image" src="assets/project-byod.svg" alt="Illustration of the BYOD classroom screen-sharing network">
               <h4 class="mini-project-title">BYOD Classroom Suite</h4>
               <p class="mini-project-desc">Peer screen broadcast, student focus tracking &amp; instant comprehension quizzes.</p>
               <div class="mini-tech-row">React &bull; WebRTC &bull; Socket.IO</div>
@@ -824,6 +890,7 @@
                 <span class="mini-num">04</span>
                 <span class="mini-chip">Enterprise Java</span>
               </div>
+              <img class="mini-project-image" src="assets/project-vendorlink.svg" alt="Illustration of the VendorLink procurement workflow">
               <h4 class="mini-project-title">VendorLink</h4>
               <p class="mini-project-desc">Supplier lifecycle, sealed-bid RFQ processing &amp; multi-tiered JWT RBAC escrow auditing.</p>
               <div class="mini-tech-row">Spring Boot &bull; MySQL &bull; JWT</div>
@@ -833,74 +900,182 @@
       </section>
 
       <!-- ================================================================
-           PANEL 6: 19 ACCREDITED CERTIFICATIONS
+           PANEL 7: ACHIEVEMENTS & CERTIFICATIONS
            ================================================================ -->
       <section class="h-panel panel-credentials" id="credentials" aria-label="Accredited Certifications">
         <div class="panel-header-block">
-          <span class="panel-tag-mono">06 / Verified Mastery</span>
+          <span class="panel-tag-mono">07 / Achievements &amp; Certifications</span>
           <h2 class="panel-title-large">
-            19 Accredited <span class="italic-word">Certifications</span>.
+            Achievements &amp; <span class="italic-word">Certifications</span>.
           </h2>
         </div>
 
+        <h3 class="credentials-subheading">Achievements</h3>
+        <div class="achievement-highlights">
+          <article class="achievement-card">
+            <a class="credential-media credential-media--photo" href="https://www.linkedin.com/in/premgupta8851/overlay/Honor/103086971/treasury/?profileId=ACoAAFsGq3YB3YHYSBiB5iLH982lJqoyle6VNQQ" target="_blank" rel="noopener noreferrer" aria-label="View Debate and Group Discussion award on LinkedIn"><img src="assets/award-debate.png" alt="Prem receiving the Debate and Group Discussion runner-up trophy"></a>
+            <div class="credential-body"><strong>2nd Runner-up — Debate &amp; Group Discussion</strong><span>BH-3 Hostel, Lovely Professional University · Feb 2025</span><p>Recognized for communication, critical thinking, and presenting ideas effectively.</p><a class="cert-proof-link" href="https://www.linkedin.com/in/premgupta8851/overlay/Honor/103086971/treasury/?profileId=ACoAAFsGq3YB3YHYSBiB5iLH982lJqoyle6VNQQ" target="_blank" rel="noopener noreferrer">View award ↗</a></div>
+          </article>
+          <article class="achievement-card">
+            <a class="credential-media credential-media--poster" href="https://www.linkedin.com/in/premgupta8851/overlay/Position/2720521171/treasury/?profileId=ACoAAFsGq3YB3YHYSBiB5iLH982lJqoyle6VNQQ" target="_blank" rel="noopener noreferrer" aria-label="View Open Source Community credential on LinkedIn"><img src="assets/open-source-community.png" alt="Open Source Connect Global community credential for Prem Kumar Gupta"></a>
+            <div class="credential-body"><strong>Open Source Contributor</strong><span>SSoC · GSSoC · OSCI</span><p>Contributions to community projects and peer learning.</p><a class="cert-proof-link" href="https://www.linkedin.com/in/premgupta8851/overlay/Position/2720521171/treasury/?profileId=ACoAAFsGq3YB3YHYSBiB5iLH982lJqoyle6VNQQ" target="_blank" rel="noopener noreferrer">View community credential ↗</a></div>
+          </article>
+          <article class="achievement-card">
+            <a class="credential-media credential-media--profile" href="https://codolio.com/profile/PREM_GUPTA8851" target="_blank" rel="noopener noreferrer" aria-label="View Prem's Codolio problem-solving profile"><img src="assets/codolio-dsa.png" alt="Codolio profile showing Prem's solved questions and active days"></a>
+            <div class="credential-body"><strong>350+ Problems Solved</strong><span>Across coding platforms</span><p>Consistent practice in data structures, algorithms, and problem solving.</p><a class="cert-proof-link" href="https://codolio.com/profile/PREM_GUPTA8851" target="_blank" rel="noopener noreferrer">View Codolio profile ↗</a></div>
+          </article>
+        </div>
+
+        <h3 class="credentials-subheading">Certifications &amp; Credentials</h3>
         <div class="certs-scroll-grid">
-          <div class="cert-capsule-item">
-            <span class="cert-issuer-badge">Stanford Online</span>
-            <div class="cert-name-heading">Supervised Machine Learning: Regression &amp; Classification</div>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://drive.google.com/file/d/1N2H97jC1KzoqYcqg14U1adaoZ_YQ2nyP/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open Advanced Backend Development certificate"><img src="assets/certificate-backend-training.png" alt="Advanced Backend Development with Node.js, Express and MongoDB certificate"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">Lovely Professional University</span><h4 class="cert-name-heading">Advanced Backend Development with Node.js, Express and MongoDB</h4><p>Hands-on REST APIs, backend architecture, database integration, authentication, and API development.</p><a class="cert-proof-link" href="https://drive.google.com/file/d/1N2H97jC1KzoqYcqg14U1adaoZ_YQ2nyP/view?usp=sharing" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://drive.google.com/file/d/1aEgMkwpX1YQmwrPhoqyc65yneTIEhwno/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open GEN AI NASSCOM certificate"><img src="assets/certificate-genai-nasscom.png" alt="GEN AI NASSCOM Skill Development Program certificate"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">NASSCOM SFII</span><h4 class="cert-name-heading">GEN AI NASSCOM</h4><p>Generative AI foundations, concepts, tools, and practical applications.</p><span class="cert-date">Issued Feb 2026</span><a class="cert-proof-link" href="https://drive.google.com/file/d/1aEgMkwpX1YQmwrPhoqyc65yneTIEhwno/view?usp=sharing" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://drive.google.com/file/d/1tG7ddZaQ2HhpFooocBrjnHeJK5IykE6p/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open Oracle AI Foundations certificate"><img src="assets/certificate-oracle-ai.png" alt="Oracle Cloud Infrastructure 2025 AI Foundations Associate certificate"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">Oracle</span><h4 class="cert-name-heading">Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate</h4><p>Skills: Generative AI, Machine Learning, and AI foundations.</p><span class="cert-date">Issued May 2026 · Expires May 2028</span><a class="cert-proof-link" href="https://drive.google.com/file/d/1tG7ddZaQ2HhpFooocBrjnHeJK5IykE6p/view?usp=sharing" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <div class="credential-art credential-art--medal" aria-label="LeetCode 100 Days badge"><span>LEETCODE</span><img class="leetcode-medal-image leetcode-medal-100" src="assets/leetcode-100-days.png" alt="LeetCode 100 Days blue badge"></div>
+            <div class="credential-body"><span class="cert-issuer-badge">LeetCode with Java</span><h4 class="cert-name-heading">LeetCode 100 Days Badge 2026</h4><p>Earned through 100+ days of consistent problem solving and DSA practice.</p><span class="cert-date">Issued Aug 2026</span><a class="cert-proof-link" href="https://leetcode.com/medal/?showImg=0&amp;id=10632764&amp;isLevel=false" target="_blank" rel="noopener noreferrer">View badge ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <div class="credential-art credential-art--medal" aria-label="LeetCode 50 Days badge"><span>LEETCODE</span><img class="leetcode-medal-image leetcode-medal-50" src="assets/leetcode-50-days.png" alt="LeetCode 50 Days green badge"></div>
+            <div class="credential-body"><span class="cert-issuer-badge">LeetCode Challenge</span><h4 class="cert-name-heading">LeetCode 50 Days Badge ×2</h4><p>Consistent coding practice; skills include C++ programming.</p><span class="cert-date">Issued Nov 2025</span><a class="cert-proof-link" href="https://leetcode.com/medal/?showImg=0&amp;id=10413804&amp;isLevel=false" target="_blank" rel="noopener noreferrer">View badges ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--leetcode" href="https://leetcode.com/medal/?showImg=0&amp;id=8588461&amp;isLevel=false" target="_blank" rel="noopener noreferrer" aria-label="View LeetCode SQL 50 badge"><img src="https://assets.leetcode.com/static_assets/others/Top_SQL_50.gif" alt="Animated LeetCode SQL 50 medal"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">LeetCode</span><h4 class="cert-name-heading">SQL 50 — Top Interview Questions</h4><p>SQL and MySQL query practice.</p><span class="cert-date">Issued Nov 2025</span><a class="cert-proof-link" href="https://leetcode.com/medal/?showImg=0&amp;id=8588461&amp;isLevel=false" target="_blank" rel="noopener noreferrer">View badge ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://drive.google.com/file/d/1ryVxvjXNuf4d2VLnHQuU4IPYcqbD4w7K/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open Infosys C++ Programming certificate"><img src="assets/certificate-infosys-cpp.png" alt="Infosys Springboard Programming Using C++ certificate"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">Infosys</span><h4 class="cert-name-heading">Programming Using C++</h4><p>Programming fundamentals, object-oriented concepts, and problem solving with data structures and algorithms.</p><span class="cert-date">Issued Aug 2025</span><a class="cert-proof-link" href="https://drive.google.com/file/d/1ryVxvjXNuf4d2VLnHQuU4IPYcqbD4w7K/view?usp=sharing" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://drive.google.com/file/d/1-iXhaU8T2XaG5iQiBkrPnRJmvXVtpAzZ/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open Introduction to Generative AI certificate"><img src="assets/certificate-google-genai.png" alt="Google Cloud and Simplilearn Introduction to Generative AI certificate"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">Google Cloud Skills Boost · Simplilearn SkillUp</span><h4 class="cert-name-heading">Introduction to Generative AI</h4><p>Foundational knowledge of generative AI, large language models, diffusion models, and real-world applications.</p><span class="cert-date">Issued Jul 2025 · ID 8622827</span><a class="cert-proof-link" href="https://drive.google.com/file/d/1-iXhaU8T2XaG5iQiBkrPnRJmvXVtpAzZ/view?usp=sharing" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://drive.google.com/file/d/1bxMkJ4MgV_UCo4t9x0Wr02rTWiU_UBxe/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open Python Bootcamp certificate"><img src="assets/certificate-python-bootcamp.png" alt="LetsUpgrade Python Bootcamp certificate"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">LetsUpgrade</span><h4 class="cert-name-heading">Python Bootcamp</h4><p>Three-day bootcamp with Python fundamentals, functions, control flow, and basic problem solving; in collaboration with NSDC, ITM Edutech, and GDG MAD.</p><span class="cert-date">Issued Jul 2025 · ID LUEPYTMAY1253076</span><a class="cert-proof-link" href="https://drive.google.com/file/d/1bxMkJ4MgV_UCo4t9x0Wr02rTWiU_UBxe/view?usp=sharing" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://drive.google.com/file/d/1RG6ccHbvbbeWEiTYBRrQdbyUJ_u-gytj/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open HackerRank SQL Intermediate certificate"><img src="assets/certificate-hackerrank-sql-intermediate.png" alt="HackerRank SQL Intermediate certificate awarded to Prem Gupta"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">HackerRank Campus Club, AUFS</span><h4 class="cert-name-heading">SQL (Intermediate)</h4><p>Joins, subqueries, aggregation, grouping, sorting, filtering, and window functions.</p><span class="cert-date">Issued Jul 2025 · ID A8FA1C3DEA10</span><a class="cert-proof-link" href="https://drive.google.com/file/d/1RG6ccHbvbbeWEiTYBRrQdbyUJ_u-gytj/view?usp=sharing" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://www.linkedin.com/in/premgupta8851/overlay/Certifications/1684603742/treasury/?profileId=ACoAAFsGq3YB3YHYSBiB5iLH982lJqoyle6VNQQ" target="_blank" rel="noopener noreferrer" aria-label="View Cyber Smart certificate on LinkedIn"><img src="assets/certificate-cyber-smart.png" alt="WNS Cares Cyber Smart certificate awarded to Prem Kumar Gupta"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">WNS Cares Foundation</span><h4 class="cert-name-heading">Cyber Smart Certification</h4><p>Cybersecurity awareness and safe digital practices.</p><span class="cert-date">Issued Jul 2025 · ID PREINDMADEB347BSONOTH</span><a class="cert-proof-link" href="https://www.linkedin.com/in/premgupta8851/overlay/Certifications/1684603742/treasury/?profileId=ACoAAFsGq3YB3YHYSBiB5iLH982lJqoyle6VNQQ" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://drive.google.com/file/d/1-Rn__eJ0masdJhfuuQo60-Qd4SZ5aCFL/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open React.js Developer certificate"><img src="assets/certificate-react-js.png" alt="Tech Veda React.js Developer certificate awarded to Prem Kumar Gupta"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">Tech Veda</span><h4 class="cert-name-heading">React.js Developer Certification (Proctored Exam)</h4><p>15+ hour program covering component architecture, React Hooks, and JSX for scalable SPAs.</p><span class="cert-date">Issued Mar 2025 · ID TV/MAR25/RJ/334</span><a class="cert-proof-link" href="https://drive.google.com/file/d/1-Rn__eJ0masdJhfuuQo60-Qd4SZ5aCFL/view?usp=sharing" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://drive.google.com/file/d/1OVnl8CviBD2QrF4up_5kpy6PGHaEeB4O/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open Linux Commands and Shell Scripting certificate"><img src="assets/certificate-linux-shell.png" alt="Skillera Linux Commands and Shell Scripting certificate awarded to Prem Kumar Gupta"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">Skillera</span><h4 class="cert-name-heading">Linux Commands and Shell Scripting (Proctored Exam)</h4><p>17-hour program in Bash scripting, automation, permissions management, and troubleshooting.</p><span class="cert-date">Issued Nov 2024 · ID CER/NT/OCT/LCS/0256</span><a class="cert-proof-link" href="https://drive.google.com/file/d/1OVnl8CviBD2QrF4up_5kpy6PGHaEeB4O/view?usp=sharing" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://drive.google.com/file/d/1T9TdGSfD0oLOlv704gf4x4uf0c5eq4dc/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open Programming in C sharp certificate"><img src="assets/certificate-programming-csharp.png" alt="Lovely Professional University Computer Programming certificate awarded to Prem Kumar Gupta"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">Neo CoLab · Lovely Professional University</span><h4 class="cert-name-heading">Programming in C# Certification</h4><p>72-hour computer programming course on the iamneo platform, strengthening programming fundamentals and problem-solving skills.</p><span class="cert-date">Issued May 2025 · Expires Dec 2035 · ID 21c66BJ1CK2DL35M9</span><a class="cert-proof-link" href="https://drive.google.com/file/d/1T9TdGSfD0oLOlv704gf4x4uf0c5eq4dc/view?usp=sharing" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://drive.google.com/file/d/1eG3rXJ0VRZyFLZFWaFqt4Zz_Fykw7b0g/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open Time Management certificate"><img src="assets/certificate-time-management.png" alt="Master Union Effective Time Management certificate awarded to Prem Kumar Gupta"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">Master Union Co.</span><h4 class="cert-name-heading">Time Management</h4><p>Proctored MOOC on productivity, prioritization, goal setting, delegation, and workflow planning.</p><span class="cert-date">Issued Oct 2024 · Expires Dec 2035 · ID MU/OCT24/ETM/A212</span><a class="cert-proof-link" href="https://drive.google.com/file/d/1eG3rXJ0VRZyFLZFWaFqt4Zz_Fykw7b0g/view?usp=sharing" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://drive.google.com/file/d/1vZ3Qk31tU-Hd8uCaixSnW6l2zUFDRQKu/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open HackerRank CSS Basic certificate"><img src="assets/certificate-hackerrank-css.png" alt="HackerRank CSS Basic certificate awarded to Prem Kumar Gupta"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">HackerRank Campus Club, FCDS</span><h4 class="cert-name-heading">CSS (Basic) Certificate</h4><p>Foundational CSS knowledge in selectors, styling, layout, and responsive design.</p><span class="cert-date">Issued Nov 2024 · Expires Jan 2035 · ID 0BFCD41BEB0C</span><a class="cert-proof-link" href="https://drive.google.com/file/d/1vZ3Qk31tU-Hd8uCaixSnW6l2zUFDRQKu/view?usp=sharing" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://drive.google.com/file/d/1m-uXF6Os8UHS9TKDBFK6F3jKpueAEaGE/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open Hack-a-Throne 1.0 certificate"><img src="assets/certificate-hack-a-throne.png" alt="AIESEC Hack-a-Throne 1.0 certificate of qualification awarded to Prem Kumar Gupta"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">AIESEC Jalandhar</span><h4 class="cert-name-heading">Hack-a-Throne 1.0 — Qualified</h4><p>Qualified in the competitive hackathon through creativity, enthusiasm, and problem-solving.</p><span class="cert-date">Issued Aug 2024</span><a class="cert-proof-link" href="https://drive.google.com/file/d/1m-uXF6Os8UHS9TKDBFK6F3jKpueAEaGE/view?usp=sharing" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://drive.google.com/file/d/1EDL4Acwb3qbzOj6XXjqU3-ljCcAYnhGF/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open Geekster responsive web page certificate"><img src="assets/certificate-geekster-responsive-web.png" alt="Geekster Responsive Landing Page using HTML and CSS certificate awarded to Prem Gupta"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">Geekster</span><h4 class="cert-name-heading">Responsive Webpage Using HTML &amp; CSS</h4><p>Hands-on training in responsive landing pages, mobile-friendly layouts, and code optimization.</p><span class="cert-date">Issued Jan 2025</span><a class="cert-proof-link" href="https://drive.google.com/file/d/1EDL4Acwb3qbzOj6XXjqU3-ljCcAYnhGF/view?usp=sharing" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://drive.google.com/file/d/1lJMU6jehueKk1a8_NujU0YaFmEvUQdPJ/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open GeeksforGeeks Django course certificate"><img src="assets/certificate-geeksforgeeks-django.png" alt="GeeksforGeeks certificate for completing the Free Django Course Online"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">GeeksforGeeks</span><h4 class="cert-name-heading">Django Course Completion</h4><p>Completed a three-week online Django course and strengthened foundational web development skills.</p><span class="cert-date">Issued 2024</span><a class="cert-proof-link" href="https://drive.google.com/file/d/1lJMU6jehueKk1a8_NujU0YaFmEvUQdPJ/view?usp=sharing" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://drive.google.com/file/d/1w005dkYVzinVg0KuohUUlK7PfYMf12NF/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Open C Programming certificate"><img src="assets/certificate-c-programming.png" alt="CSE Pathshala 18-hour C Programming certificate awarded to Prem Kumar Gupta"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">CSE Pathshala</span><h4 class="cert-name-heading">C Programming — 18-Hour Live Course</h4><p>Live online course from 20 Dec 2024 to 16 Jan 2025, including a proctored examination.</p><span class="cert-date">Issued Jan 2025 · ID CP-202501-CP024</span><a class="cert-proof-link" href="https://drive.google.com/file/d/1w005dkYVzinVg0KuohUUlK7PfYMf12NF/view?usp=sharing" target="_blank" rel="noopener noreferrer">View certificate ↗</a></div>
+          </article>
+          <article class="cert-capsule-item">
+            <a class="credential-media credential-media--certificate" href="https://drive.google.com/drive/u/0/folders/1-6XSBklAmkBp7QPwUelKNETC6O9NRNHm" target="_blank" rel="noopener noreferrer" aria-label="Open Quizverse certificate folder on Google Drive"><img src="assets/certificate-unstop-quizverse.png" alt="Unstop Quizverse 2026 certificate of participation awarded to Prem Kumar Gupta"></a>
+            <div class="credential-body"><span class="cert-issuer-badge">Unstop · Lovely Professional University</span><h4 class="cert-name-heading">Quizverse 2026</h4><p>Certificate of participation in Unstop Quizverse 2026, organized at Lovely Professional University.</p><a class="cert-proof-link" href="https://drive.google.com/drive/u/0/folders/1-6XSBklAmkBp7QPwUelKNETC6O9NRNHm" target="_blank" rel="noopener noreferrer">View certificate folder ↗</a></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           PANEL 8: EDUCATION
+           ================================================================ -->
+      <section class="h-panel panel-education" id="education" aria-label="Education">
+        <div class="panel-header-block">
+          <span class="panel-tag-mono">08 / Education</span>
+          <h2 class="panel-title-large">Education &amp; <span class="italic-word">Foundations</span>.</h2>
+        </div>
+        <div class="education-cards-grid">
+          <article class="education-card">
+            <span class="education-status">Currently pursuing</span>
+            <h3>Bachelor of Technology</h3>
+            <p class="education-degree">Computer Engineering</p>
+            <p class="education-institution">Lovely Professional University</p>
+            <div class="education-meta"><span>Punjab, India</span><span>2024 – Present</span><span>CGPA: 8.0</span></div>
+          </article>
+          <article class="education-card">
+            <span class="education-status">JEE Main qualified</span>
+            <h3>National Level Examination</h3>
+            <p class="education-degree">JEE Mains</p>
+            <p class="education-institution">PW Institute of Innovation</p>
+            <div class="education-meta"><span>Apr 2023 – May 2024</span><span>Grade: 86.07 percentile</span></div>
+            <p class="education-note">Qualified JEE Mains in the first attempt.</p>
+          </article>
+          <article class="education-card">
+            <span class="education-status">School education</span>
+            <h3>Mathematics</h3>
+            <p class="education-institution">CMA School (CBSE)</p>
+            <div class="education-meta"><span>Jul 2008 – Mar 2023</span><span>Grade: A</span></div>
+            <p class="education-note">Student leadership, event organization, peer tutoring, volunteering, and debate activities.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           PANEL 9: RESUME / CV
+           ================================================================ -->
+      <section class="h-panel panel-resume" id="resume" aria-label="Resume and CV">
+        <div class="panel-header-block">
+          <span class="panel-tag-mono">09 / Resume &amp; CV</span>
+          <h2 class="panel-title-large">A closer look at <span class="italic-word">my work</span>.</h2>
+        </div>
+        <div class="resume-card">
+          <div class="resume-file-mark" aria-hidden="true">PDF</div>
+          <div>
+            <h3>Prem Kumar Gupta — Resume</h3>
+            <p>Skills, projects, experience and education in one page.</p>
           </div>
-          <div class="cert-capsule-item">
-            <span class="cert-issuer-badge">DeepLearning.AI</span>
-            <div class="cert-name-heading">Neural Networks and Deep Learning</div>
-          </div>
-          <div class="cert-capsule-item">
-            <span class="cert-issuer-badge">Harvard University</span>
-            <div class="cert-name-heading">CS50's Introduction to Computer Science</div>
-          </div>
-          <div class="cert-capsule-item">
-            <span class="cert-issuer-badge">Amazon Web Services</span>
-            <div class="cert-name-heading">AWS Academy Graduate — Cloud Foundations</div>
-          </div>
-          <div class="cert-capsule-item">
-            <span class="cert-issuer-badge">Google Cloud</span>
-            <div class="cert-name-heading">Cloud Computing Fundamentals</div>
-          </div>
-          <div class="cert-capsule-item">
-            <span class="cert-issuer-badge">Google Cloud</span>
-            <div class="cert-name-heading">Infrastructure in Google Cloud</div>
-          </div>
-          <div class="cert-capsule-item">
-            <span class="cert-issuer-badge">Meta</span>
-            <div class="cert-name-heading">React Basics &amp; Advanced React</div>
-          </div>
-          <div class="cert-capsule-item">
-            <span class="cert-issuer-badge">Meta</span>
-            <div class="cert-name-heading">Programming with JavaScript</div>
-          </div>
-          <div class="cert-capsule-item">
-            <span class="cert-issuer-badge">GeeksforGeeks</span>
-            <div class="cert-name-heading">100 Days of Code (Data Structures &amp; Algorithms)</div>
-          </div>
-          <div class="cert-capsule-item">
-            <span class="cert-issuer-badge">HackerRank</span>
-            <div class="cert-name-heading">SQL (Intermediate) &amp; Java (Basic)</div>
-          </div>
-          <div class="cert-capsule-item">
-            <span class="cert-issuer-badge">IBM</span>
-            <div class="cert-name-heading">Getting Started with Git and GitHub</div>
-          </div>
-          <div class="cert-capsule-item">
-            <span class="cert-issuer-badge">Cisco Networking Academy</span>
-            <div class="cert-name-heading">Introduction to Cybersecurity</div>
+          <div class="resume-actions">
+            <a class="btn-primary" href="assets/Prem_Kumar_Gupta_Resume.pdf" download="Prem_Kumar_Gupta_Resume.pdf">Download PDF <span aria-hidden="true">↓</span></a>
+            <a class="btn-secondary" href="assets/Prem_Kumar_Gupta_Resume.pdf" target="_blank" rel="noopener noreferrer">Preview resume <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </section>
 
       <!-- ================================================================
-           PANEL 7: CONTACT & GLOBAL REACHOUT
+           PANEL 10: CONTACT & GLOBAL REACHOUT
            ================================================================ -->
       <section class="h-panel panel-contact" id="contact" aria-label="Contact Information">
         <div class="panel-header-block">
-          <span class="panel-tag-mono">07 / Transmission</span>
+          <span class="panel-tag-mono">10 / Contact</span>
           <h2 class="panel-title-large">
             Initiate <span class="italic-word">Collaboration</span>.
           </h2>
@@ -946,24 +1121,61 @@
         </div>
       </section>
 
+      <!-- ================================================================
+           PANEL 11: FOOTER
+           ================================================================ -->
+      <section class="h-panel panel-footer" id="footer" aria-label="Footer">
+        <footer class="portfolio-footer">
+          <a class="footer-brand" href="#hero">PREM<span>™</span></a>
+          <p>Building thoughtful software, one problem at a time.</p>
+          <nav class="footer-social-links" aria-label="Footer social links">
+            <a href="mailto:premgupta100705@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/premgupta8851/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <a href="https://github.com/PREM-GUPTA8851" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </nav>
+          <a class="footer-back-to-top" href="#hero">Back to top ↑</a>
+          <small>© <span id="footer-year">2026</span> Prem Kumar Gupta. All rights reserved.</small>
+        </footer>
+      </section>
+
     </div>
   </main>
+
+  <aside class="portfolio-agent" aria-label="Portfolio AI assistant">
+    <section class="agent-panel" id="agent-panel" aria-label="Portfolio assistant conversation" hidden>
+      <header class="agent-panel-header">
+        <div>
+          <strong>PREM AI</strong>
+          <span>Portfolio assistant · resume facts</span>
+        </div>
+        <button type="button" class="agent-close-btn" id="agent-close-btn" aria-label="Close assistant">×</button>
+      </header>
+      <div class="agent-messages" id="agent-messages" aria-live="polite">
+        <p class="agent-message agent-reply">Hi! Ask me about Prem's skills, projects, experience, education, achievements or resume.</p>
+      </div>
+      <div class="agent-suggestions" aria-label="Suggested questions">
+        <button type="button" data-question="What are your skills?">Skills</button>
+        <button type="button" data-question="Tell me about your projects">Projects</button>
+        <button type="button" data-question="Where can I get your resume?">Resume</button>
+      </div>
+      <form class="agent-form" id="agent-form">
+        <label class="sr-only" for="agent-question">Ask about Prem's portfolio</label>
+        <input id="agent-question" name="question" type="text" maxlength="240" placeholder="Ask about this portfolio..." autocomplete="off" required>
+        <button type="submit" aria-label="Send question">↑</button>
+      </form>
+      <p class="agent-disclaimer">Local portfolio Q&amp;A · no external AI/API connected</p>
+    </section>
+    <button class="agent-toggle-btn" id="agent-toggle-btn" type="button" aria-expanded="false" aria-controls="agent-panel">
+      <span aria-hidden="true">✦</span> AI Agent
+    </button>
+  </aside>
 
   <!-- ====================================================================
        4. FLOATING BOTTOM HUD CONTROLS
        ==================================================================== -->
-  <footer class="bottom-hud-bar" role="contentinfo">
-    <div class="hud-panel-index" id="hud-panel-index">01 / 07 — HERO CHRONICLE</div>
-    
-    <div class="hud-scroll-cue">
-      <span>Scroll or Drag Horizontally</span>
-      <span class="hud-cue-arrow">→</span>
-    </div>
-
-    <div class="hud-jump-start" id="hud-jump-start">
-      <span>Return to Beginning ↑</span>
-    </div>
-  </footer>
+  <div class="bottom-hud-bar" aria-label="Current portfolio section">
+    <span class="hud-panel-index" id="hud-panel-index">01 / 11</span>
+  </div>
 
   <!-- Scripts -->
   <script src="js/main.js"></script>

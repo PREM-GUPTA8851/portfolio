@@ -15,6 +15,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
+  initSkillMarquees();
   initIntroGate();
   initBackground3DCanvas();
   initHorizontalScrollEngine();
@@ -26,7 +27,28 @@ document.addEventListener('DOMContentLoaded', () => {
   initExperienceFilter();
   initEmailCopy();
   initContactForm();
+  initPortfolioAgent();
 });
+
+function initSkillMarquees() {
+  const pixelsPerSecond = 24;
+  const tracks = document.querySelectorAll('.skill-marquee-track');
+  const updateDurations = () => {
+    tracks.forEach((track) => {
+      const marquee = track.parentElement;
+      const overflow = track.scrollWidth - marquee.clientWidth;
+      const travelDistance = overflow > 0
+        ? overflow
+        : Math.min(track.scrollWidth, marquee.clientWidth) * 0.4;
+      track.style.setProperty('--marquee-travel', `${travelDistance}px`);
+      track.style.setProperty('--marquee-duration', `${travelDistance / pixelsPerSecond}s`);
+    });
+  };
+
+  updateDurations();
+  window.addEventListener('resize', updateDurations, { passive: true });
+  if (document.fonts?.ready) document.fonts.ready.then(updateDurations);
+}
 
 /* --------------------------------------------------------------------------
    1. THEME CONTROLLER
@@ -293,15 +315,30 @@ function initHorizontalScrollEngine() {
 
   if (!viewport) return;
 
-  const PANEL_INFO = [
-    "01 / 07 — HERO CHRONICLE",
-    "02 / 07 — PREM IDENTITY & MANIFESTO",
-    "03 / 07 — ALGORITHMIC PROOF & BENCHMARKS",
-    "04 / 07 — OPEN SOURCE & INDUSTRY LEADERSHIP",
-    "05 / 07 — FLAGSHIP SOFTWARE & RAG SYSTEMS",
-    "06 / 07 — 19 ACCREDITED CREDENTIALS",
-    "07 / 07 — GLOBAL REACHOUT & CONNECT"
-  ];
+  const getOrderedPanels = () => Array.from(panels).sort((a, b) => (
+    window.innerWidth > 1024 ? a.offsetLeft - b.offsetLeft : a.offsetTop - b.offsetTop
+  ));
+
+  const panelAtHorizontalPosition = (scrollLeft) => {
+    const orderedPanels = getOrderedPanels();
+    const viewportCenter = scrollLeft + viewport.clientWidth / 2;
+    return orderedPanels.find((panel) => (
+      viewportCenter >= panel.offsetLeft && viewportCenter < panel.offsetLeft + panel.clientWidth
+    )) || orderedPanels[orderedPanels.length - 1];
+  };
+
+  const resetPanelOnEntry = (previousPosition, nextPosition) => {
+    const previousPanel = panelAtHorizontalPosition(previousPosition);
+    const nextPanel = panelAtHorizontalPosition(nextPosition);
+    if (nextPanel && nextPanel !== previousPanel) nextPanel.scrollTop = 0;
+  };
+
+  const animateToTarget = () => {
+    if (!isWheelScrolling) {
+      isWheelScrolling = true;
+      requestAnimationFrame(smoothScrollTick);
+    }
+  };
 
   // Smooth Inertial Wheel to Horizontal Mapping
   let targetScrollLeft = viewport.scrollLeft;
@@ -310,17 +347,23 @@ function initHorizontalScrollEngine() {
   viewport.addEventListener('wheel', (e) => {
     // Only map on desktop when horizontal layout is active
     if (window.innerWidth > 1024) {
+      const panel = e.target.closest('.h-panel');
+      if (panel && e.deltaY !== 0 && panel.scrollHeight > panel.clientHeight) {
+        const canScrollPanel = e.deltaY > 0
+          ? panel.scrollTop + panel.clientHeight < panel.scrollHeight - 1
+          : panel.scrollTop > 0;
+        if (canScrollPanel && e.deltaX === 0) return;
+      }
+
       e.preventDefault();
       const delta = e.deltaY !== 0 ? e.deltaY : e.deltaX;
+      const previousTarget = targetScrollLeft;
       targetScrollLeft = Math.max(
         0,
         Math.min(viewport.scrollWidth - viewport.clientWidth, targetScrollLeft + delta * 1.5)
       );
-
-      if (!isWheelScrolling) {
-        isWheelScrolling = true;
-        requestAnimationFrame(smoothScrollTick);
-      }
+      resetPanelOnEntry(previousTarget, targetScrollLeft);
+      animateToTarget();
     }
   }, { passive: false });
 
@@ -358,8 +401,10 @@ function initHorizontalScrollEngine() {
     e.preventDefault();
     const x = e.pageX - viewport.offsetLeft;
     const walk = (x - startX) * 2;
+    const previousPosition = viewport.scrollLeft;
     viewport.scrollLeft = scrollLeftStart - walk;
     targetScrollLeft = viewport.scrollLeft;
+    resetPanelOnEntry(previousPosition, targetScrollLeft);
     updateHUDAndProgress();
   });
 
@@ -368,30 +413,32 @@ function initHorizontalScrollEngine() {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
 
     if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+      const previousTarget = targetScrollLeft;
       targetScrollLeft = Math.min(viewport.scrollWidth - viewport.clientWidth, targetScrollLeft + 650);
-      if (!isWheelScrolling) {
-        isWheelScrolling = true;
-        smoothScrollTick();
-      }
+      resetPanelOnEntry(previousTarget, targetScrollLeft);
+      animateToTarget();
     } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+      const previousTarget = targetScrollLeft;
       targetScrollLeft = Math.max(0, targetScrollLeft - 650);
-      if (!isWheelScrolling) {
-        isWheelScrolling = true;
-        smoothScrollTick();
-      }
+      resetPanelOnEntry(previousTarget, targetScrollLeft);
+      animateToTarget();
     }
   });
 
   // Header Nav Click Support
-  navItems.forEach((item, index) => {
+  navItems.forEach((item) => {
     const btn = item.querySelector('button');
     if (btn) {
       btn.addEventListener('click', () => {
-        const targetPanel = panels[index];
+        const targetPanel = document.getElementById(item.dataset.target);
         if (targetPanel) {
-          targetScrollLeft = targetPanel.offsetLeft;
-          viewport.scrollTo({ left: targetPanel.offsetLeft, behavior: 'smooth' });
-          targetScrollLeft = targetPanel.offsetLeft;
+          targetPanel.scrollTop = 0;
+          if (window.innerWidth > 1024) {
+            targetScrollLeft = targetPanel.offsetLeft;
+            animateToTarget();
+          } else {
+            targetPanel.scrollIntoView({ behavior: 'smooth' });
+          }
         }
       });
     }
@@ -401,38 +448,49 @@ function initHorizontalScrollEngine() {
   const jumpStart = document.getElementById('hud-jump-start');
   if (jumpStart) {
     jumpStart.addEventListener('click', () => {
-      viewport.scrollTo({ left: 0, behavior: 'smooth' });
+      const firstPanel = getOrderedPanels()[0];
+      if (firstPanel) firstPanel.scrollTop = 0;
       targetScrollLeft = 0;
+      animateToTarget();
     });
   }
 
   // Update Progress, HUD, and Active Nav
   function updateHUDAndProgress() {
-    const maxScroll = viewport.scrollWidth - viewport.clientWidth;
-    const progress = maxScroll > 0 ? (viewport.scrollLeft / maxScroll) * 100 : 0;
+    const isHorizontal = window.innerWidth > 1024;
+    const maxScroll = isHorizontal
+      ? viewport.scrollWidth - viewport.clientWidth
+      : document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPosition = isHorizontal ? viewport.scrollLeft : window.scrollY;
+    const progress = maxScroll > 0 ? (scrollPosition / maxScroll) * 100 : 0;
 
     if (progressBar) {
       progressBar.style.width = `${progress}%`;
     }
 
     // Determine Active Panel
-    let activeIndex = 0;
-    panels.forEach((p, i) => {
-      if (viewport.scrollLeft >= p.offsetLeft - viewport.clientWidth * 0.45) {
-        activeIndex = i;
-      }
-    });
+    const orderedPanels = getOrderedPanels();
+    const activePanel = isHorizontal
+      ? panelAtHorizontalPosition(scrollPosition)
+      : orderedPanels.find((panel) => {
+        const rect = panel.getBoundingClientRect();
+        return rect.top <= window.innerHeight * 0.5 && rect.bottom > window.innerHeight * 0.5;
+      }) || orderedPanels[0];
+    const activeIndex = Math.max(0, orderedPanels.indexOf(activePanel));
 
-    if (hudIndex && PANEL_INFO[activeIndex]) {
-      hudIndex.textContent = PANEL_INFO[activeIndex];
+    if (hudIndex && orderedPanels.length) {
+      hudIndex.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(orderedPanels.length).padStart(2, '0')}`;
     }
 
     navItems.forEach((item, i) => {
-      item.classList.toggle('active', i === activeIndex);
+      item.classList.toggle('active', item.dataset.target === orderedPanels[activeIndex]?.id);
     });
   }
 
   viewport.addEventListener('scroll', updateHUDAndProgress, { passive: true });
+  window.addEventListener('scroll', updateHUDAndProgress, { passive: true });
+  window.addEventListener('resize', updateHUDAndProgress);
+  updateHUDAndProgress();
 }
 
 /* --------------------------------------------------------------------------
@@ -502,6 +560,7 @@ const ALL_PROJECTS = {
     summary: "Semantic codebase comprehension engine performing context-aware Q&A and automated bug localization over entire polyglot repositories. Powered by FastAPI, ChromaDB vector indexing, all-MiniLM dense embeddings, and Groq LPU (Llama 3 70B @ >300 tok/sec).",
     techChips: ["FastAPI", "ChromaDB", "Groq LPU", "Llama 3 70B", "Next.js 14", "Sentence-Transformers"],
     githubUrl: "https://github.com/PREM-GUPTA8851",
+    liveUrl: "https://github-rag-assistant-three.vercel.app/",
     metric: "Sub-millisecond ChromaDB retrieval • >300 tokens/sec Groq Inference",
     pipelineLabel: "Interactive 8-Stage Execution Pipeline",
     stages: [
@@ -539,7 +598,8 @@ const ALL_PROJECTS = {
     title: "BYOD Classroom Management Platform",
     summary: "Real-time educational device synchronization suite enabling zero-latency screen broadcasting, dynamic session token pairing, student focus monitoring, and instant comprehension assessments over local networks.",
     techChips: ["React 18", "Vite", "Node.js", "WebRTC Mesh", "Socket.IO", "TailwindCSS"],
-    githubUrl: "https://github.com/PREM-GUPTA8851",
+    githubUrl: "https://github.com/PREM-GUPTA8851/BYOD",
+    liveUrl: "https://byod-umber.vercel.app/",
     metric: "<50ms WebRTC Video Broadcast Latency • 200+ Concurrent Students",
     pipelineLabel: "Interactive 5-Stage Classroom Synchronization Pipeline",
     stages: [
@@ -557,6 +617,7 @@ const ALL_PROJECTS = {
     summary: "Robust multi-tiered enterprise supplier governance platform managing RFQ lifecycle, sealed-bid evaluations, purchase order automation, and milestone verification backed by Spring Boot, MySQL, and JWT RBAC.",
     techChips: ["Java 17", "Spring Boot", "MySQL", "Hibernate ORM", "Spring Security", "React"],
     githubUrl: "https://github.com/PREM-GUPTA8851",
+    liveUrl: "https://vendor-pi-puce.vercel.app/",
     metric: "ACID Guaranteed Transactions • End-to-End JWT RBAC Security",
     pipelineLabel: "Interactive 5-Stage Procurement Lifecycle Pipeline",
     stages: [
@@ -592,6 +653,7 @@ function initAllProjectsShowcase() {
     const techEl = document.getElementById('proj-active-tech');
     const metricEl = document.getElementById('proj-active-metric');
     const linkEl = document.getElementById('proj-active-link');
+    const liveLinkEl = document.getElementById('proj-active-live');
     const pipeLabelEl = document.getElementById('pipeline-title-label');
 
     if (taglineEl) taglineEl.textContent = proj.tagline;
@@ -600,6 +662,10 @@ function initAllProjectsShowcase() {
     if (metricEl) metricEl.textContent = proj.metric;
     if (pipeLabelEl) pipeLabelEl.textContent = proj.pipelineLabel;
     if (linkEl) linkEl.href = proj.githubUrl;
+    if (liveLinkEl) {
+      liveLinkEl.hidden = !proj.liveUrl;
+      if (proj.liveUrl) liveLinkEl.href = proj.liveUrl;
+    }
 
     // Render Tech Chips
     if (techEl) {
@@ -679,7 +745,7 @@ function initGithubHeatmap() {
     // R (cols 6, 7, 8)
     "1,6", "2,6", "3,6", "4,6", "5,6",
     "1,7", "3,7",
-    "1,8", "2,8", "3,8", "4,8", "5,8",
+    "1,8", "2,8", "3,8", "4,7", "5,8",
 
     // E (cols 10, 11, 12)
     "1,10", "2,10", "3,10", "4,10", "5,10",
@@ -890,5 +956,83 @@ function initContactForm() {
         btn.disabled = false;
       }
     }
+  });
+}
+
+/* --------------------------------------------------------------------------
+   12. THEME-MATCHED, RESUME-GROUNDED PORTFOLIO ASSISTANT
+   -------------------------------------------------------------------------- */
+function initPortfolioAgent() {
+  const toggle = document.getElementById('agent-toggle-btn');
+  const panel = document.getElementById('agent-panel');
+  const close = document.getElementById('agent-close-btn');
+  const form = document.getElementById('agent-form');
+  const input = document.getElementById('agent-question');
+  const messages = document.getElementById('agent-messages');
+
+  if (!toggle || !panel || !close || !form || !input || !messages) return;
+
+  function setOpen(isOpen) {
+    panel.hidden = !isOpen;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    if (isOpen) input.focus();
+  }
+
+  function addMessage(text, kind) {
+    const message = document.createElement('p');
+    message.className = `agent-message ${kind === 'question' ? 'agent-question' : 'agent-reply'}`;
+    message.textContent = text;
+    messages.appendChild(message);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function answerFor(question) {
+    const query = question.toLowerCase();
+    if (/skill|tech|stack|database|sql|language|frontend|backend/.test(query)) {
+      return 'Skills from the resume: JavaScript, Java, Python, C++, C; React.js, HTML5, CSS3; Node.js, Express.js, Spring Boot, FastAPI, REST APIs; MySQL, MongoDB and SQL; NumPy, Git, GitHub, Vercel and Render.';
+    }
+    if (/project|work|rag|proctored|byod|vendorlink/.test(query)) {
+      return 'Featured projects: GitHub RAG Assistant (FastAPI, ChromaDB, Groq), ProctorEd (MERN, OpenCV, OCR), BYOD Classroom Suite (React, WebRTC, Socket.IO), and VendorLink (Spring Boot, MySQL, JWT).';
+    }
+    if (/experience|intern|opensource|open source|volunteer/.test(query)) {
+      return 'Prem is an open-source contributor across SSOC, OSC and GSSOC, and has volunteered with Pentaomnia Private Limited. See the Experience section for more details.';
+    }
+    if (/education|degree|university|college|cgpa/.test(query)) {
+      return 'Prem is pursuing a B.Tech in Computer Engineering at Lovely Professional University (2024–present) with a CGPA of 8.0. He also qualified JEE Mains and studied Mathematics at CMA School (CBSE).';
+    }
+    if (/achievement|certificate|badge|leetcode|hackerrank|dsa/.test(query)) {
+      return 'The portfolio highlights 350+ DSA problems, open-source contributions, a 2nd Runner-up Debate & Group Discussion award, LeetCode milestones, and credentials from Oracle, NASSCOM, Infosys, Google Cloud, HackerRank, Tech Veda, and others.';
+    }
+    if (/resume|cv|download/.test(query)) {
+      return 'The downloadable PDF is in the Resume section and there is also a Download Resume button on the front page.';
+    }
+    if (/contact|email|linkedin|github|reach/.test(query)) {
+      return 'You can reach Prem at premgupta100705@gmail.com, or use the LinkedIn and GitHub links in the Contact or Footer sections.';
+    }
+    return 'I can answer questions about Prem’s skills, projects, experience, education, achievements, resume or contact details.';
+  }
+
+  toggle.addEventListener('click', () => setOpen(panel.hidden));
+  close.addEventListener('click', () => setOpen(false));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !panel.hidden) setOpen(false);
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const question = input.value.trim();
+    if (!question) return;
+    addMessage(question, 'question');
+    input.value = '';
+    addMessage(answerFor(question), 'reply');
+  });
+
+  panel.querySelectorAll('[data-question]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const question = button.getAttribute('data-question');
+      if (!question) return;
+      addMessage(question, 'question');
+      addMessage(answerFor(question), 'reply');
+    });
   });
 }

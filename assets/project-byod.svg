@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" role="img" aria-labelledby="title">
+  <title id="title">BYOD Classroom Suite project illustration</title>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101817"/><stop offset="1" stop-color="#172a27"/></linearGradient></defs>
+  <rect width="640" height="260" rx="22" fill="url(#bg)"/>
+  <g stroke="#48c89a" stroke-width="2" opacity=".65">
+    <path d="M186 87 312 133 438 82M186 87l7 111 119-65 126 60 0-111M193 198l120-65 125 71"/>
+  </g>
+  <rect x="250" y="47" width="123" height="76" rx="8" fill="#0a1110" stroke="#60d9ae" stroke-width="2"/>
+  <rect x="261" y="58" width="101" height="52" rx="4" fill="#1a4235"/>
+  <path d="m284 90 14-14 12 11 14-16 18 20" fill="none" stroke="#a2edce" stroke-width="3"/>
+  <path d="M310 123v9m-29 5h58" stroke="#60d9ae" stroke-width="4" stroke-linecap="round"/>
+  <g fill="#111a17" stroke="#8acdb0" stroke-width="2">
+    <rect x="119" y="65" width="54" height="88" rx="9"/><rect x="433" y="56" width="54" height="88" rx="9"/>
+    <rect x="165" y="163" width="67" height="49" rx="7"/><rect x="395" y="157" width="67" height="49" rx="7"/>
+  </g>
+  <g fill="#2f785b">
+    <rect x="126" y="75" width="40" height="63" rx="4"/><rect x="440" y="66" width="40" height="63" rx="4"/>
+    <rect x="173" y="170" width="51" height="34" rx="3"/><rect x="403" y="164" width="51" height="34" rx="3"/>
+  </g>
+  <g fill="#b9f4d8"><circle cx="149" cy="144" r="2"/><circle cx="463" cy="135" r="2"/><circle cx="198" cy="208" r="2"/><circle cx="428" cy="202" r="2"/></g>
+  <text x="38" y="239" fill="#a5d9c2" font-family="Arial,sans-serif" font-size="14" letter-spacing="2">ONE CLASSROOM  •  MANY CONNECTED DEVICES</text>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 260" role="img" aria-labelledby="title">
+  <title id="title">VendorLink project illustration</title>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#17130e"/><stop offset="1" stop-color="#292116"/></linearGradient></defs>
+  <rect width="640" height="260" rx="22" fill="url(#bg)"/>
+  <path d="M113 131h107m100 0h105m100 0h44" stroke="#d1a85f" stroke-width="3" stroke-dasharray="7 7"/>
+  <g>
+    <rect x="44" y="88" width="112" height="88" rx="14" fill="#211c13" stroke="#be9956" stroke-width="2"/>
+    <rect x="196" y="88" width="112" height="88" rx="14" fill="#211c13" stroke="#be9956" stroke-width="2"/>
+    <rect x="348" y="88" width="112" height="88" rx="14" fill="#211c13" stroke="#be9956" stroke-width="2"/>
+    <rect x="500" y="88" width="96" height="88" rx="14" fill="#211c13" stroke="#be9956" stroke-width="2"/>
+  </g>
+  <g fill="#e6c982">
+    <path d="M76 111h48v6H76zm0 14h48v6H76zm0 14h32v6H76z"/>
+    <path d="m232 111 14-8 14 8v29l-14 8-14-8zm34 2h24v6h-24zm0 13h24v6h-24z"/>
+    <path d="M376 111h56v6h-56zm0 14h56v6h-56zm0 14h40v6h-40z"/>
+    <path d="m530 124 17 17 20-25 8 7-27 34-25-25z"/>
+  </g>
+  <circle cx="146" cy="67" r="5" fill="#f0c873"/><circle cx="298" cy="67" r="5" fill="#f0c873"/><circle cx="450" cy="67" r="5" fill="#f0c873"/>
+  <text x="50" y="218" fill="#d1c29f" font-family="Arial,sans-serif" font-size="13" letter-spacing="2">SUPPLIER  →  RFQ  →  APPROVAL  →  ORDER</text>
+</svg>

@@ -634,6 +634,24 @@ button {
   padding: 0.3rem 0.5rem;
   border-radius: 9999px;
   border: 1px solid var(--border-subtle);
+  overflow-x: auto;
+  scrollbar-width: none;
+  white-space: nowrap;
+}
+
+.nav-sections-list::-webkit-scrollbar {
+  display: none;
+}
+
+.header-nav-center {
+  min-width: 0;
+  flex: 1;
+  margin: 0 1rem;
+  overflow: hidden;
+}
+
+.nav-section-item {
+  flex: 0 0 auto;
 }
 
 .nav-section-item button {
@@ -785,6 +803,12 @@ button {
   min-width: 1100px;
 }
 
+.panel-skills {
+  width: 78vw;
+  max-width: 1250px;
+  min-width: 980px;
+}
+
 .panel-metrics {
   width: 95vw;
   max-width: 1650px;
@@ -801,18 +825,124 @@ button {
   width: 95vw;
   max-width: 1600px;
   min-width: 1250px;
+  order: 5;
 }
+
+.panel-experience { order: 6; }
 
 .panel-credentials {
   width: 80vw;
   max-width: 1300px;
   min-width: 1050px;
+  order: 7;
+}
+
+.panel-education,
+.panel-resume {
+  width: 75vw;
+  max-width: 1150px;
+  min-width: 920px;
+}
+
+.panel-education { order: 8; }
+.panel-resume { order: 9; }
+
+.panel-contact {
+  order: 10;
 }
 
 .panel-contact {
   width: 75vw;
   max-width: 1200px;
   min-width: 950px;
+}
+
+.panel-footer {
+  width: 58vw;
+  max-width: 880px;
+  min-width: 700px;
+  order: 11;
+  padding-right: clamp(5rem, 8vw, 8rem);
+}
+
+/* Resume-aligned skill lanes with alternating, reduced-motion-aware movement */
+.skills-intro {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+.skills-marquee-list {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.4rem;
+}
+
+.skill-lane {
+  display: grid;
+  grid-template-columns: 175px minmax(0, 1fr);
+  align-items: center;
+  gap: 1.15rem;
+  min-width: 0;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  background: var(--bg-card);
+  overflow: hidden;
+}
+
+.skill-lane h3 {
+  justify-self: start;
+  margin: 0;
+  color: var(--text-pure);
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: left;
+}
+
+.skill-marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.skill-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 0.8rem;
+  animation: skill-marquee-left var(--marquee-duration, 0s) linear infinite alternate;
+}
+
+.skill-lane.direction-right .skill-marquee-track {
+  animation-name: skill-marquee-right;
+  animation-direction: alternate-reverse;
+}
+
+.skill-marquee-track span {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  min-height: 2.45rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--border-chrome);
+  border-radius: 999px;
+  background: var(--bg-pill);
+  color: var(--text-main);
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+}
+
+.skill-lane:hover .skill-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes skill-marquee-left {
+  to { transform: translateX(calc(-1 * var(--marquee-travel, 0px))); }
+}
+
+@keyframes skill-marquee-right {
+  to { transform: translateX(calc(-1 * var(--marquee-travel, 0px))); }
 }
 
 /* --------------------------------------------------------------------------
@@ -1060,7 +1190,7 @@ button {
   max-height: 420px;
   border-radius: 18px;
   overflow: hidden;
-  background: #020704;
+  background: var(--bg-card);
   border: 1px solid var(--border-chrome);
   margin-bottom: 1.15rem;
   display: flex;
@@ -1071,13 +1201,8 @@ button {
 .hero-card-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 5%;
-  transition: transform 0.4s var(--ease-out-expo);
-}
-
-.hero-profile-card-3d:hover .hero-card-img {
-  transform: scale(1.03);
+  object-fit: contain;
+  object-position: center;
 }
 
 .hero-card-details {
@@ -1376,18 +1501,24 @@ button {
 
 .leetcode-badges-row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.75rem;
   margin-top: 1.5rem;
 }
 
 .leetcode-badge-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  color: var(--text-pure);
   border-radius: 14px;
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid var(--border-subtle);
   padding: 1rem 0.6rem;
   text-align: center;
   transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .leetcode-badge-item:hover {
@@ -1399,6 +1530,70 @@ button {
 .badge-icon-wrap {
   font-size: 1.6rem;
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 58px;
+}
+
+.badge-icon-wrap img {
+  display: block;
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.badge-icon-wrap.badge-java-wrap {
+  height: 58px;
+}
+
+.badge-icon-wrap.badge-java-wrap img {
+  width: 54px;
+  height: 54px;
+}
+
+.badge-medal-wrap {
+  height: 132px;
+  perspective: 700px;
+}
+
+.badge-icon-wrap .leetcode-medal-image {
+  display: block;
+  width: min(100%, 210px);
+  height: 132px;
+  object-fit: fill;
+  transform-style: preserve-3d;
+  animation: leetcode-medal-spin 1.68s linear infinite;
+}
+
+.leetcode-badges-row .badge-icon-wrap:not(.badge-medal-wrap) img[src*="Top_SQL_50"] {
+  width: 84px;
+  height: 84px;
+  animation: leetcode-medal-spin 1.68s linear infinite;
+}
+
+.leetcode-medal-100 {
+  clip-path: polygon(
+    53.5% 17.7%, 56% 18.2%, 73.5% 31.5%, 75.2% 36%,
+    75% 66%, 73.7% 70%, 67% 80%, 65% 83%,
+    55.2% 91.2%, 52.3% 93.1%, 49% 92%,
+    34.8% 80%, 32.7% 77%, 32.5% 41%,
+    34% 37%, 50% 20%
+  );
+}
+
+.leetcode-medal-50 {
+  clip-path: polygon(
+    49.4% 16.9%, 52.3% 17.1%, 68.5% 28.8%, 71.3% 32%,
+    71.1% 64%, 69.8% 69.4%, 54% 85%, 51.8% 87.5%,
+    48% 86%, 33% 72.4%, 30.3% 69.7%, 30.5% 37%,
+    33% 32%, 47% 18.5%
+  );
+}
+
+@keyframes leetcode-medal-spin {
+  from { transform: rotateZ(0deg); }
+  to { transform: rotateZ(360deg); }
 }
 
 .badge-name {
@@ -1500,10 +1695,10 @@ button {
 }
 
 /* Densely populated commit green levels - all rich solid green! */
-.heatmap-cell.level-1 { background: #059669; }
-.heatmap-cell.level-2 { background: #10b981; }
-.heatmap-cell.level-3 { background: #34d399; }
-.heatmap-cell.level-4 { background: #00ff88; box-shadow: 0 0 8px #00ff88; }
+.heatmap-cell.level-1 { background: #064e3b; }
+.heatmap-cell.level-2 { background: #087a56; }
+.heatmap-cell.level-3 { background: #109a68; }
+.heatmap-cell.level-4 { background: #20b77b; }
 
 /* In Light Mode, keep vibrant green levels */
 [data-theme="light"] .heatmap-cell.level-1 { background: #10b981 !important; }
@@ -1511,11 +1706,11 @@ button {
 [data-theme="light"] .heatmap-cell.level-3 { background: #047857 !important; }
 [data-theme="light"] .heatmap-cell.level-4 { background: #00c968 !important; }
 
-/* PREM Signature Etched Pixels - Solid Dark Black */
+/* Keep the PREM signature legible without overpowering the contribution grid. */
 .heatmap-cell.prem-dark-pixel {
-  background: #000000 !important;
-  border: 1.5px solid rgba(0, 255, 136, 0.45) !important;
-  box-shadow: inset 0 0 6px #000000;
+  background: #020805 !important;
+  border: 1px solid rgba(16, 185, 129, 0.32) !important;
+  box-shadow: inset 0 0 4px #000000;
   border-radius: 2px;
 }
 
@@ -2106,6 +2301,10 @@ button {
   gap: 1rem;
 }
 
+.proj-actions-footer [hidden] {
+  display: none !important;
+}
+
 .proj-pipeline-badge {
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -2119,7 +2318,7 @@ button {
 /* 4-Card Overview Strip for Fast Project Navigation */
 .projects-overview-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
   width: 100%;
 }
@@ -2135,6 +2334,16 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.mini-project-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2.45 / 1;
+  object-fit: cover;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  margin: 0.25rem 0 0.8rem;
 }
 
 .mini-project-card:hover {
@@ -2198,18 +2407,180 @@ button {
 /* --------------------------------------------------------------------------
    12. PANEL 6: 19 ACCREDITED CERTIFICATIONS
    -------------------------------------------------------------------------- */
+.achievement-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 1.15rem;
+}
+
+.credentials-subheading {
+  margin: 0 0 0.8rem;
+  color: var(--text-pure);
+  font: 600 1rem var(--font-mono);
+  letter-spacing: 0.03em;
+}
+
+.achievement-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  background: var(--bg-card);
+}
+
+.credential-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 178px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-pill);
+}
+
+.credential-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.credential-media--photo {
+  padding: 0.5rem;
+  background: #fff;
+}
+
+.credential-media--photo img {
+  object-fit: contain;
+}
+
+.credential-media--poster,
+.credential-media--profile,
+.credential-media--certificate {
+  padding: 0.5rem;
+  background: #fff;
+}
+
+.credential-media--poster img,
+.credential-media--profile img,
+.credential-media--certificate img {
+  object-fit: contain;
+}
+
+.credential-media--leetcode {
+  height: 200px;
+  background: #07120f;
+  perspective: 900px;
+}
+
+.credential-media--leetcode img {
+  width: 190px;
+  height: 180px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.45));
+  transform-style: preserve-3d;
+  animation: leetcode-medal-spin 1.68s linear infinite;
+}
+
+.achievement-card .credential-body {
+  padding: 1rem;
+}
+
+.achievement-card .credential-body > strong {
+  color: var(--text-pure);
+  font-size: 0.9rem;
+}
+
+.achievement-card .credential-body > span {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.credential-art {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 145px;
+  padding: 1.1rem 1.2rem;
+  border-bottom: 1px solid var(--border-subtle);
+  background:
+    linear-gradient(135deg, rgba(16, 185, 129, 0.18), transparent 60%),
+    repeating-linear-gradient(0deg, transparent 0 23px, rgba(148, 163, 184, 0.08) 24px),
+    var(--bg-pill);
+  color: var(--text-faint);
+}
+
+.credential-art span {
+  font: 0.66rem var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.credential-art strong {
+  max-width: 18ch;
+  color: var(--text-pure);
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+
+.credential-art--award {
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(245, 158, 11, 0.2), transparent 38%),
+    repeating-linear-gradient(0deg, transparent 0 23px, rgba(148, 163, 184, 0.08) 24px),
+    var(--bg-pill);
+}
+
+.credential-art--medal {
+  align-items: flex-start;
+  min-height: 220px;
+  padding: 1rem 1.2rem;
+  perspective: 700px;
+}
+
+.credential-art--medal .leetcode-medal-image {
+  align-self: center;
+  width: 240px;
+  height: 154px;
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.4));
+  animation: leetcode-medal-spin 1.68s linear infinite;
+}
+
+.credential-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 1.1rem;
+}
+
+.credential-body p,
+.education-note {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.cert-date {
+  color: var(--text-faint);
+  font: 0.68rem var(--font-mono);
+  line-height: 1.5;
+}
+
 .certs-scroll-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
   width: 100%;
 }
 
 .cert-capsule-item {
+  min-width: 0;
+  overflow: hidden;
   border-radius: 16px;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  padding: 1.25rem;
   backdrop-filter: blur(14px);
   transition: all 0.25s ease;
 }
@@ -2226,15 +2597,349 @@ button {
   color: var(--text-faint);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: 0.35rem;
   display: block;
 }
 
 .cert-name-heading {
+  margin: 0;
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-pure);
   line-height: 1.4;
+}
+
+.cert-proof-link {
+  color: var(--text-pure);
+  font: 0.72rem var(--font-mono);
+  text-decoration: underline;
+  text-decoration-color: var(--border-chrome);
+  text-underline-offset: 3px;
+}
+
+.education-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: auto 0;
+}
+
+/* --------------------------------------------------------------------------
+   EDUCATION, RESUME & FINAL FOOTER PANELS
+   -------------------------------------------------------------------------- */
+.education-card,
+.resume-card {
+  width: min(100%, 720px);
+  margin: auto;
+  padding: 2rem;
+  border: 1px solid var(--border-chrome);
+  border-radius: 22px;
+  background: var(--bg-card);
+  box-shadow: var(--shadow-card);
+}
+
+.education-card {
+  width: 100%;
+  margin: 0;
+}
+
+.education-card:last-child {
+  grid-column: 1 / -1;
+}
+
+.education-status {
+  display: inline-flex;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border-chrome);
+  border-radius: 999px;
+  color: var(--text-faint);
+  font: 0.72rem var(--font-mono);
+  text-transform: uppercase;
+}
+
+.education-card h3,
+.resume-card h3 {
+  margin-top: 1.1rem;
+  color: var(--text-pure);
+  font-size: 1.5rem;
+}
+
+.education-degree,
+.resume-card p {
+  margin-top: 0.35rem;
+  color: var(--text-muted);
+}
+
+.education-institution {
+  margin-top: 1rem;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.education-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.education-meta span {
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  background: var(--bg-pill);
+  color: var(--text-faint);
+  font: 0.75rem var(--font-mono);
+}
+
+.resume-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.resume-file-mark {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 76px;
+  border: 1px solid var(--border-chrome);
+  border-radius: 12px;
+  background: var(--bg-pill);
+  color: var(--text-pure);
+  font: 700 0.95rem var(--font-mono);
+}
+
+.resume-card h3 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.resume-actions {
+  display: flex;
+  flex-wrap: wrap;
+  grid-column: 1 / -1;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.portfolio-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  min-height: 48vh;
+  text-align: center;
+}
+
+.footer-brand {
+  display: inline-block;
+  margin-right: 0.16em;
+  color: var(--text-pure);
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  font-family: "Arial Black", Arial, Helvetica, sans-serif;
+  letter-spacing: -0.025em;
+  padding-right: 0.08em;
+}
+
+.footer-brand span {
+  margin-left: 0.2rem;
+  color: var(--text-faint);
+  font-size: 0.25em;
+  vertical-align: top;
+  letter-spacing: 0;
+}
+
+.portfolio-footer p,
+.portfolio-footer small {
+  color: var(--text-muted);
+}
+
+.footer-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--text-pure);
+}
+
+.footer-back-to-top {
+  color: var(--text-faint);
+  font: 0.78rem var(--font-mono);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.portfolio-agent {
+  position: fixed;
+  left: 1.25rem;
+  bottom: 1rem;
+  z-index: 1100;
+  font-family: var(--font-sans);
+}
+
+.agent-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 42px;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--border-chrome);
+  border-radius: 999px;
+  background: var(--bg-card);
+  color: var(--text-pure);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.agent-toggle-btn span {
+  color: var(--accent-green);
+}
+
+.agent-panel {
+  position: absolute;
+  bottom: 3.5rem;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(360px, calc(100vw - 2rem));
+  max-height: min(480px, calc(100vh - 7rem));
+  overflow: hidden;
+  border: 1px solid var(--border-chrome);
+  border-radius: 18px;
+  background: var(--bg-void);
+  color: var(--text-main);
+  box-shadow: var(--shadow-card);
+}
+
+.agent-panel[hidden] {
+  display: none;
+}
+
+.agent-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.agent-panel-header div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.agent-panel-header strong {
+  color: var(--text-pure);
+  font: 700 0.85rem var(--font-mono);
+  letter-spacing: 0.08em;
+}
+
+.agent-panel-header span,
+.agent-disclaimer {
+  color: var(--text-faint);
+  font-size: 0.68rem;
+}
+
+.agent-close-btn {
+  color: var(--text-muted);
+  font-size: 1.5rem;
+}
+
+.agent-messages {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-height: 130px;
+  padding: 0.9rem;
+  overflow-y: auto;
+}
+
+.agent-message {
+  max-width: 90%;
+  padding: 0.65rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  white-space: pre-line;
+}
+
+.agent-reply {
+  align-self: flex-start;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  color: var(--text-main);
+}
+
+.agent-question {
+  align-self: flex-end;
+  background: var(--bg-pill);
+  color: var(--text-pure);
+}
+
+.agent-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0 0.9rem 0.65rem;
+}
+
+.agent-suggestions button {
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  color: var(--text-faint);
+  font-size: 0.68rem;
+}
+
+.agent-suggestions button:hover {
+  color: var(--text-pure);
+  border-color: var(--border-chrome);
+}
+
+.agent-form {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.7rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.agent-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  background: var(--bg-deep);
+  color: var(--text-pure);
+}
+
+.agent-form button {
+  width: 38px;
+  border: 1px solid var(--border-chrome);
+  border-radius: 10px;
+  background: var(--bg-pill);
+  color: var(--text-pure);
+  font-size: 1.1rem;
+}
+
+.agent-disclaimer {
+  margin: 0;
+  padding: 0 0.9rem 0.7rem;
 }
 
 /* --------------------------------------------------------------------------
@@ -2307,20 +3012,20 @@ button {
    -------------------------------------------------------------------------- */
 .bottom-hud-bar {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 54px;
+  right: 1.25rem;
+  bottom: 1rem;
+  width: max-content;
+  height: auto;
   z-index: 1000;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 2.5rem;
-  background: rgba(8, 8, 10, 0.7);
-  backdrop-filter: blur(14px);
-  border-top: 1px solid var(--border-subtle);
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  backdrop-filter: none;
+  border: 0;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--text-faint);
   pointer-events: none;
 }
@@ -2330,8 +3035,17 @@ button {
 }
 
 .hud-panel-index {
+  display: inline-flex;
+  align-items: center;
+  min-width: 4.6rem;
+  justify-content: center;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--border-chrome);
+  border-radius: 999px;
+  background: var(--bg-card);
   color: var(--text-pure);
   font-weight: 600;
+  box-shadow: var(--shadow-subtle);
 }
 
 .hud-scroll-cue {
@@ -2418,9 +3132,22 @@ button {
     gap: 2rem;
   }
   .prem-cards-grid,
-  .experience-timeline-track,
-  .certs-scroll-grid {
+  .experience-timeline-track {
     grid-template-columns: 1fr;
+  }
+  .certs-scroll-grid,
+  .achievement-highlights {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .skill-lane {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+  .education-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .education-card:last-child {
+    grid-column: auto;
   }
   .prem-profiles-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -2431,5 +3158,40 @@ button {
   }
   .nav-sections-list {
     display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header {
+    padding: 0 1rem;
+  }
+  .header-left {
+    gap: 0.65rem;
+  }
+  .header-actions .btn-nav-cta {
+    display: none;
+  }
+  .resume-card {
+    grid-template-columns: 1fr;
+  }
+  .certs-scroll-grid,
+  .achievement-highlights {
+    grid-template-columns: 1fr;
+  }
+  .resume-actions {
+    flex-direction: column;
+  }
+  .resume-actions > * {
+    justify-content: center;
+  }
+  .bottom-hud-bar {
+    right: 0.7rem;
+    bottom: 0.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-marquee-track {
+    animation: none !important;
   }
 }
