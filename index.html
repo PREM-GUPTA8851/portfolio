@@ -2,920 +2,966 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
-  <title>Prem Kumar Gupta | AI Software Engineer &amp; Full Stack Developer</title>
-  <meta name="title" content="Prem Kumar Gupta | AI Software Engineer &amp; Full Stack Developer">
-  <meta name="description" content="Official portfolio of Prem Kumar Gupta — AI Software Engineer &amp; Full-Stack Developer, GSSoC'26 &amp; SSoC Season 5 Contributor, B.Tech CSE at LPU. Specializing in Next.js, React, Node.js, Spring Boot, FastAPI, ChromaDB, and DSA in Java.">
+  <title>Prem Kumar Gupta | AI Software Engineer &amp; Full-Stack Systems</title>
+  <meta name="title" content="Prem Kumar Gupta | AI Software Engineer &amp; Full-Stack Systems">
+  <meta name="description" content="Prem Kumar Gupta — 350+ DSA in Java, 2-3 Job Offers in Hand (upto 6 LPA in 3rd Yr 1st Sem), 3,000+ GitHub Contributions, GSSoC'26 & SWOC Season 7 Contributor.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Prem Kumar Gupta">
-  <meta name="robots" content="index, follow">
-  <meta name="keywords" content="Prem Kumar Gupta, AI Software Engineer, Full Stack Developer, RAG, FastAPI, ChromaDB, React, Next.js, Spring Boot, GSSoC 2026, SSoC Season 5, LeetCode 100 Days, Lovely Professional University">
 
-  <!-- Open Graph / Social Media -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://github.com/PREM-GUPTA8851">
-  <meta property="og:title" content="Prem Kumar Gupta | AI Software Engineer &amp; Full Stack Developer">
-  <meta property="og:description" content="Portfolio of Prem Kumar Gupta — Full-Stack &amp; AI Engineer, 300+ DSA in Java, GSSoC'26 &amp; SSoC Contributor, building intelligent software.">
-  <meta property="og:image" content="assets/prem-profile.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Prem Kumar Gupta | AI Software Engineer &amp; Full Stack Developer">
-  <meta name="twitter:description" content="Portfolio of Prem Kumar Gupta — Full-Stack &amp; AI Engineer.">
-  <meta name="twitter:image" content="assets/prem-profile.jpg">
+  <meta property="og:title" content="Prem Kumar Gupta | AI Software Engineer">
+  <meta property="og:description" content="350+ DSA, 3,000+ GitHub Contributions, 2-3 Job Offers in Hand. Building scalable systems and AI RAG pipelines.">
+  <meta property="og:image" content="assets/prem-avatar.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
-  <!-- Agustin Burgos Typography: General Sans + Noto Serif Display (Italic) + JetBrains Mono -->
+  <!-- Editorial Typography: General Sans + Noto Serif Display + JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+Display:ital,wght@1,400;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Serif+Display:ital,wght@1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Stylesheet -->
+  <!-- Master Monochromatic 3D Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
-
-  <!-- JSON-LD Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Prem Kumar Gupta",
-    "image": "assets/prem-profile.jpg",
-    "jobTitle": "AI Software Engineer & Full-Stack Developer",
-    "email": "mailto:premgupta100705@gmail.com",
-    "telephone": "+91-9685993099",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Satna",
-      "addressRegion": "Madhya Pradesh",
-      "addressCountry": "India"
-    },
-    "alumniOf": {
-      "@type": "EducationalOrganization",
-      "name": "Lovely Professional University"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/in/premgupta5k/",
-      "https://github.com/PREM-GUPTA8851/",
-      "https://leetcode.com/u/PREM_GUPTA8851/",
-      "https://www.geeksforgeeks.org/profile/premgupthnxn",
-      "https://codolio.com/profile/PREM_GUPTA8851",
-      "https://prem-kumar-gupta-7pqs4fl.gamma.site/"
-    ]
-  }
-  </script>
 </head>
 <body>
-  <!-- Accessibility Skip Link -->
-  <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Toast Notification Container -->
-  <div id="toast" class="toast-container" role="alert" aria-live="polite"></div>
+  <!-- ====================================================================
+       1. 3D ENTRANCE GATE SCREEN (Agustin Burgos & Cyber Minimalist Style)
+       ==================================================================== -->
+  <div id="intro-gate" role="dialog" aria-modal="true" aria-label="Welcome Entrance">
+    <!-- Interactive Follower Ring Cursor -->
+    <div id="intro-cursor-ring" aria-hidden="true"></div>
 
-  <!-- Header Navigation (Agustin Burgos Capsule Logo & Nav) -->
-  <header class="site-header" id="header" role="banner">
-    <div class="container c-nav">
-      <a href="#hero" class="name-logo-link" aria-label="Prem Kumar Gupta Home">
-        <div class="name-logo-capsule">PG</div>
-        <div class="name-logo-text">Prem <span>Gupta</span></div>
+    <!-- 3D Warp Canvas Starfield -->
+    <canvas id="intro-warp-canvas" aria-hidden="true"></canvas>
+
+    <!-- Center Interactive Content -->
+    <div class="intro-gate-content">
+      <div class="intro-pill-top">
+        <span class="pulse-dot"></span>
+        <span>AI Software Engineer &bull; Full-Stack Systems</span>
+      </div>
+
+      <!-- Master Luxury Pill Button (Agustin Burgos Style) -->
+      <div class="intro-btn-wrapper">
+        <button class="intro-enter-btn" id="intro-enter-btn" aria-label="Enter Portfolio Experience">
+          <span class="intro-btn-name">Prem Kumar Gupta</span>
+        </button>
+        <span class="intro-btn-tm">TM</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background 3D Canvas Nodes -->
+  <canvas id="bg-3d-canvas" aria-hidden="true"></canvas>
+  <div class="ambient-grid" aria-hidden="true"></div>
+
+  <!-- ====================================================================
+       2. FIXED TOP HEADER & HORIZONTAL NAVIGATION
+       ==================================================================== -->
+  <header class="site-header" id="site-header" role="banner">
+    <!-- Dynamic Horizontal Progress Bar -->
+    <div class="horizontal-progress-bar" id="h-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <div class="header-left">
+      <a href="#hero" class="name-logo-capsule" aria-label="Prem Kumar Gupta">
+        <div class="name-logo-badge">PG</div>
+        <span>Prem Gupta</span>
       </a>
 
-      <!-- Desktop Nav -->
-      <nav aria-label="Main Navigation">
-        <ul class="navmenu">
-          <li><a href="#hero" class="navlink active">Home</a></li>
-          <li><a href="#about" class="navlink">About</a></li>
-          <li><a href="#services" class="navlink">Services</a></li>
-          <li><a href="#work" class="navlink">Work</a></li>
-          <li><a href="#experience" class="navlink">Experience</a></li>
-          <li><a href="#certifications" class="navlink">Certifications</a></li>
-          <li><a href="#faq" class="navlink">Questions</a></li>
-          <li><a href="#contact" class="navlink">Contact</a></li>
-        </ul>
-      </nav>
+      <!-- Replay Intro Button -->
+      <button id="replay-intro-btn" class="btn-icon" title="Replay 3D Intro Gate" aria-label="Replay 3D Intro Gate">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M1 4v6h6M23 20v-6h-6M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
 
-      <!-- Nav Actions -->
-      <div class="nav-actions">
-        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Switch theme" title="Switch theme">
-          <svg class="theme-icon-sun" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-          </svg>
-          <svg class="theme-icon-moon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-          </svg>
-        </button>
+    <!-- Center Section Navigation Pills -->
+    <nav class="header-nav-center" aria-label="Portfolio Sections">
+      <ul class="nav-sections-list">
+        <li class="nav-section-item active"><button type="button">01 Home</button></li>
+        <li class="nav-section-item"><button type="button">02 Identity</button></li>
+        <li class="nav-section-item"><button type="button">03 Metrics</button></li>
+        <li class="nav-section-item"><button type="button">04 Experience</button></li>
+        <li class="nav-section-item"><button type="button">05 Work</button></li>
+        <li class="nav-section-item"><button type="button">06 Credentials</button></li>
+        <li class="nav-section-item"><button type="button">07 Contact</button></li>
+      </ul>
+    </nav>
 
-        <a href="#contact" class="btn btn-sm btn-outline" style="display: none;" id="nav-cta-btn">
-          <span>Let's talk</span>
-          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M1.5 22.0833L22.0833 1.5M22.0833 1.5V21.26M22.0833 1.5H2.32333" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </a>
+    <!-- Header Actions (Theme Toggle & CTA) -->
+    <div class="header-actions">
+      <button id="theme-toggle-btn" class="btn-icon" aria-label="Toggle Monochromatic Theme" title="Switch Theme">
+        <svg class="theme-icon-sun" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="theme-icon-moon" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
 
-        <!-- Mobile Menu Trigger -->
-        <button id="mobile-nav-toggle" class="menu-btn" aria-label="Open mobile menu" aria-expanded="false" aria-controls="mobile-drawer">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="3" y1="6" x2="21" y2="6" stroke-linecap="round"/>
-            <line x1="3" y1="12" x2="21" y2="12" stroke-linecap="round"/>
-            <line x1="3" y1="18" x2="21" y2="18" stroke-linecap="round"/>
-          </svg>
-        </button>
-      </div>
+      <button type="button" class="btn-nav-cta copy-email-trigger" aria-label="Copy Prem's Email">
+        Connect &bull; premgupta100705@gmail.com
+      </button>
     </div>
   </header>
 
-  <!-- Mobile Drawer Overlay & Menu -->
-  <div id="mobile-drawer-overlay" class="mobile-drawer-overlay"></div>
-  <aside id="mobile-drawer" class="mobile-drawer" aria-label="Mobile Navigation">
-    <div>
-      <div style="display: flex; align-items: center; justify-content: space-between;">
-        <div class="name-logo-capsule">PG</div>
-        <span class="txt-s-caps">Navigation</span>
-      </div>
-      <ul class="mobile-menu-links">
-        <li><a href="#hero" class="mobile-menu-link">Home</a></li>
-        <li><a href="#about" class="mobile-menu-link">About</a></li>
-        <li><a href="#services" class="mobile-menu-link">Services</a></li>
-        <li><a href="#work" class="mobile-menu-link">Selected Work</a></li>
-        <li><a href="#experience" class="mobile-menu-link">Experience</a></li>
-        <li><a href="#certifications" class="mobile-menu-link">Certifications (19)</a></li>
-        <li><a href="#faq" class="mobile-menu-link">Questions</a></li>
-        <li><a href="#contact" class="mobile-menu-link">Contact</a></li>
-      </ul>
-    </div>
-    <div style="margin-top: 2rem;">
-      <a href="#contact" class="btn" style="width: 100%;">
-        <span>Let's talk</span>
-        <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M1.5 22.0833L22.0833 1.5M22.0833 1.5V21.26M22.0833 1.5H2.32333" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </a>
-      <div class="txt-s-caps" style="margin-top: 1.5rem; text-align: center;">Prem Kumar Gupta &copy; 2026</div>
-    </div>
-  </aside>
+  <!-- ====================================================================
+       3. MASTER HORIZONTAL SCROLL VIEWPORT & PANELS
+       ==================================================================== -->
+  <main class="h-scroll-viewport" id="h-viewport" tabindex="0" aria-label="Horizontal Portfolio Showcase">
+    <div class="h-scroll-track" id="h-track">
 
-  <!-- Main Content -->
-  <main id="main-content">
-    
-    <!-- ====================================================================
-         1. HERO SECTION (Agustin Burgos Monumental Title)
-         ==================================================================== -->
-    <section class="global-padding s-hero-home" id="hero">
-      <div class="container">
-        <div class="hero-home-wrap">
+      <!-- ================================================================
+           PANEL 1: FRONT PAGE / MONUMENTAL HERO
+           ================================================================ -->
+      <section class="h-panel panel-hero" id="hero" aria-label="Front Page">
+        <div class="hero-grid-layout">
           
-          <div class="hero-status-bar">
-            <span class="pulse-dot"></span>
-            <span>Available for Software &amp; AI Roles &bull; India</span>
-          </div>
-
-          <!-- Signature Mixed Font Hero Headline -->
-          <h1 class="big-header-hero-home">
-            <span class="txt-cursive">I'm an</span>
-            <span class="txt-headers-xl">AI Software</span>
-            <span class="txt-headers-xl">Engineer</span>
-            <span class="txt-cursive">&amp;</span>
-            <span class="txt-headers-xl">Full-stack</span>
-            <span class="txt-headers-xl">Developer</span>
-          </h1>
-
-          <!-- Quick Proof Metric Bar -->
-          <div class="home-proof-bar">
-            <span class="proof-chip">⚡ <strong>300+ DSA</strong> Solved (Java)</span>
-            <span class="proof-chip">🏆 <strong>Top 10%</strong> Flipkart GRiD 8.0</span>
-            <span class="proof-chip">🌐 <strong>GSSoC'26</strong> &amp; <strong>SSoC 5</strong> Contributor</span>
-            <span class="proof-chip">🎯 <strong>JEE Mains 2024</strong> Qualified</span>
-            <span class="proof-chip">🐙 <strong>2,500+</strong> GitHub Contributions</span>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         2. INTRO NARRATIVE SECTION (Agustin Burgos Intro)
-         ==================================================================== -->
-    <section class="global-padding" id="about">
-      <div class="container">
-        <div class="home-intro-txt-wrap">
-          <div>
-            <p class="txt-xl txt-home-intro">
-              I am a <strong>B.Tech Computer Science student at Lovely Professional University (CGPA 8.0)</strong> building scalable web architectures and AI-powered systems. I work extensively with <b>Java</b>, <b>Python</b>, <b>React.js</b>, <b>Next.js</b>, <b>Node.js</b>, <b>Spring Boot</b>, and <b>FastAPI</b>. I qualified <b>JEE Mains 2024</b> and appeared for <b>JEE Advanced 2024</b>, actively contributing to global open-source codebases in <b>GSSoC'26</b> and <b>SSoC Season 5</b>.
-            </p>
-          </div>
-
-          <div class="two-btn-wrap">
-            <a href="#work" class="btn">
-              <div class="btn-txt-wrap">
-                <span>Know more</span>
-              </div>
-              <div class="btn-arrow-wrap">
-                <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M1.5 22.0833L22.0833 1.5M22.0833 1.5V21.26M22.0833 1.5H2.32333" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-              </div>
-            </a>
-
-            <a href="#contact" class="btn btn-outline">
-              <div class="btn-txt-wrap">
-                <span>Contact</span>
-              </div>
-              <div class="btn-arrow-wrap">
-                <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M1.5 22.0833L22.0833 1.5M22.0833 1.5V21.26M22.0833 1.5H2.32333" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         3. SERVICES: "WHERE EXPERTISE MEETS INNOVATION" (Agustin Burgos)
-         ==================================================================== -->
-    <section class="global-padding s-home-services" id="services">
-      <div class="container">
-        
-        <div class="services-header-wrap">
-          <h2 class="txt-headers-xl">
-            <span class="txt-cursive txt-cursive-s">where</span> expertise<br>
-            meets<br>
-            innovation
-          </h2>
-        </div>
-
-        <div class="home-services-list">
-          
-          <!-- Service 01 -->
-          <div class="home-service-wrap">
-            <div>
-              <h3 class="txt-l">Development</h3>
-              <span class="txt-s-caps">01 / Full-Stack Systems</span>
-            </div>
-            <div>
-              <p class="txt-s">
-                <strong>Partnered Engineering:</strong> Harnessing production frontend and backend architectures to deliver scalable digital systems. Building with React.js, Next.js, Node.js, Spring Boot, MySQL, and MongoDB. From clean REST APIs and JWT role-based access control to real-time Socket.IO synchronization, delivering end-to-end reliability.
-              </p>
-            </div>
-          </div>
-
-          <!-- Service 02 -->
-          <div class="home-service-wrap">
-            <div>
-              <h3 class="txt-l">AI &amp; RAG Pipelines</h3>
-              <span class="txt-s-caps">02 / Intelligent Software</span>
-            </div>
-            <div>
-              <p class="txt-s">
-                <strong>Next-Level Intelligence:</strong> Architecting Retrieval-Augmented Generation (RAG) pipelines that turn sprawling codebases into actionable context. Utilizing Python, FastAPI, ChromaDB vector stores, HuggingFace embeddings, and ultra-fast Groq LPU inference. Plus Computer Vision (OpenCV) and OCR for online proctoring.
-              </p>
-            </div>
-          </div>
-
-          <!-- Service 03 -->
-          <div class="home-service-wrap">
-            <div>
-              <h3 class="txt-l">Algorithmic Mastery</h3>
-              <span class="txt-s-caps">03 / Core Computer Science</span>
-            </div>
-            <div>
-              <p class="txt-s">
-                <strong>Rigorous Problem Solving:</strong> Grounded in deep mathematical thinking, with 300+ Data Structures &amp; Algorithms challenges solved in Java. Qualified JEE Mains 2024, appeared for JEE Advanced, ranked in Top 10% nationwide in Flipkart GRiD 8.0, and earned LeetCode 100-Days Badge.
-              </p>
-            </div>
-          </div>
-
-          <!-- Service 04 -->
-          <div class="home-service-wrap">
-            <div>
-              <h3 class="txt-l">Open Source &amp; Mentorship</h3>
-              <span class="txt-s-caps">04 / Leadership &amp; Community</span>
-            </div>
-            <div>
-              <p class="txt-s">
-                <strong>Collaborative Impact:</strong> Active contributor to GirlScript Summer of Code (GSSoC'26), Social Summer of Code (SSoC Season 5), and Open Source Connect India (OSCI). Campus Ambassador for LetsUpgrade &amp; Internshala, and Academic Committee Hostel Representative at Lovely Professional University.
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         4. SELECTED WORK / CASE STUDIES (Agustin Burgos Layout)
-         ==================================================================== -->
-    <section class="global-padding" id="work">
-      <div class="container">
-        
-        <div class="home-projects-block">
-          <div>
-            <h2 class="txt-cursive txt-cursive-s">selected work</h2>
-          </div>
-
-          <div class="home-projects-wrap">
-            
-            <!-- Project 01: GitHub RAG Assistant (Flagship) -->
-            <div class="home-project-row">
-              <div>
-                <a href="https://github.com/PREM-GUPTA8851" target="_blank" rel="noopener noreferrer" class="project-title-link">
-                  <h3 class="txt-headers-l">GitHub RAG Assistant</h3>
-                </a>
-                <p class="txt-s" style="margin-bottom: 1rem;">
-                  Flagship codebase intelligence platform performing semantic code search and context-aware Q&amp;A over entire GitHub repositories. Built with FastAPI, ChromaDB, all-MiniLM embeddings, Groq LPU (Llama 3 70B), and Next.js.
-                </p>
-
-                <div class="project-meta-tags">
-                  <span class="project-meta-chip">FastAPI</span>
-                  <span class="project-meta-chip">ChromaDB</span>
-                  <span class="project-meta-chip">Groq LPU</span>
-                  <span class="project-meta-chip">Next.js</span>
-                  <span class="project-meta-chip">Semantic Search</span>
-                </div>
-
-                <div style="margin-top: 1.5rem;">
-                  <a href="https://github.com/PREM-GUPTA8851" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline">
-                    <span>View Repository</span>
-                    <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M1.5 22.0833L22.0833 1.5M22.0833 1.5V21.26M22.0833 1.5H2.32333" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-
-              <!-- Interactive 8-Stage Pipeline Visualizer -->
-              <div>
-                <div class="rag-interactive-box">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-                    <span class="txt-s-caps">Interactive Pipeline Flow</span>
-                    <span style="font-size: 0.75rem; color: var(--text-faint); font-family: var(--font-mono);">Click stage</span>
-                  </div>
-
-                  <div class="rag-stepper" id="rag-stepper">
-                    <!-- Populated by JS -->
-                  </div>
-
-                  <div class="rag-stage-display">
-                    <h4 id="rag-stage-title">01. GitHub Repository Ingestion</h4>
-                    <p id="rag-stage-desc">Connecting to target repositories via GitHub API...</p>
-                    <span class="txt-s-caps" id="rag-stage-meta" style="color: var(--text-accent);">Tech: FastAPI / GitHub API</span>
-                  </div>
-                </div>
-              </div>
+          <!-- Hero Text & Offer Badges -->
+          <div class="hero-left-column">
+            <div class="hero-status-pill">
+              <span class="status-indicator"></span>
+              <span>Open to Software &amp; AI Roles &bull; B.Tech CSE @ LPU</span>
             </div>
 
-            <!-- Project 02: ProctorEd -->
-            <div class="home-project-row">
-              <div>
-                <a href="https://github.com/PREM-GUPTA8851" target="_blank" rel="noopener noreferrer" class="project-title-link">
-                  <h3 class="txt-headers-l">ProctorEd — AI Online Exam Proctoring</h3>
-                </a>
-                <p class="txt-s">
-                  Intelligent remote exam integrity system featuring Computer Vision multi-face tracking, OCR student identity verification, tab-switch penalty monitoring, and automated exam grading.
-                </p>
-                <div class="project-meta-tags">
-                  <span class="project-meta-chip">MERN Stack</span>
-                  <span class="project-meta-chip">OpenCV</span>
-                  <span class="project-meta-chip">Tesseract OCR</span>
-                  <span class="project-meta-chip">Socket.IO</span>
-                </div>
-              </div>
-              <div style="display: flex; justify-content: flex-end;">
-                <a href="https://github.com/PREM-GUPTA8851" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
-                  <span>View Project</span>
-                  <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1.5 22.0833L22.0833 1.5M22.0833 1.5V21.26M22.0833 1.5H2.32333" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </a>
-              </div>
-            </div>
+            <h1 class="hero-monumental-headline">
+              Aspiring <span class="headline-italic">AI Software</span> Engineer Building Scalable Systems
+            </h1>
 
-            <!-- Project 03: BYOD Classroom Management -->
-            <div class="home-project-row">
-              <div>
-                <a href="https://github.com/PREM-GUPTA8851" target="_blank" rel="noopener noreferrer" class="project-title-link">
-                  <h3 class="txt-headers-l">BYOD Classroom Management Platform</h3>
-                </a>
-                <p class="txt-s">
-                  Real-time educational device governance platform featuring instant broadcast announcements, gamified student focus tracking, web filtering, and a sleek Vite glassmorphism UI.
-                </p>
-                <div class="project-meta-tags">
-                  <span class="project-meta-chip">React</span>
-                  <span class="project-meta-chip">Vite</span>
-                  <span class="project-meta-chip">Node.js</span>
-                  <span class="project-meta-chip">Socket.IO</span>
-                </div>
-              </div>
-              <div style="display: flex; justify-content: flex-end;">
-                <a href="https://github.com/PREM-GUPTA8851" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
-                  <span>View Project</span>
-                  <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1.5 22.0833L22.0833 1.5M22.0833 1.5V21.26M22.0833 1.5H2.32333" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- Project 04: VendorLink -->
-            <div class="home-project-row">
-              <div>
-                <a href="https://github.com/PREM-GUPTA8851" target="_blank" rel="noopener noreferrer" class="project-title-link">
-                  <h3 class="txt-headers-l">VendorLink — Enterprise Vendor Governance</h3>
-                </a>
-                <p class="txt-s">
-                  Full-lifecycle enterprise vendor management system built with Spring Boot, React.js, MySQL, and JWT role-based security handling purchase orders and compliance.
-                </p>
-                <div class="project-meta-tags">
-                  <span class="project-meta-chip">Java</span>
-                  <span class="project-meta-chip">Spring Boot</span>
-                  <span class="project-meta-chip">MySQL</span>
-                  <span class="project-meta-chip">JWT RBAC</span>
-                </div>
-              </div>
-              <div style="display: flex; justify-content: flex-end;">
-                <a href="https://github.com/PREM-GUPTA8851" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
-                  <span>View Project</span>
-                  <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1.5 22.0833L22.0833 1.5M22.0833 1.5V21.26M22.0833 1.5H2.32333" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- Project 05: Algorithmic Repositories -->
-            <div class="home-project-row">
-              <div>
-                <a href="https://leetcode.com/u/PREM_GUPTA8851/" target="_blank" rel="noopener noreferrer" class="project-title-link">
-                  <h3 class="txt-headers-l">Algorithmic Engine (Java &amp; C++ DSA)</h3>
-                </a>
-                <p class="txt-s">
-                  Over 450+ optimal implementations spanning Graphs, Dynamic Programming, Trees, and Concurrency. Includes 11,000+ lines of modular C++ and LeetCode 100-Days badge benchmark.
-                </p>
-                <div class="project-meta-tags">
-                  <span class="project-meta-chip">Java DSA</span>
-                  <span class="project-meta-chip">C++17</span>
-                  <span class="project-meta-chip">LeetCode 100-Days</span>
-                  <span class="project-meta-chip">Top SQL 50</span>
-                </div>
-              </div>
-              <div style="display: flex; justify-content: flex-end;">
-                <a href="https://leetcode.com/u/PREM_GUPTA8851/" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
-                  <span>View LeetCode</span>
-                  <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1.5 22.0833L22.0833 1.5M22.0833 1.5V21.26M22.0833 1.5H2.32333" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- More work CTA -->
-          <div style="margin-top: 2rem;">
-            <a href="https://github.com/PREM-GUPTA8851" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-              <div class="btn-txt-wrap">
-                <span>More work on GitHub (2.5K+ Commits)</span>
-              </div>
-              <div class="btn-arrow-wrap">
-                <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M1.5 22.0833L22.0833 1.5M22.0833 1.5V21.26M22.0833 1.5H2.32333" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </div>
-            </a>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         5. LIST OF COMPETENCIES & SERVICE PACKS (Agustin Burgos)
-         ==================================================================== -->
-    <section class="global-padding s-service-packs">
-      <div class="container">
-        <div style="margin-bottom: 2.5rem;">
-          <h2 class="txt-headers-xl">
-            <span class="txt-cursive txt-cursive-s">List of</span><br>
-            competencies &amp; packs
-          </h2>
-        </div>
-
-        <ul class="home-service-pack-list" role="list">
-          <li class="home-service-pack-item">
-            <div class="txt-s-caps">(01)</div>
-            <div class="service-pack-name">Full-Stack Web Engineering Pack</div>
-            <div class="txt-s">Next.js &bull; React &bull; Node.js &bull; Spring Boot &bull; MySQL</div>
-          </li>
-          <li class="home-service-pack-item">
-            <div class="txt-s-caps">(02)</div>
-            <div class="service-pack-name">AI &amp; RAG Architecture Pack</div>
-            <div class="txt-s">FastAPI &bull; ChromaDB Vector DB &bull; Groq LPU &bull; OpenCV</div>
-          </li>
-          <li class="home-service-pack-item">
-            <div class="txt-s-caps">(03)</div>
-            <div class="service-pack-name">Algorithmic Problem Solving &amp; Performance</div>
-            <div class="txt-s">300+ Java DSA &bull; LeetCode 100-Days &bull; Flipkart GRiD Top 10%</div>
-          </li>
-          <li class="home-service-pack-item">
-            <div class="txt-s-caps">(04)</div>
-            <div class="service-pack-name">Open-Source &amp; Technical Collaboration</div>
-            <div class="txt-s">GSSoC'26 &bull; SSoC Season 5 &bull; OSCI &bull; Campus Ambassador</div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         6. OPEN SOURCE & ENGINEERING EXPERIENCE TIMELINE
-         ==================================================================== -->
-    <section class="global-padding" id="experience">
-      <div class="container">
-        <div style="margin-bottom: 3.5rem;">
-          <span class="txt-cursive txt-cursive-s">engineering journey</span>
-          <h2 class="txt-headers-xl">Experience &amp; Community.</h2>
-        </div>
-
-        <div style="display: flex; flex-direction: column; gap: 2.5rem;">
-          
-          <div style="border-bottom: 1px solid var(--border-hairline); padding-bottom: 2rem;">
-            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
-              <h3 class="txt-l">Open Source Contributor &bull; GirlScript Summer of Code (GSSoC'26)</h3>
-              <span class="txt-s-caps">2026 &bull; Active</span>
-            </div>
-            <div style="color: var(--text-accent); font-size: 0.95rem; margin-bottom: 0.75rem;">GirlScript Foundation</div>
-            <p class="txt-s">
-              Actively contributing bug fixes, feature enhancements, and documentation across production open-source repositories. Reviewing pull requests and collaborating with maintainers worldwide.
-            </p>
-          </div>
-
-          <div style="border-bottom: 1px solid var(--border-hairline); padding-bottom: 2rem;">
-            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
-              <h3 class="txt-l">Open Source Contributor &bull; Social Summer of Code (SSoC Season 5)</h3>
-              <span class="txt-s-caps">2026 &bull; Active</span>
-            </div>
-            <div style="color: var(--text-accent); font-size: 0.95rem; margin-bottom: 0.75rem;">Social Summer of Code</div>
-            <p class="txt-s">
-              Developing full-stack modules and resolving algorithmic bottlenecks in community repositories, participating in code audits and developer workshops.
-            </p>
-          </div>
-
-          <div style="border-bottom: 1px solid var(--border-hairline); padding-bottom: 2rem;">
-            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
-              <h3 class="txt-l">Campus Ambassador &amp; Contributor &bull; GSSoC'25 &amp; OSCI</h3>
-              <span class="txt-s-caps">2025 &ndash; 2026</span>
-            </div>
-            <div style="color: var(--text-accent); font-size: 0.95rem; margin-bottom: 0.75rem;">GirlScript Foundation &bull; Open Source Connect India (OSCI)</div>
-            <p class="txt-s">
-              Onboarded hundreds of student developers to open source, organized git drives, and contributed code to Open Source Connect India repositories.
-            </p>
-          </div>
-
-          <div style="border-bottom: 1px solid var(--border-hairline); padding-bottom: 2rem;">
-            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
-              <h3 class="txt-l">Student Ambassador &amp; Partner &bull; LetsUpgrade &amp; Internshala (ISP 46)</h3>
-              <span class="txt-s-caps">Aug 2025 &ndash; Jun 2026</span>
-            </div>
-            <div style="color: var(--text-accent); font-size: 0.95rem; margin-bottom: 0.75rem;">LetsUpgrade &bull; Internshala Trainings</div>
-            <p class="txt-s">
-              Represented leading developer skilling platforms across campus, driving tech literacy, organizing programming bootcamps, and providing peer mentorship.
-            </p>
-          </div>
-
-          <div style="border-bottom: 1px solid var(--border-hairline); padding-bottom: 2rem;">
-            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
-              <h3 class="txt-l">Academic Committee Member (Hostel Representative)</h3>
-              <span class="txt-s-caps">Lovely Professional University (BH-3)</span>
-            </div>
-            <div style="color: var(--text-accent); font-size: 0.95rem; margin-bottom: 0.75rem;">Student Welfare &amp; Academic Governance</div>
-            <p class="txt-s">
-              Represented student academic interests, coordinated study groups, and interfaced with university leadership to enhance educational resources.
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         7. ACCREDITED CERTIFICATIONS (All 19)
-         ==================================================================== -->
-    <section class="global-padding s-service-packs" id="certifications">
-      <div class="container">
-        <div style="margin-bottom: 2.5rem;">
-          <span class="txt-cursive txt-cursive-s">verified credentials</span>
-          <h2 class="txt-headers-xl">19 Accredited Certifications.</h2>
-        </div>
-
-        <div class="certs-filter-bar">
-          <button class="cert-filter-btn active" data-category="all">All (19)</button>
-          <button class="cert-filter-btn" data-category="ai">AI &amp; Cloud (5)</button>
-          <button class="cert-filter-btn" data-category="web">Web &amp; Frontend (7)</button>
-          <button class="cert-filter-btn" data-category="dsa">DSA &amp; Programming (5)</button>
-          <button class="cert-filter-btn" data-category="systems">Systems &amp; Security (2)</button>
-        </div>
-
-        <div class="certs-grid">
-          <div class="cert-card" data-category="ai">
-            <span class="cert-issuer">DeepLearning.AI</span>
-            <h3 class="cert-name">Neural Networks and Deep Learning</h3>
-            <span class="txt-s-caps">Coursera Verified</span>
-          </div>
-          <div class="cert-card" data-category="ai">
-            <span class="cert-issuer">Stanford Online</span>
-            <h3 class="cert-name">Supervised Machine Learning: Regression &amp; Classification</h3>
-            <span class="txt-s-caps">Andrew Ng &bull; DeepLearning.AI</span>
-          </div>
-          <div class="cert-card" data-category="ai">
-            <span class="cert-issuer">Amazon Web Services</span>
-            <h3 class="cert-name">AWS Academy Graduate — Cloud Foundations</h3>
-            <span class="txt-s-caps">AWS Academy Credential</span>
-          </div>
-          <div class="cert-card" data-category="ai">
-            <span class="cert-issuer">Google Cloud</span>
-            <h3 class="cert-name">Cloud Computing Fundamentals</h3>
-            <span class="txt-s-caps">Google Cloud Skills Boost</span>
-          </div>
-          <div class="cert-card" data-category="ai">
-            <span class="cert-issuer">Google Cloud</span>
-            <h3 class="cert-name">Infrastructure in Google Cloud</h3>
-            <span class="txt-s-caps">Google Cloud Skills Boost</span>
-          </div>
-          <div class="cert-card" data-category="dsa">
-            <span class="cert-issuer">Harvard University</span>
-            <h3 class="cert-name">CS50's Introduction to Computer Science</h3>
-            <span class="txt-s-caps">CS50x Verified Certificate</span>
-          </div>
-          <div class="cert-card" data-category="web">
-            <span class="cert-issuer">Meta</span>
-            <h3 class="cert-name">React Basics</h3>
-            <span class="txt-s-caps">Meta Professional Credential</span>
-          </div>
-          <div class="cert-card" data-category="web">
-            <span class="cert-issuer">Meta</span>
-            <h3 class="cert-name">Advanced React</h3>
-            <span class="txt-s-caps">Meta Professional Credential</span>
-          </div>
-          <div class="cert-card" data-category="web">
-            <span class="cert-issuer">Meta</span>
-            <h3 class="cert-name">Programming with JavaScript</h3>
-            <span class="txt-s-caps">Meta Professional Credential</span>
-          </div>
-          <div class="cert-card" data-category="web">
-            <span class="cert-issuer">Meta</span>
-            <h3 class="cert-name">HTML and CSS in Depth</h3>
-            <span class="txt-s-caps">Meta Professional Credential</span>
-          </div>
-          <div class="cert-card" data-category="web">
-            <span class="cert-issuer">Meta</span>
-            <h3 class="cert-name">Introduction to Front-End Development</h3>
-            <span class="txt-s-caps">Meta Professional Credential</span>
-          </div>
-          <div class="cert-card" data-category="web">
-            <span class="cert-issuer">Meta</span>
-            <h3 class="cert-name">Version Control with Git</h3>
-            <span class="txt-s-caps">Meta Professional Credential</span>
-          </div>
-          <div class="cert-card" data-category="web">
-            <span class="cert-issuer">freeCodeCamp</span>
-            <h3 class="cert-name">Responsive Web Design Certification</h3>
-            <span class="txt-s-caps">300 Hours Verified</span>
-          </div>
-          <div class="cert-card" data-category="dsa">
-            <span class="cert-issuer">GeeksforGeeks</span>
-            <h3 class="cert-name">100 Days of Code (Data Structures &amp; Algorithms)</h3>
-            <span class="txt-s-caps">GFG Verified Milestone</span>
-          </div>
-          <div class="cert-card" data-category="dsa">
-            <span class="cert-issuer">HackerRank</span>
-            <h3 class="cert-name">SQL (Intermediate) Skill Certificate</h3>
-            <span class="txt-s-caps">HackerRank Verified</span>
-          </div>
-          <div class="cert-card" data-category="dsa">
-            <span class="cert-issuer">HackerRank</span>
-            <h3 class="cert-name">Problem Solving (Basic) Skill Certificate</h3>
-            <span class="txt-s-caps">HackerRank Verified</span>
-          </div>
-          <div class="cert-card" data-category="dsa">
-            <span class="cert-issuer">HackerRank</span>
-            <h3 class="cert-name">Java (Basic) Skill Certificate</h3>
-            <span class="txt-s-caps">HackerRank Verified</span>
-          </div>
-          <div class="cert-card" data-category="systems">
-            <span class="cert-issuer">IBM</span>
-            <h3 class="cert-name">Getting Started with Git and GitHub</h3>
-            <span class="txt-s-caps">IBM &bull; Coursera</span>
-          </div>
-          <div class="cert-card" data-category="systems">
-            <span class="cert-issuer">Cisco Academy</span>
-            <h3 class="cert-name">Introduction to Cybersecurity</h3>
-            <span class="txt-s-caps">Cisco Networking Academy</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         8. CODING PROFILES HUB
-         ==================================================================== -->
-    <section class="global-padding" id="profiles">
-      <div class="container">
-        <div style="margin-bottom: 2.5rem;">
-          <span class="txt-cursive txt-cursive-s">algorithmic proof</span>
-          <h2 class="txt-headers-xl">Verified Profiles.</h2>
-        </div>
-
-        <div class="profiles-grid">
-          <a href="https://leetcode.com/u/PREM_GUPTA8851/" target="_blank" rel="noopener noreferrer" class="profile-card">
-            <div class="profile-name">LeetCode</div>
-            <div class="profile-sub">100 Days Badge</div>
-          </a>
-          <a href="https://www.geeksforgeeks.org/profile/premgupthnxn" target="_blank" rel="noopener noreferrer" class="profile-card">
-            <div class="profile-name">GeeksforGeeks</div>
-            <div class="profile-sub">premgupthnxn</div>
-          </a>
-          <a href="https://codolio.com/profile/PREM_GUPTA8851" target="_blank" rel="noopener noreferrer" class="profile-card">
-            <div class="profile-name">Codolio</div>
-            <div class="profile-sub">PREM_GUPTA8851</div>
-          </a>
-          <a href="https://github.com/PREM-GUPTA8851/" target="_blank" rel="noopener noreferrer" class="profile-card">
-            <div class="profile-name">GitHub</div>
-            <div class="profile-sub">2.5K+ Commits</div>
-          </a>
-          <a href="https://www.linkedin.com/in/premgupta5k/" target="_blank" rel="noopener noreferrer" class="profile-card">
-            <div class="profile-name">LinkedIn</div>
-            <div class="profile-sub">500+ Connections</div>
-          </a>
-          <a href="https://prem-kumar-gupta-7pqs4fl.gamma.site/" target="_blank" rel="noopener noreferrer" class="profile-card">
-            <div class="profile-name">Gamma</div>
-            <div class="profile-sub">Portfolio Pitch</div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         9. "SAY HELLO!" SCROLLING MARQUEE (Agustin Burgos Signature)
-         ==================================================================== -->
-    <div class="scrolling-block" aria-hidden="true">
-      <div class="scrolling-loop">
-        <div class="txt-headers-hello">Say hello! &bull;</div>
-        <div class="txt-headers-hello">Say hello! &bull;</div>
-        <div class="txt-headers-hello">Say hello! &bull;</div>
-        <div class="txt-headers-hello">Say hello! &bull;</div>
-        <!-- Loop duplicate -->
-        <div class="txt-headers-hello">Say hello! &bull;</div>
-        <div class="txt-headers-hello">Say hello! &bull;</div>
-        <div class="txt-headers-hello">Say hello! &bull;</div>
-        <div class="txt-headers-hello">Say hello! &bull;</div>
-      </div>
-    </div>
-
-    <!-- ====================================================================
-         10. CONTACT FORM & DIRECT REACHOUT (Agustin Burgos Layout)
-         ==================================================================== -->
-    <section class="global-padding" id="contact">
-      <div class="container">
-        
-        <div class="contact-block">
-          <div>
-            <p class="txt-xl" style="margin-bottom: 2rem;">
-              Ready to elevate your software architecture, build intelligent AI pipelines, or partner on scalable full-stack products? Let’s connect and turn ideas into high-performance software.
+            <p class="hero-subdescription">
+              Currently pursuing B.Tech in Computer Science at <strong>Lovely Professional University (CGPA: 8.0)</strong>, I build scalable full-stack applications and AI-powered systems. Experienced in React, Spring Boot, FastAPI, and REST APIs, with a focus on Retrieval-Augmented Generation (RAG), LLM integrations, semantic search, and scalable backend architecture. Passionate about solving real-world problems through clean, efficient, and reliable software.
             </p>
 
-            <div class="direct-contact-pill-row">
-              <button class="direct-contact-pill copy-email-trigger" aria-label="Copy email address">
-                <span>📧 premgupta100705@gmail.com</span>
-                <span class="txt-s-caps" style="color: var(--text-accent);">[Copy]</span>
-              </button>
-              <a href="tel:+919685993099" class="direct-contact-pill">
-                <span>📞 +91 96859 93099</span>
+            <!-- User-Requested Priority Badges (All Clickable & Linked) -->
+            <div class="hero-power-badges">
+              <!-- 1. Job Offer Badge (Point 4) -->
+              <a href="https://www.linkedin.com/in/premgupta8851/overlay/1792945235755/single-media-viewer/?profileId=ACoAAFsGq3YB3YHYSBiB5iLH982lJqoyle6VNQQ" target="_blank" rel="noopener noreferrer" class="power-badge highlight-badge">
+                <span class="badge-icon">💼</span>
+                <div>
+                  <strong>2-3 Job Offers in Hand</strong>
+                  <span class="badge-label">in 3rd Yr 1st Sem &bull; Upto 4-5 LPA</span>
+                </div>
+                <span class="badge-arrow">↗</span>
               </a>
-              <span class="direct-contact-pill">
-                <span>📍 Satna, MP &bull; Punjab, India</span>
-              </span>
+
+              <!-- 2. 350+ DSA Badge (Point 3) -->
+              <a href="https://codolio.com/profile/PREM_GUPTA8851" target="_blank" rel="noopener noreferrer" class="power-badge highlight-badge">
+                <span class="badge-icon">⚡</span>
+                <div>
+                  <strong>350+ DSA Solved</strong>
+                  <span class="badge-label">Across LeetCode, GFG &amp; InterviewBit</span>
+                </div>
+                <span class="badge-arrow">↗</span>
+              </a>
+
+              <!-- 3. GitHub 3,000+ Contributions (Point 5) -->
+              <a href="https://github.com/PREM-GUPTA8851" target="_blank" rel="noopener noreferrer" class="power-badge">
+                <span class="badge-icon">🐙</span>
+                <div>
+                  <strong>3,000+ GitHub Contributions</strong>
+                  <span class="badge-label">Active Open Source Commits</span>
+                </div>
+                <span class="badge-arrow">↗</span>
+              </a>
+
+              <!-- 4. Flipkart GRiD Badge (Point 7) -->
+              <a href="https://www.linkedin.com/in/premgupta8851/overlay/1784971287491/single-media-viewer/?profileId=ACoAAFsGq3YB3YHYSBiB5iLH982lJqoyle6VNQQ" target="_blank" rel="noopener noreferrer" class="power-badge">
+                <span class="badge-icon">🏆</span>
+                <div>
+                  <strong>Top 10% Flipkart GRiD 8.0</strong>
+                  <span class="badge-label">15,000+ of 1.6L+ Pan-India</span>
+                </div>
+                <span class="badge-arrow">↗</span>
+              </a>
+
+              <!-- 5. JEE Mains & Advanced Badge (Point 6) -->
+              <a href="https://www.linkedin.com/in/premgupta8851/overlay/Education/1089473218/treasury/?profileId=ACoAAFsGq3YB3YHYSBiB5iLH982lJqoyle6VNQQ" target="_blank" rel="noopener noreferrer" class="power-badge">
+                <span class="badge-icon">🎯</span>
+                <div>
+                  <strong>JEE Mains 2024 Qualified</strong>
+                  <span class="badge-label">&amp; JEE Advanced 2024 Appeared</span>
+                </div>
+                <span class="badge-arrow">↗</span>
+              </a>
+
+              <!-- 6. All Contributors Badge (Point 8) -->
+              <a href="#experience" class="power-badge" onclick="event.preventDefault(); document.querySelectorAll('.nav-section-item button')[3].click();">
+                <span class="badge-icon">🌐</span>
+                <div>
+                  <strong>Global Open Source Contributor</strong>
+                  <span class="badge-label">GSSoC &bull; SWOC &bull; SSoC &bull; OSCI</span>
+                </div>
+                <span class="badge-arrow">→</span>
+              </a>
+            </div>
+
+            <!-- CTA Actions -->
+            <div class="hero-actions-row">
+              <button type="button" class="btn-primary" onclick="document.querySelectorAll('.nav-section-item button')[4].click()">
+                <span>Explore Selected Work</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+
+              <button type="button" class="btn-secondary copy-email-trigger">
+                <span>Copy Direct Email</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
             </div>
           </div>
 
-          <!-- Minimal Underline Contact Form -->
-          <div>
-            <form id="agustin-contact-form">
-              <input type="text" class="form-field" name="name" placeholder="Your name here" required>
-              <input type="email" class="form-field" name="email" placeholder="Your email here" required>
-              <select class="form-field form-field-select" name="service" required>
-                <option value="" disabled selected>What are you interested in?</option>
-                <option value="Full-Stack Development">Full-Stack Development</option>
-                <option value="AI & RAG Systems">AI &amp; RAG Systems</option>
-                <option value="Software Engineering Role">Software Engineering Role</option>
-                <option value="Open Source Collaboration">Open Source Collaboration</option>
-              </select>
-              <textarea class="form-field form-field-textarea" name="message" placeholder="Describe your project or role in a few words" rows="4" required></textarea>
-
-              <div style="margin-top: 1.5rem;">
-                <button type="submit" class="btn">
-                  <span>Let's talk</span>
-                  <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1.5 22.0833L22.0833 1.5M22.0833 1.5V21.26M22.0833 1.5H2.32333" stroke-linecap="round" stroke-linejoin="round"></path>
+          <!-- Hero Right Column: 3D Profile Card with Portrait & Name (Points 9 & 10) -->
+          <div class="hero-right-column">
+            
+            <div class="hero-profile-card-3d">
+              
+              <!-- Enlarged Rotating Circular Badge Stamp (Point 10) -->
+              <div class="rotating-stamp-badge" aria-hidden="true">
+                <svg class="stamp-svg" viewBox="0 0 200 200">
+                  <path id="textCircle" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" fill="transparent" />
+                  <text font-size="16.5" font-weight="700" letter-spacing="3.2px" fill="#ffffff">
+                    <textPath href="#textCircle" startOffset="0%">
+                      • FULL-STACK WEB DEVELOPER • AI SOFTWARE ENGINEER
+                    </textPath>
+                  </text>
+                </svg>
+                <div class="stamp-center-star">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
                   </svg>
-                </button>
+                </div>
               </div>
+
+              <!-- High-Def Portrait Image Frame (Properly Zoomed-Out Portrait) -->
+              <div class="hero-card-image-frame">
+                <img src="assets/prem-portrait.jpg" alt="Prem Kumar Gupta" class="hero-card-img" onerror="this.src='assets/prem-profile.jpg'">
+              </div>
+
+              <!-- Profile Details (Name, Role & Location) -->
+              <div class="hero-card-details">
+                <div class="hero-card-name-row">
+                  <h3 class="hero-card-fullname">Prem Kumar Gupta</h3>
+                  <span class="verified-icon" title="Verified AI Software Engineer">✓</span>
+                </div>
+                <p class="hero-card-role">AI Software Engineer &bull; Full-Stack Architect</p>
+                
+                <div class="hero-card-meta-tags">
+                  <span class="meta-tag">🎓 B.Tech CSE @ LPU (CGPA 8.0)</span>
+                  <span class="meta-tag">📍 Satna, MP</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================================================================
+           PANEL 2: THE "PREM" IDENTITY & PHILOSOPHY (Image 6 & 7)
+           ================================================================ -->
+      <section class="h-panel panel-identity" id="identity" aria-label="Identity and Manifesto">
+        <div class="panel-header-block">
+          <span class="panel-tag-mono">02 / Engineering Pillars</span>
+          <h2 class="panel-title-large">
+            The <span class="italic-word">P-R-E-M</span> Philosophy.
+          </h2>
+        </div>
+
+        <div class="prem-cards-grid">
+          <!-- P: Problem Solver -->
+          <div class="prem-char-card">
+            <div>
+              <div class="prem-letter-huge">P</div>
+              <h3 class="prem-char-title">Problem Solver</h3>
+              <div class="prem-char-tagline">Turning challenges into code</div>
+            </div>
+            <p class="prem-char-desc">
+              Over <strong>350+ DSA problems solved in Java</strong>. Deconstructing complex computational graph problems, dynamic programming matrices, and high-concurrency architectures with mathematical rigor.
+            </p>
+          </div>
+
+          <!-- R: Reliable -->
+          <div class="prem-char-card">
+            <div>
+              <div class="prem-letter-huge">R</div>
+              <h3 class="prem-char-title">Reliable</h3>
+              <div class="prem-char-tagline">Writing clean code, building trust</div>
+            </div>
+            <p class="prem-char-desc">
+              Engineering deterministic systems with strong typing, robust error handling, JWT RBAC security, and automated verification. Delivering code that teams rely on under heavy load.
+            </p>
+          </div>
+
+          <!-- E: Engineer -->
+          <div class="prem-char-card">
+            <div>
+              <div class="prem-letter-huge">E</div>
+              <h3 class="prem-char-title">Engineer</h3>
+              <div class="prem-char-tagline">Design. Develop. Deliver.</div>
+            </div>
+            <p class="prem-char-desc">
+              Architecting full-lifecycle distributed systems with Spring Boot, Next.js, and FastAPI. Integrating vector databases (ChromaDB) and modern cloud containerization.
+            </p>
+          </div>
+
+          <!-- M: Maker -->
+          <div class="prem-char-card">
+            <div>
+              <div class="prem-letter-huge">M</div>
+              <h3 class="prem-char-title">Maker</h3>
+              <div class="prem-char-tagline">Building solutions that matter</div>
+            </div>
+            <p class="prem-char-desc">
+              Crafting intelligent AI software, remote exam proctoring platforms, and open-source tooling. Actively advancing community software across GSSoC'26 and SWOC Season 7.
+            </p>
+          </div>
+        </div>
+
+        <!-- Relocated Profiles Bar: Prominent Footprint Bar Under P-R-E-M Cards -->
+        <div class="prem-profiles-bar">
+          <div class="prem-profiles-header">
+            <span class="prem-profiles-tag">DIRECT DIGITAL FOOTPRINT</span>
+            <span class="prem-profiles-sub">Verified Engineering Profiles &bull; Algorithmic, Open-Source &amp; Professional Network</span>
+          </div>
+          <div class="prem-profiles-grid">
+            <a href="https://www.linkedin.com/in/premgupta8851/" target="_blank" rel="noopener noreferrer" class="prem-profile-pill">
+              <span class="pill-icon">💼</span>
+              <div class="pill-content">
+                <strong>LinkedIn</strong>
+                <span class="pill-handle">premgupta8851 ↗</span>
+              </div>
+            </a>
+            <a href="https://github.com/PREM-GUPTA8851" target="_blank" rel="noopener noreferrer" class="prem-profile-pill">
+              <span class="pill-icon">🐙</span>
+              <div class="pill-content">
+                <strong>GitHub</strong>
+                <span class="pill-handle">PREM-GUPTA8851 ↗</span>
+              </div>
+            </a>
+            <a href="https://codolio.com/profile/PREM_GUPTA8851" target="_blank" rel="noopener noreferrer" class="prem-profile-pill highlight-pill">
+              <span class="pill-icon">⚡</span>
+              <div class="pill-content">
+                <strong>Codolio</strong>
+                <span class="pill-handle">PREM_GUPTA8851 ↗</span>
+              </div>
+            </a>
+            <a href="https://leetcode.com/u/PREM_GUPTA8851/" target="_blank" rel="noopener noreferrer" class="prem-profile-pill">
+              <span class="pill-icon">🧠</span>
+              <div class="pill-content">
+                <strong>LeetCode</strong>
+                <span class="pill-handle">PREM_GUPTA8851 ↗</span>
+              </div>
+            </a>
+            <a href="https://www.interviewbit.com/profile/prem-gupta_505/" target="_blank" rel="noopener noreferrer" class="prem-profile-pill">
+              <span class="pill-icon">🎯</span>
+              <div class="pill-content">
+                <strong>InterviewBit</strong>
+                <span class="pill-handle">prem-gupta_505 ↗</span>
+              </div>
+            </a>
+            <a href="https://www.geeksforgeeks.org/profile/premgupthnxn" target="_blank" rel="noopener noreferrer" class="prem-profile-pill">
+              <span class="pill-icon">🌿</span>
+              <div class="pill-content">
+                <strong>GeeksforGeeks</strong>
+                <span class="pill-handle">premgupthnxn ↗</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           PANEL 3: ALGORITHMIC METRICS & PROFILES HUB
+           ================================================================ -->
+      <section class="h-panel panel-metrics" id="metrics" aria-label="Metrics & Badges">
+        <div class="panel-header-block">
+          <span class="panel-tag-mono">03 / Algorithmic Proof</span>
+          <h2 class="panel-title-large">
+            Verified Badges &amp; <span class="italic-word">Contributions</span>.
+          </h2>
+        </div>
+
+        <div class="metrics-grid-layout">
+          <!-- LeetCode & Multi-Platform Badges Box -->
+          <div class="metric-showcase-box">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <h3 style="font-size: 1.25rem; font-weight: 700; color: #fff;">Algorithmic Mastery</h3>
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-faint);">350+ Problems Solved</span>
+            </div>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.25rem; font-family: var(--font-mono);">
+              Solved across LeetCode, GeeksforGeeks &amp; InterviewBit in Java &amp; C++
+            </p>
+
+            <div class="leetcode-badges-row">
+              <div class="leetcode-badge-item hacker-badge-item">
+                <div class="badge-icon-wrap" style="display: flex; align-items: center; justify-content: center; height: 38px;">
+                  <img src="assets/hackerrank-java-badge.png" alt="HackerRank Badge" style="width: 34px; height: 34px; object-fit: contain;">
+                </div>
+                <div class="badge-name">Java 2★ • HackerRank</div>
+                <div class="badge-date">HackerRank Certified</div>
+              </div>
+              <div class="leetcode-badge-item">
+                <div class="badge-icon-wrap">🛡️</div>
+                <div class="badge-name">100 Days</div>
+                <div class="badge-date">LeetCode 2026</div>
+              </div>
+              <div class="leetcode-badge-item">
+                <div class="badge-icon-wrap">🏅</div>
+                <div class="badge-name">50 Days</div>
+                <div class="badge-date">LeetCode 2026</div>
+              </div>
+              <div class="leetcode-badge-item">
+                <div class="badge-icon-wrap">🎖️</div>
+                <div class="badge-name">50 Days</div>
+                <div class="badge-date">LeetCode 2025</div>
+              </div>
+              <div class="leetcode-badge-item">
+                <div class="badge-icon-wrap">⚡</div>
+                <div class="badge-name">Top SQL 50</div>
+                <div class="badge-date">Database Master</div>
+              </div>
+            </div>
+
+            <!-- Profiles Links Grid (Codolio, LeetCode, InterviewBit, GFG) -->
+            <div class="profiles-pill-grid">
+              <a href="https://codolio.com/profile/PREM_GUPTA8851" target="_blank" rel="noopener noreferrer" class="profile-pill-card highlight-pill">
+                <div>
+                  <div class="profile-pill-title">Codolio ⚡</div>
+                  <div class="profile-pill-sub">PREM_GUPTA8851</div>
+                </div>
+                <span>↗</span>
+              </a>
+              <a href="https://leetcode.com/u/PREM_GUPTA8851/" target="_blank" rel="noopener noreferrer" class="profile-pill-card">
+                <div>
+                  <div class="profile-pill-title">LeetCode</div>
+                  <div class="profile-pill-sub">PREM_GUPTA8851</div>
+                </div>
+                <span>↗</span>
+              </a>
+              <a href="https://www.interviewbit.com/profile/prem-gupta_505/" target="_blank" rel="noopener noreferrer" class="profile-pill-card">
+                <div>
+                  <div class="profile-pill-title">InterviewBit 🎯</div>
+                  <div class="profile-pill-sub">prem-gupta_505</div>
+                </div>
+                <span>↗</span>
+              </a>
+              <a href="https://www.geeksforgeeks.org/profile/premgupthnxn" target="_blank" rel="noopener noreferrer" class="profile-pill-card">
+                <div>
+                  <div class="profile-pill-title">GeeksforGeeks</div>
+                  <div class="profile-pill-sub">premgupthnxn</div>
+                </div>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- GitHub Heatmap Matrix & Activity Radar (3,000+ Contributions) -->
+          <div class="metric-showcase-box github-showcase-card">
+            <a href="https://github.com/PREM-GUPTA8851" target="_blank" rel="noopener noreferrer" class="github-box-header" title="Open Prem's GitHub Profile">
+              <div class="github-title-wrap">
+                <span class="github-icon-mark">🐙</span>
+                <h3 class="github-box-title">GitHub Contributions</h3>
+                <span class="github-ext-arrow">↗</span>
+              </div>
+              <span class="github-commit-count">3,000+ Active Commits</span>
+            </a>
+
+            <!-- Heatmap Simulation with Etched "PREM" -->
+            <div class="github-heatmap-container">
+              <div class="heatmap-header">
+                <span>Active Year Consistency</span>
+                <span>Less ▢ ▣ ■ More</span>
+              </div>
+              <div class="heatmap-grid" id="github-heatmap-grid">
+                <!-- Dynamically Populated by JS with PREM pixels -->
+              </div>
+            </div>
+
+            <!-- 4-Axis Activity Overview Chart (Code review, Issues, Pull requests, 100% Commits) -->
+            <div id="github-activity-radar-container" class="github-radar-container">
+              <!-- Dynamically Populated by initGithubActivityRadar() -->
+            </div>
+
+            <!-- Featured Active Top Repositories (Point 4 & 5) -->
+            <div class="featured-repos-block">
+              <div class="featured-repos-header">
+                <span class="repos-title-tag">FEATURED ACTIVE REPOSITORIES</span>
+                <a href="https://github.com/PREM-GUPTA8851?tab=repositories" target="_blank" rel="noopener noreferrer" class="view-all-repos">View All Repos ↗</a>
+              </div>
+              <div class="featured-repos-grid">
+                <!-- 1. DSA Java Master Repo -->
+                <a href="https://github.com/PREM-GUPTA8851/DSA_JAVA_UNSTOPPABLE" target="_blank" rel="noopener noreferrer" class="repo-card-item">
+                  <div class="repo-card-top">
+                    <span class="repo-name">DSA_JAVA_UNSTOPPABLE</span>
+                    <span class="repo-lang-tag java-tag">Java</span>
+                  </div>
+                  <p class="repo-card-desc">350+ DSA Problems Solved in Java &bull; Master repository covering dynamic programming, graphs, trees, recursion &amp; greedy paradigms.</p>
+                  <div class="repo-card-meta">
+                    <span class="repo-stat-badge">⚡ 350+ Solved</span>
+                    <span class="repo-arrow">↗</span>
+                  </div>
+                </a>
+
+                <!-- 2. DSA C++ 11K+ LOC Repo -->
+                <a href="https://github.com/PREM-GUPTA8851/DSA_WITH_C-_-ONGOING-" target="_blank" rel="noopener noreferrer" class="repo-card-item">
+                  <div class="repo-card-top">
+                    <span class="repo-name">DSA_WITH_C-_-ONGOING-</span>
+                    <span class="repo-lang-tag cpp-tag">C++</span>
+                  </div>
+                  <p class="repo-card-desc">11,000+ Lines of Code (11K+ LOC) in C++ &bull; Rigorous dry runs, algorithmic optimizations, time-space analyses &amp; memory models.</p>
+                  <div class="repo-card-meta">
+                    <span class="repo-stat-badge">🔥 11K+ LOC &bull; Dry Runs</span>
+                    <span class="repo-arrow">↗</span>
+                  </div>
+                </a>
+
+                <!-- 3. GitHub RAG Assistant -->
+                <a href="https://github.com/PREM-GUPTA8851" target="_blank" rel="noopener noreferrer" class="repo-card-item">
+                  <div class="repo-card-top">
+                    <span class="repo-name">GitHub-RAG-Assistant</span>
+                    <span class="repo-lang-tag py-tag">Python</span>
+                  </div>
+                  <p class="repo-card-desc">Context-aware AST codebase traversal with ChromaDB vector similarity and Groq LPU Llama 3 70B inference engine.</p>
+                  <div class="repo-card-meta">
+                    <span class="repo-stat-badge">🤖 RAG &bull; 300+ tok/s</span>
+                    <span class="repo-arrow">↗</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           PANEL 4: OPEN SOURCE & INDUSTRY LEADERSHIP (In-Depth Showcase)
+           ================================================================ -->
+      <section class="h-panel panel-experience" id="experience" aria-label="Experience and Open Source">
+        <div class="panel-header-block">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <span class="panel-tag-mono">04 / Verified Track Record</span>
+              <h2 class="panel-title-large">
+                Experience, Open Source &amp; <span class="italic-word">Impact</span>.
+              </h2>
+            </div>
+            <!-- Category Filter Pills -->
+            <div class="exp-filter-bar">
+              <button class="exp-filter-btn active" data-filter="all">All Experiences (6)</button>
+              <button class="exp-filter-btn" data-filter="opensource">Open Source &amp; Dev (2)</button>
+              <button class="exp-filter-btn" data-filter="leadership">Leadership &amp; Governance (4)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="experience-cards-grid">
+          <!-- 1. Master Open Source Contributor Card -->
+          <div class="experience-card" data-category="opensource">
+            <div>
+              <div class="exp-header-row">
+                <span class="exp-year-badge">Oct 2024 &ndash; Present</span>
+                <span class="exp-status-tag active">Contributor &bull; Remote</span>
+              </div>
+              <h3 class="exp-role-title">Open Source Contributor</h3>
+              <div class="exp-org-name">GSSoC '26 &amp; '25 || SWOC Season 7 || SSoC Season 5 || OSCI</div>
+            </div>
+            <p class="exp-desc-text">
+              Selected contributor and campus ambassador across premier national &amp; international open-source initiatives. Contributing to community repositories, resolving algorithmic bottlenecks, submitting pull requests, and mentoring peers in Git/GitHub workflows.
+            </p>
+            <div class="exp-card-footer">
+              <a href="https://www.linkedin.com/in/premgupta8851/overlay/Position/2720521171/treasury/?profileId=ACoAAFsGq3YB3YHYSBiB5iLH982lJqoyle6VNQQ" target="_blank" rel="noopener noreferrer" class="exp-proof-link" title="Open LinkedIn Verified Treasury">
+                <span>🎖️ Open Source Treasury</span>
+                <span>↗</span>
+              </a>
+              <span class="exp-tech-tag">Git &bull; Open Source</span>
+            </div>
+          </div>
+
+          <!-- 2. ShadowFox Full-Stack Developer Intern -->
+          <div class="experience-card" data-category="opensource">
+            <div>
+              <div class="exp-header-row">
+                <span class="exp-year-badge">Recent &bull; Active</span>
+                <span class="exp-status-tag active">Internship &bull; Remote</span>
+              </div>
+              <h3 class="exp-role-title">Full-Stack Web Development Intern</h3>
+              <div class="exp-org-name">ShadowFox &bull; Software Development Division</div>
+            </div>
+            <p class="exp-desc-text">
+              Engineered end-to-end full-stack web applications, architecting responsive client interfaces and robust backend APIs. Implemented authentication, RESTful service layers, and performance-tuned database schemas.
+            </p>
+            <div class="exp-card-footer">
+              <a href="https://www.linkedin.com/in/premgupta8851/overlay/Position/3018646964/treasury/?profileId=ACoAAFsGq3YB3YHYSBiB5iLH982lJqoyle6VNQQ" target="_blank" rel="noopener noreferrer" class="exp-proof-link" title="Open LinkedIn Verified Treasury">
+                <span>📜 ShadowFox Treasury</span>
+                <span>↗</span>
+              </a>
+              <span class="exp-tech-tag">Full-Stack Web</span>
+            </div>
+          </div>
+
+          <!-- 3. Internshala Student Partner (ISP 46) -->
+          <div class="experience-card" data-category="leadership">
+            <div>
+              <div class="exp-header-row">
+                <span class="exp-year-badge">Nov 2024 &ndash; Present</span>
+                <span class="exp-status-tag active">Campus Leadership &bull; LPU</span>
+              </div>
+              <h3 class="exp-role-title">Internshala Student Partner (ISP 46)</h3>
+              <div class="exp-org-name">Internshala Trainings &bull; Lovely Professional University</div>
+            </div>
+            <p class="exp-desc-text">
+              Appointed as official campus ambassador for Internshala at Lovely Professional University. Driving technical upskilling campaigns, internship outreach, and helping peers build career-defining engineering skills.
+            </p>
+            <div class="exp-card-footer">
+              <a href="https://www.linkedin.com/in/premgupta8851/overlay/Position/2645592209/treasury/?profileId=ACoAAFsGq3YB3YHYSBiB5iLH982lJqoyle6VNQQ" target="_blank" rel="noopener noreferrer" class="exp-proof-link" title="Open LinkedIn Verified Treasury">
+                <span>📜 ISP 46 Treasury</span>
+                <span>↗</span>
+              </a>
+              <span class="exp-tech-tag">Leadership &bull; Community</span>
+            </div>
+          </div>
+
+          <!-- 4. LetsUpgrade Student Ambassador -->
+          <div class="experience-card" data-category="leadership">
+            <div>
+              <div class="exp-header-row">
+                <span class="exp-year-badge">Aug 2025 &ndash; Jun 2026</span>
+                <span class="exp-status-tag">Tech Community &bull; Remote</span>
+              </div>
+              <h3 class="exp-role-title">Student Ambassador (August 2025 Batch)</h3>
+              <div class="exp-org-name">LetsUpgrade &bull; Tech Learning Community</div>
+            </div>
+            <p class="exp-desc-text">
+              Promoting technical skilling and developer education programs across campus. Driving community growth through workshops, strategic peer referrals, hackathon participation, and technical mentorship.
+            </p>
+            <div class="exp-card-footer">
+              <a href="https://www.linkedin.com/in/premgupta8851/overlay/Position/2695012329/treasury/?profileId=ACoAAFsGq3YB3YHYSBiB5iLH982lJqoyle6VNQQ" target="_blank" rel="noopener noreferrer" class="exp-proof-link" title="Open LinkedIn Verified Treasury">
+                <span>📜 LetsUpgrade Treasury</span>
+                <span>↗</span>
+              </a>
+              <span class="exp-tech-tag">Campus Outreach</span>
+            </div>
+          </div>
+
+          <!-- 5. Academic Committee Representative (BH-3) -->
+          <div class="experience-card" data-category="leadership">
+            <div>
+              <div class="exp-header-row">
+                <span class="exp-year-badge">Aug 2024 &ndash; Present</span>
+                <span class="exp-status-tag active">Student Governance &bull; LPU</span>
+              </div>
+              <h3 class="exp-role-title">Academic Committee Representative (BH-3)</h3>
+              <div class="exp-org-name">Lovely Professional University &bull; Student Welfare</div>
+            </div>
+            <p class="exp-desc-text">
+              Elected to represent student academic interests for Boys Hostel 3. Coordinated peer study groups, interfaced with university faculty and administration, and worked to enhance academic support systems.
+            </p>
+            <div class="exp-card-footer">
+              <a href="https://www.linkedin.com/in/premgupta8851/overlay/VolunteerExperience/1933911358/treasury/?profileId=ACoAAFsGq3YB3YHYSBiB5iLH982lJqoyle6VNQQ" target="_blank" rel="noopener noreferrer" class="exp-proof-link" title="Open LinkedIn Verified Treasury">
+                <span>🏛️ LPU Committee Treasury</span>
+                <span>↗</span>
+              </a>
+              <span class="exp-tech-tag">Student Welfare</span>
+            </div>
+          </div>
+
+          <!-- 6. Student Minister - ABVP, CMA School -->
+          <div class="experience-card" data-category="leadership">
+            <div>
+              <div class="exp-header-row">
+                <span class="exp-year-badge">Jan 2022 &ndash; Jul 2022</span>
+                <span class="exp-status-tag">Youth Leadership &bull; Satna, MP</span>
+              </div>
+              <h3 class="exp-role-title">Student Minister (Executive Council)</h3>
+              <div class="exp-org-name">Akhil Bharatiya Vidyarthi Parishad (ABVP) &bull; CMA School</div>
+            </div>
+            <p class="exp-desc-text">
+              Organized student assemblies, coordinated youth cultural initiatives, delivered public addresses, and interfaced with school faculty to address student body welfare and extracurricular programs.
+            </p>
+            <div class="exp-card-footer">
+              <a href="https://www.linkedin.com/in/premgupta8851/overlay/Position/2655167966/treasury/?profileId=ACoAAFsGq3YB3YHYSBiB5iLH982lJqoyle6VNQQ" target="_blank" rel="noopener noreferrer" class="exp-proof-link" title="Open LinkedIn Verified Treasury">
+                <span>🎖️ ABVP Council Treasury</span>
+                <span>↗</span>
+              </a>
+              <span class="exp-tech-tag">Student Minister</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           PANEL 5: 4 FLAGSHIP PRODUCTION ARCHITECTURES (Interactive Steppers)
+           ================================================================ -->
+      <section class="h-panel panel-projects" id="projects" aria-label="Selected Projects">
+        <div class="panel-header-block">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <span class="panel-tag-mono">05 / Production Software</span>
+              <h2 class="panel-title-large">
+                Flagship <span class="italic-word">Architectures</span>.
+              </h2>
+            </div>
+
+            <!-- Project Selector Tabs (All 4 Flagships Supported) -->
+            <div class="project-selector-tabs" id="project-selector-tabs">
+              <button class="proj-tab-btn active" data-proj-id="rag">01 RAG Assistant</button>
+              <button class="proj-tab-btn" data-proj-id="proctored">02 ProctorEd</button>
+              <button class="proj-tab-btn" data-proj-id="byod">03 BYOD Suite</button>
+              <button class="proj-tab-btn" data-proj-id="vendorlink">04 VendorLink</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="projects-master-layout">
+          <!-- Main Interactive Architecture Showcase Card -->
+          <div class="flagship-project-card" id="flagship-active-card">
+            <div>
+              <div class="proj-header-status">
+                <span class="project-tagline" id="proj-active-tagline">Flagship Architecture &bull; AI Codebase Intelligence</span>
+                <span class="proj-live-indicator"><span class="pulse-dot"></span> Interactive Pipeline</span>
+              </div>
+
+              <h3 class="project-headline" id="proj-active-title">GitHub RAG Assistant</h3>
+              
+              <p class="project-summary" id="proj-active-summary">
+                Semantic codebase comprehension engine performing context-aware Q&amp;A and automated bug localization over entire GitHub repositories. Powered by FastAPI, ChromaDB, all-MiniLM dense embeddings, and Groq LPU (Llama 3 70B @ &gt;300 tok/sec).
+              </p>
+
+              <!-- Dynamic Tech Stack Chips -->
+              <div class="project-tech-chips" id="proj-active-tech">
+                <span class="tech-chip">FastAPI</span>
+                <span class="tech-chip">ChromaDB</span>
+                <span class="tech-chip">Groq LPU</span>
+                <span class="tech-chip">Llama 3 70B</span>
+                <span class="tech-chip">Next.js 14</span>
+                <span class="tech-chip">Sentence-Transformers</span>
+              </div>
+
+              <!-- Interactive Multi-Stage Architecture Stepper -->
+              <div class="rag-interactive-visualizer">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span class="pipeline-title-label" id="pipeline-title-label">Interactive 8-Stage Execution Pipeline</span>
+                  <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-neon);">Click Any Stage Node &bull; Inspect Architecture</span>
+                </div>
+
+                <div class="rag-stepper-track" id="rag-stepper-track">
+                  <!-- Dynamically populated by JS -->
+                </div>
+
+                <div class="rag-detail-display">
+                  <div class="rag-detail-title" id="rag-detail-title">01. GitHub Repository Ingestion</div>
+                  <div class="rag-detail-desc" id="rag-detail-desc">Connecting via GitHub API to extract directory tree and source files...</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="proj-actions-footer">
+              <a href="https://github.com/PREM-GUPTA8851" target="_blank" rel="noopener noreferrer" class="btn-primary" id="proj-active-link" style="padding: 0.65rem 1.4rem; font-size: 0.85rem;">
+                <span>View Repository &amp; Architecture</span>
+                <span>↗</span>
+              </a>
+              <span class="proj-pipeline-badge" id="proj-active-metric">Sub-millisecond ChromaDB retrieval &bull; High throughput</span>
+            </div>
+          </div>
+
+          <!-- 4-Card Quick Switch Strip for Seamless Exploration -->
+          <div class="projects-overview-grid">
+            <!-- 01 Card -->
+            <div class="mini-project-card active-mini" data-proj-id="rag">
+              <div class="mini-card-head">
+                <span class="mini-num">01</span>
+                <span class="mini-chip">AI / RAG</span>
+              </div>
+              <h4 class="mini-project-title">GitHub RAG Assistant</h4>
+              <p class="mini-project-desc">AST code slicing, ChromaDB vector indexing &amp; Groq LPU Llama 3 70B Q&amp;A.</p>
+              <div class="mini-tech-row">FastAPI &bull; ChromaDB &bull; Groq</div>
+            </div>
+
+            <!-- 02 Card -->
+            <div class="mini-project-card" data-proj-id="proctored">
+              <div class="mini-card-head">
+                <span class="mini-num">02</span>
+                <span class="mini-chip">Computer Vision</span>
+              </div>
+              <h4 class="mini-project-title">ProctorEd</h4>
+              <p class="mini-project-desc">AI proctoring with multi-face gaze mesh, audio spectral anomaly &amp; OCR ID verification.</p>
+              <div class="mini-tech-row">MERN &bull; OpenCV &bull; Tesseract OCR</div>
+            </div>
+
+            <!-- 03 Card -->
+            <div class="mini-project-card" data-proj-id="byod">
+              <div class="mini-card-head">
+                <span class="mini-num">03</span>
+                <span class="mini-chip">WebRTC Mesh</span>
+              </div>
+              <h4 class="mini-project-title">BYOD Classroom Suite</h4>
+              <p class="mini-project-desc">Peer screen broadcast, student focus tracking &amp; instant comprehension quizzes.</p>
+              <div class="mini-tech-row">React &bull; WebRTC &bull; Socket.IO</div>
+            </div>
+
+            <!-- 04 Card -->
+            <div class="mini-project-card" data-proj-id="vendorlink">
+              <div class="mini-card-head">
+                <span class="mini-num">04</span>
+                <span class="mini-chip">Enterprise Java</span>
+              </div>
+              <h4 class="mini-project-title">VendorLink</h4>
+              <p class="mini-project-desc">Supplier lifecycle, sealed-bid RFQ processing &amp; multi-tiered JWT RBAC escrow auditing.</p>
+              <div class="mini-tech-row">Spring Boot &bull; MySQL &bull; JWT</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           PANEL 6: 19 ACCREDITED CERTIFICATIONS
+           ================================================================ -->
+      <section class="h-panel panel-credentials" id="credentials" aria-label="Accredited Certifications">
+        <div class="panel-header-block">
+          <span class="panel-tag-mono">06 / Verified Mastery</span>
+          <h2 class="panel-title-large">
+            19 Accredited <span class="italic-word">Certifications</span>.
+          </h2>
+        </div>
+
+        <div class="certs-scroll-grid">
+          <div class="cert-capsule-item">
+            <span class="cert-issuer-badge">Stanford Online</span>
+            <div class="cert-name-heading">Supervised Machine Learning: Regression &amp; Classification</div>
+          </div>
+          <div class="cert-capsule-item">
+            <span class="cert-issuer-badge">DeepLearning.AI</span>
+            <div class="cert-name-heading">Neural Networks and Deep Learning</div>
+          </div>
+          <div class="cert-capsule-item">
+            <span class="cert-issuer-badge">Harvard University</span>
+            <div class="cert-name-heading">CS50's Introduction to Computer Science</div>
+          </div>
+          <div class="cert-capsule-item">
+            <span class="cert-issuer-badge">Amazon Web Services</span>
+            <div class="cert-name-heading">AWS Academy Graduate — Cloud Foundations</div>
+          </div>
+          <div class="cert-capsule-item">
+            <span class="cert-issuer-badge">Google Cloud</span>
+            <div class="cert-name-heading">Cloud Computing Fundamentals</div>
+          </div>
+          <div class="cert-capsule-item">
+            <span class="cert-issuer-badge">Google Cloud</span>
+            <div class="cert-name-heading">Infrastructure in Google Cloud</div>
+          </div>
+          <div class="cert-capsule-item">
+            <span class="cert-issuer-badge">Meta</span>
+            <div class="cert-name-heading">React Basics &amp; Advanced React</div>
+          </div>
+          <div class="cert-capsule-item">
+            <span class="cert-issuer-badge">Meta</span>
+            <div class="cert-name-heading">Programming with JavaScript</div>
+          </div>
+          <div class="cert-capsule-item">
+            <span class="cert-issuer-badge">GeeksforGeeks</span>
+            <div class="cert-name-heading">100 Days of Code (Data Structures &amp; Algorithms)</div>
+          </div>
+          <div class="cert-capsule-item">
+            <span class="cert-issuer-badge">HackerRank</span>
+            <div class="cert-name-heading">SQL (Intermediate) &amp; Java (Basic)</div>
+          </div>
+          <div class="cert-capsule-item">
+            <span class="cert-issuer-badge">IBM</span>
+            <div class="cert-name-heading">Getting Started with Git and GitHub</div>
+          </div>
+          <div class="cert-capsule-item">
+            <span class="cert-issuer-badge">Cisco Networking Academy</span>
+            <div class="cert-name-heading">Introduction to Cybersecurity</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           PANEL 7: CONTACT & GLOBAL REACHOUT
+           ================================================================ -->
+      <section class="h-panel panel-contact" id="contact" aria-label="Contact Information">
+        <div class="panel-header-block">
+          <span class="panel-tag-mono">07 / Transmission</span>
+          <h2 class="panel-title-large">
+            Initiate <span class="italic-word">Collaboration</span>.
+          </h2>
+        </div>
+
+        <div class="contact-layout-split">
+          <!-- Direct Details -->
+          <div class="contact-direct-card">
+            <h3 style="font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 0.8rem;">
+              Ready to build high-performance systems?
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+              Open for Software Engineering, Full-Stack Developer, and AI opportunities. Reach out directly or dispatch a note via the secure terminal.
+            </p>
+
+            <a href="mailto:premgupta100705@gmail.com" class="contact-email-btn" aria-label="Send Direct Email to Prem">
+              <span>📧 premgupta100705@gmail.com</span>
+            </a>
+
+            <div style="display: flex; flex-direction: column; gap: 0.6rem; font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted);">
+              <div>📞 +91 96859 93099</div>
+              <div>📍 Satna, Madhya Pradesh, India</div>
+              <div>🎓 Lovely Professional University (B.Tech CSE)</div>
+            </div>
+          </div>
+
+          <!-- Direct Dispatch Contact Form to premgupta100705@gmail.com -->
+          <div>
+            <form id="monochrome-contact-form" class="contact-form-understated" action="https://formsubmit.co/premgupta100705@gmail.com" method="POST">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_subject" value="🚀 New Portfolio Message for Prem Kumar Gupta">
+              <input type="text" name="name" class="form-input-monochrome" placeholder="Your name or organization" required>
+              <input type="email" name="email" class="form-input-monochrome" placeholder="Your email address" required>
+              <input type="text" name="subject" class="form-input-monochrome" placeholder="Opportunity or project scope">
+              <textarea name="message" class="form-input-monochrome" rows="4" placeholder="Brief summary of your requirements" required></textarea>
+
+              <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                <span>Initiate Collaboration →</span>
+              </button>
             </form>
           </div>
         </div>
+      </section>
 
-      </div>
-    </section>
-
-    <!-- ====================================================================
-         11. QUESTIONS / FAQ SECTION (Agustin Burgos Signature Feature)
-         ==================================================================== -->
-    <section class="global-padding s-service-packs" id="faq" aria-labelledby="faq-heading">
-      <div class="container">
-        <h2 id="faq-heading" class="txt-headers-xl">Questions.</h2>
-        
-        <div class="faq-wrap">
-          <div class="faq-item">
-            <h3 class="faq-question">What technologies does Prem Kumar Gupta specialize in?</h3>
-            <p class="faq-answer">
-              Prem specializes in Java (Data Structures &amp; Algorithms), Python, React.js, Next.js, Node.js, Spring Boot, FastAPI, ChromaDB (Vector DB), MySQL, and MongoDB. He architects end-to-end full-stack web applications and Retrieval-Augmented Generation (RAG) AI systems.
-            </p>
-          </div>
-
-          <div class="faq-item">
-            <h3 class="faq-question">What is Prem's flagship project and architectural focus?</h3>
-            <p class="faq-answer">
-              His flagship system is the <strong>GitHub RAG Assistant</strong>, which performs semantic code search and context-aware Q&amp;A over large GitHub repositories using AST code chunking, ChromaDB vector indexing, and high-speed Groq LPU inference. Other major projects include ProctorEd (AI Exam Proctoring) and BYOD Classroom Management.
-            </p>
-          </div>
-
-          <div class="faq-item">
-            <h3 class="faq-question">What are Prem's competitive programming and academic credentials?</h3>
-            <p class="faq-answer">
-              Prem has solved 300+ DSA problems in Java, holds the LeetCode 100-Days Badge, ranked in the Top 10% nationwide in Flipkart GRiD 8.0 (15,000+ out of 1.6 Lakh+ applicants), qualified JEE Mains 2024, and appeared for JEE Advanced 2024. He maintains an 8.0 CGPA in B.Tech CSE at Lovely Professional University.
-            </p>
-          </div>
-
-          <div class="faq-item">
-            <h3 class="faq-question">How can teams and recruiters get in touch or hire Prem?</h3>
-            <p class="faq-answer">
-              You can reach out directly via email at <a href="mailto:premgupta100705@gmail.com" style="color: var(--text-main); text-decoration: underline;">premgupta100705@gmail.com</a>, call +91-9685993099, or connect through LinkedIn. Prem is open to Software Engineering, Full-Stack, and AI opportunities.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
+    </div>
   </main>
 
   <!-- ====================================================================
-       12. SITE FOOTER (Agustin Burgos Pill Logo & Structure)
+       4. FLOATING BOTTOM HUD CONTROLS
        ==================================================================== -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        
-        <div>
-          <div class="name-logo-capsule" style="width: 100px; height: 46px; font-size: 1.25rem; margin-bottom: 1.5rem;">PG</div>
-          <div class="txt-s-caps">
-            FULL STACK DEVELOPER <br>&amp; AI SOFTWARE ENGINEER
-          </div>
-        </div>
+  <footer class="bottom-hud-bar" role="contentinfo">
+    <div class="hud-panel-index" id="hud-panel-index">01 / 07 — HERO CHRONICLE</div>
+    
+    <div class="hud-scroll-cue">
+      <span>Scroll or Drag Horizontally</span>
+      <span class="hud-cue-arrow">→</span>
+    </div>
 
-        <div class="footer-links-row">
-          <ul class="footer-link-group" role="list">
-            <li class="footer-link-item"><a href="#hero">Home</a></li>
-            <li class="footer-link-item"><a href="#about">About</a></li>
-            <li class="footer-link-item"><a href="#services">Services</a></li>
-            <li class="footer-link-item"><a href="#work">Work</a></li>
-          </ul>
-
-          <ul class="footer-link-group" role="list">
-            <li class="footer-link-item"><a href="#experience">Experience</a></li>
-            <li class="footer-link-item"><a href="#certifications">Certifications</a></li>
-            <li class="footer-link-item"><a href="#faq">Questions</a></li>
-            <li class="footer-link-item"><a href="#contact">Contact</a></li>
-          </ul>
-
-          <ul class="footer-link-group" role="list">
-            <li class="footer-link-item"><a href="https://www.linkedin.com/in/premgupta5k/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-            <li class="footer-link-item"><a href="https://github.com/PREM-GUPTA8851" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li class="footer-link-item"><a href="https://leetcode.com/u/PREM_GUPTA8851/" target="_blank" rel="noopener noreferrer">LeetCode</a></li>
-            <li class="footer-link-item"><a href="mailto:premgupta100705@gmail.com">Email</a></li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="footer-bottom-bar">
-        <div class="txt-s-caps">
-          Prem Kumar Gupta &copy; 2026 &bull; All rights reserved
-        </div>
-        <button id="back-to-top-btn" class="btn btn-sm btn-outline" aria-label="Back to top">
-          <span>Back to Top ↑</span>
-        </button>
-      </div>
+    <div class="hud-jump-start" id="hud-jump-start">
+      <span>Return to Beginning ↑</span>
     </div>
   </footer>
 

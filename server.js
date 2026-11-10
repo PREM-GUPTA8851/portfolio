@@ -1,4 +1,4 @@
-const http = require('http');
+﻿const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
@@ -13,7 +13,9 @@ const MIME_TYPES = {
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.svg': 'image/svg+xml',
-  '.ico': 'image/x-icon'
+  '.ico': 'image/x-icon',
+  '.pdf': 'application/pdf',
+  '.webp': 'image/webp'
 };
 
 const server = http.createServer((req, res) => {
@@ -22,6 +24,8 @@ const server = http.createServer((req, res) => {
     reqPath = '/index.html';
   }
 
+  // decode URL components (e.g. spaces)
+  reqPath = decodeURIComponent(reqPath);
   const filePath = path.join(__dirname, reqPath);
   const ext = path.extname(filePath).toLowerCase();
   const contentType = MIME_TYPES[ext] || 'application/octet-stream';
@@ -42,7 +46,7 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log('==================================================');
   console.log(`🚀 Prem Gupta Portfolio Server is live!`);
   console.log(`👉 Local URL: http://localhost:${PORT}/`);
