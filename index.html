@@ -790,10 +790,10 @@
 
             <!-- Project Selector Tabs (All 4 Flagships Supported) -->
             <div class="project-selector-tabs" id="project-selector-tabs">
-              <button class="proj-tab-btn active" data-proj-id="rag">01 RAG Assistant</button>
-              <button class="proj-tab-btn" data-proj-id="proctored">02 ProctorEd</button>
-              <button class="proj-tab-btn" data-proj-id="byod">03 BYOD Suite</button>
-              <button class="proj-tab-btn" data-proj-id="vendorlink">04 VendorLink</button>
+              <button class="proj-tab-btn active" data-proj-id="byod">01 BYOD Suite</button>
+              <button class="proj-tab-btn" data-proj-id="vendorlink">02 VendorLink</button>
+              <button class="proj-tab-btn" data-proj-id="proctored">03 ProctorEd</button>
+              <button class="proj-tab-btn" data-proj-id="rag">04 RAG Assistant</button>
             </div>
           </div>
         </div>
@@ -857,33 +857,9 @@
           <!-- 4-Card Quick Switch Strip for Seamless Exploration -->
           <div class="projects-overview-grid">
             <!-- 01 Card -->
-            <div class="mini-project-card active-mini" data-proj-id="rag">
+            <div class="mini-project-card active-mini" data-proj-id="byod">
               <div class="mini-card-head">
                 <span class="mini-num">01</span>
-                <span class="mini-chip">AI / RAG</span>
-              </div>
-              <img class="mini-project-image" src="assets/project-rag-assistant.png" alt="GitHub RAG Assistant project dashboard and repository Q&amp;A interface">
-              <h4 class="mini-project-title">GitHub RAG Assistant</h4>
-              <p class="mini-project-desc">AST code slicing, ChromaDB vector indexing &amp; Groq LPU Llama 3 70B Q&amp;A.</p>
-              <div class="mini-tech-row">FastAPI &bull; ChromaDB &bull; Groq</div>
-            </div>
-
-            <!-- 02 Card -->
-            <div class="mini-project-card" data-proj-id="proctored">
-              <div class="mini-card-head">
-                <span class="mini-num">02</span>
-                <span class="mini-chip">Computer Vision</span>
-              </div>
-              <img class="mini-project-image" src="assets/project-exam-platform.png" alt="ProctorEd online examination platform dashboard">
-              <h4 class="mini-project-title">ProctorEd</h4>
-              <p class="mini-project-desc">AI proctoring with multi-face gaze mesh, audio spectral anomaly &amp; OCR ID verification.</p>
-              <div class="mini-tech-row">MERN &bull; OpenCV &bull; Tesseract OCR</div>
-            </div>
-
-            <!-- 03 Card -->
-            <div class="mini-project-card" data-proj-id="byod">
-              <div class="mini-card-head">
-                <span class="mini-num">03</span>
                 <span class="mini-chip">WebRTC Mesh</span>
               </div>
               <img class="mini-project-image" src="assets/project-byod.png" alt="BYOD classroom management dashboard and student interface">
@@ -892,16 +868,40 @@
               <div class="mini-tech-row">React &bull; WebRTC &bull; Socket.IO</div>
             </div>
 
-            <!-- 04 Card -->
+            <!-- 02 Card -->
             <div class="mini-project-card" data-proj-id="vendorlink">
               <div class="mini-card-head">
-                <span class="mini-num">04</span>
+                <span class="mini-num">02</span>
                 <span class="mini-chip">Enterprise Java</span>
               </div>
               <img class="mini-project-image" src="assets/project-vendorlink.png" alt="VendorLink supplier management and procurement dashboard">
               <h4 class="mini-project-title">VendorLink</h4>
               <p class="mini-project-desc">Supplier lifecycle, sealed-bid RFQ processing &amp; multi-tiered JWT RBAC escrow auditing.</p>
               <div class="mini-tech-row">Spring Boot &bull; MySQL &bull; JWT</div>
+            </div>
+
+            <!-- 03 Card -->
+            <div class="mini-project-card" data-proj-id="proctored">
+              <div class="mini-card-head">
+                <span class="mini-num">03</span>
+                <span class="mini-chip">Computer Vision</span>
+              </div>
+              <img class="mini-project-image" src="assets/project-exam-platform.png" alt="ProctorEd online examination platform dashboard">
+              <h4 class="mini-project-title">ProctorEd</h4>
+              <p class="mini-project-desc">AI proctoring with multi-face gaze mesh, audio spectral anomaly &amp; OCR ID verification.</p>
+              <div class="mini-tech-row">MERN &bull; OpenCV &bull; Tesseract OCR</div>
+            </div>
+
+            <!-- 04 Card -->
+            <div class="mini-project-card" data-proj-id="rag">
+              <div class="mini-card-head">
+                <span class="mini-num">04</span>
+                <span class="mini-chip">AI / RAG</span>
+              </div>
+              <img class="mini-project-image" src="assets/project-rag-assistant.png" alt="GitHub RAG Assistant project dashboard and repository Q&amp;A interface">
+              <h4 class="mini-project-title">GitHub RAG Assistant</h4>
+              <p class="mini-project-desc">AST code slicing, ChromaDB vector indexing &amp; Groq LPU Llama 3 70B Q&amp;A.</p>
+              <div class="mini-tech-row">FastAPI &bull; ChromaDB &bull; Groq</div>
             </div>
           </div>
         </div>

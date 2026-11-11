@@ -817,8 +817,8 @@ function initAllProjectsShowcase() {
     });
   });
 
-  // Initial Render (RAG)
-  renderProject('rag');
+  // Initial Render (BYOD)
+  renderProject('byod');
 }
 
 /* --------------------------------------------------------------------------
