@@ -456,6 +456,7 @@ button {
   inset: 0;
   z-index: 99999;
   background-color: #020203;
+  color: #f0fdf4;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -515,12 +516,18 @@ button {
   transition: all 0.3s ease;
 }
 
+#intro-gate .intro-pill-top {
+  color: #a7f3d0;
+  border-color: rgba(110, 231, 183, 0.24);
+  background: rgba(16, 185, 129, 0.06);
+}
+
 .intro-pill-top .pulse-dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--text-pure);
-  box-shadow: 0 0 10px #ffffff;
+  background: #6ee7b7;
+  box-shadow: 0 0 10px rgba(110, 231, 183, 0.8);
   animation: pulseLight 2s infinite ease-in-out;
 }
 
@@ -546,7 +553,7 @@ button {
   border: 1.5px solid rgba(255, 255, 255, 0.4);
   background: rgba(10, 10, 14, 0.6);
   backdrop-filter: blur(20px);
-  color: var(--text-pure);
+  color: #f0fdf4;
   font-size: 1.45rem;
   font-weight: 500;
   letter-spacing: -0.015em;
@@ -557,16 +564,23 @@ button {
 }
 
 .intro-enter-btn:hover {
-  border-color: #ffffff;
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 50px rgba(255, 255, 255, 0.35), inset 0 0 25px rgba(255, 255, 255, 0.08);
+  border-color: #86efac;
+  background: rgba(16, 185, 129, 0.2);
+  color: #ecfdf5;
+  box-shadow: 0 0 50px rgba(16, 185, 129, 0.32), inset 0 0 25px rgba(110, 231, 183, 0.12);
   transform: scale(1.03) translateY(-2px);
+}
+
+#intro-gate .intro-enter-btn:focus-visible {
+  outline: 2px solid #86efac;
+  outline-offset: 5px;
 }
 
 .intro-btn-name {
   font-size: 1.5rem;
   font-weight: 500;
   letter-spacing: -0.02em;
+  color: inherit;
 }
 
 .intro-btn-tm {
