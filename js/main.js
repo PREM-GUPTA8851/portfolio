@@ -101,7 +101,10 @@ function initSkillMarquees() {
       state.widths = items.map((item) => item.getBoundingClientRect().width);
       const baseGap = parseFloat(getComputedStyle(track).columnGap) || 0;
       const itemsWidth = state.widths.reduce((total, width) => total + width, 0);
-      const availableWidth = marquee.clientWidth;
+      const marqueeStyle = getComputedStyle(marquee);
+      const availableWidth = marquee.clientWidth
+        - (parseFloat(marqueeStyle.paddingLeft) || 0)
+        - (parseFloat(marqueeStyle.paddingRight) || 0);
       const naturalWidth = itemsWidth + baseGap * (items.length - 1);
       state.gap = naturalWidth < availableWidth
         ? baseGap + (availableWidth - naturalWidth) / (items.length - 1)
