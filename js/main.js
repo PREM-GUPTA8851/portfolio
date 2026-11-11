@@ -78,7 +78,7 @@ function initGlobalCursor() {
 }
 
 function initSkillMarquees() {
-  const pixelsPerSecond = 18;
+  const pixelsPerSecond = 24;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const skillsPanel = document.getElementById('skills');
   const lanes = Array.from(document.querySelectorAll('.skill-lane')).map((lane) => {
@@ -108,7 +108,7 @@ function initSkillMarquees() {
       state.availableWidth = availableWidth;
       state.gap = Math.max(baseGap, (availableWidth - itemsWidth) / items.length);
       state.loopWidth = itemsWidth + state.gap * items.length;
-      state.isCycling = !reducedMotion.matches && items.length > 1 && availableWidth > 0;
+      state.isCycling = items.length > 1 && availableWidth > 0;
 
       if (!state.isCycling) return;
 
@@ -139,7 +139,8 @@ function initSkillMarquees() {
       const elapsed = Math.min((now - state.lastFrame) / 1000, 0.05);
       state.lastFrame = now;
       const hovering = lane.matches(':hover') || lane.contains(document.activeElement);
-      const distance = pixelsPerSecond * elapsed / (hovering ? 1.8 : 1);
+      const motionScale = reducedMotion.matches ? 0.65 : 1;
+      const distance = pixelsPerSecond * motionScale * elapsed / (hovering ? 1.8 : 1);
       const direction = movingRight ? 1 : -1;
 
       items.forEach((item, index) => {
