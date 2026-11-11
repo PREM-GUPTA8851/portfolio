@@ -80,47 +80,97 @@ function initGlobalCursor() {
 function initSkillMarquees() {
   const pixelsPerSecond = 18;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const tracks = document.querySelectorAll('.skill-marquee-track');
+  const skillsPanel = document.getElementById('skills');
+  const lanes = Array.from(document.querySelectorAll('.skill-lane')).map((lane) => {
+    const track = lane.querySelector('.skill-marquee-track');
+    const marquee = track?.parentElement;
+    if (!track || !marquee) return null;
 
-  tracks.forEach((track) => {
-    const skillGroup = document.createElement('div');
-    skillGroup.className = 'skill-marquee-group';
-    skillGroup.append(...Array.from(track.children));
+    const items = Array.from(track.children);
+    const movingRight = lane.classList.contains('direction-right');
+    const state = { lane, marquee, track, items, movingRight, widths: [], positions: [], gap: 0, lastFrame: 0, isCycling: false };
 
-    const repeatedGroup = skillGroup.cloneNode(true);
-    repeatedGroup.setAttribute('aria-hidden', 'true');
-    track.replaceChildren(skillGroup, repeatedGroup);
-  });
-
-  const updateDurations = () => {
-    tracks.forEach((track) => {
-      const marquee = track.parentElement;
-      const group = track.querySelector('.skill-marquee-group:not([aria-hidden="true"])');
-      const travelDistance = group?.getBoundingClientRect().width || 0;
-      const duration = (travelDistance / pixelsPerSecond) * (reducedMotion.matches ? 2 : 1);
-
-      track.querySelectorAll('.skill-marquee-group[aria-hidden="true"]').forEach((repeatedGroup) => {
-        repeatedGroup.remove();
+    const configure = () => {
+      track.classList.remove('is-cycling');
+      track.style.height = '';
+      track.style.removeProperty('--skill-x');
+      items.forEach((item) => {
+        item.style.removeProperty('--skill-x');
       });
-      if (group && travelDistance > 0) {
-        const groupCount = Math.max(2, Math.ceil(marquee.clientWidth / travelDistance) + 1);
-        for (let index = 1; index < groupCount; index++) {
-          const repeatedGroup = group.cloneNode(true);
-          repeatedGroup.setAttribute('aria-hidden', 'true');
-          track.appendChild(repeatedGroup);
-        }
+
+      state.widths = items.map((item) => item.getBoundingClientRect().width);
+      const baseGap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      const itemsWidth = state.widths.reduce((total, width) => total + width, 0);
+      const availableWidth = marquee.clientWidth;
+      const naturalWidth = itemsWidth + baseGap * (items.length - 1);
+      state.gap = naturalWidth < availableWidth
+        ? baseGap + (availableWidth - naturalWidth) / (items.length - 1)
+        : baseGap;
+      const contentWidth = itemsWidth + state.gap * (items.length - 1);
+      state.isCycling = !reducedMotion.matches && items.length > 1 && availableWidth > 0;
+
+      if (!state.isCycling) return;
+
+      track.classList.add('is-cycling');
+      state.positions = [];
+      let nextPosition = movingRight ? marquee.clientWidth - contentWidth : 0;
+      items.forEach((item, index) => {
+        state.positions.push(nextPosition);
+        item.style.setProperty('--skill-x', `${nextPosition}px`);
+        nextPosition += state.widths[index] + state.gap;
+      });
+      track.style.height = `${Math.max(...items.map((item) => item.getBoundingClientRect().height))}px`;
+    };
+
+    state.configure = configure;
+    configure();
+    return state;
+  }).filter(Boolean);
+
+  const animate = (now) => {
+    lanes.forEach((state) => {
+      const { lane, marquee, items, movingRight } = state;
+      if (!state.isCycling || !skillsPanel?.classList.contains('panel-revealed')) {
+        state.lastFrame = now;
+        return;
       }
 
-      track.style.setProperty('--marquee-distance', `${travelDistance}px`);
-      track.style.setProperty('--marquee-duration', `${duration}s`);
-      track.style.setProperty('--marquee-hover-duration', `${duration * 1.8}s`);
+      const elapsed = Math.min((now - state.lastFrame) / 1000, 0.05);
+      state.lastFrame = now;
+      const hovering = lane.matches(':hover') || lane.contains(document.activeElement);
+      const distance = pixelsPerSecond * elapsed / (hovering ? 1.8 : 1);
+      const direction = movingRight ? 1 : -1;
+
+      items.forEach((item, index) => {
+        state.positions[index] += direction * distance;
+      });
+
+      if (movingRight) {
+        items.forEach((item, index) => {
+          if (state.positions[index] < marquee.clientWidth) return;
+          const leftmost = Math.min(...state.positions);
+          state.positions[index] = leftmost - state.widths[index] - state.gap;
+        });
+      } else {
+        items.forEach((item, index) => {
+          if (state.positions[index] + state.widths[index] > 0) return;
+          const rightmost = Math.max(...state.positions.map((position, itemIndex) => position + state.widths[itemIndex]));
+          state.positions[index] = rightmost + state.gap;
+        });
+      }
+
+      items.forEach((item, index) => {
+        item.style.setProperty('--skill-x', `${state.positions[index]}px`);
+      });
     });
+
+    window.requestAnimationFrame(animate);
   };
 
-  updateDurations();
-  window.addEventListener('resize', updateDurations, { passive: true });
-  reducedMotion.addEventListener('change', updateDurations);
-  if (document.fonts?.ready) document.fonts.ready.then(updateDurations);
+  window.addEventListener('resize', () => lanes.forEach((state) => state.configure()), { passive: true });
+  reducedMotion.addEventListener('change', () => lanes.forEach((state) => state.configure()));
+  if (document.fonts?.ready) document.fonts.ready.then(() => lanes.forEach((state) => state.configure()));
+  window.requestAnimationFrame(animate);
 }
 
 /* --------------------------------------------------------------------------

@@ -1020,18 +1020,20 @@ body {
 .skill-marquee-track {
   display: flex;
   width: max-content;
-  animation: skill-marquee-left var(--marquee-duration, 0s) linear infinite;
-}
-
-.skill-lane.direction-right .skill-marquee-track {
-  animation-name: skill-marquee-right;
-}
-
-.skill-marquee-group {
-  display: flex;
-  flex: 0 0 auto;
   gap: 0.8rem;
-  padding-right: 0.8rem;
+}
+
+.skill-marquee-track.is-cycling {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.skill-marquee-track.is-cycling span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(var(--skill-x, 0px));
 }
 
 .skill-marquee-track span {
@@ -1050,28 +1052,10 @@ body {
 }
 
 .skill-marquee-track span:hover {
-  transform: translateY(-2px);
+  transform: translate(var(--skill-x, 0px), -2px);
   border-color: var(--accent-green);
   background: var(--bg-card-hover);
   color: var(--text-pure);
-}
-
-.skill-lane:hover .skill-marquee-track,
-.skill-lane:focus-within .skill-marquee-track {
-  animation-duration: var(--marquee-hover-duration, var(--marquee-duration, 0s));
-}
-
-#skills:not(.panel-revealed) .skill-marquee-track {
-  animation-play-state: paused;
-}
-
-@keyframes skill-marquee-left {
-  to { transform: translateX(calc(-1 * var(--marquee-distance, 0px))); }
-}
-
-@keyframes skill-marquee-right {
-  from { transform: translateX(calc(-1 * var(--marquee-distance, 0px))); }
-  to { transform: translateX(0); }
 }
 
 /* --------------------------------------------------------------------------
