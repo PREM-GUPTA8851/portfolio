@@ -884,9 +884,9 @@ button {
 }
 
 .panel-experience {
-  width: 95vw;
-  max-width: 1750px;
-  min-width: 1350px;
+  width: 90vw;
+  max-width: 1400px;
+  min-width: 1150px;
 }
 
 .panel-projects {
@@ -2104,6 +2104,8 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 1.4rem;
   width: 100%;
+  max-width: 1140px;
+  margin-inline: auto;
 }
 
 .exp-proof-link {
@@ -2134,7 +2136,7 @@ body {
   border-radius: 18px;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  padding: 1.45rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -2145,12 +2147,12 @@ body {
 
 .experience-card-image {
   display: block;
-  width: calc(100% + 2.9rem);
-  height: 150px;
-  margin: -1.45rem -1.45rem 1rem;
-  padding: 0.6rem;
+  width: calc(100% + 2.5rem);
+  height: 200px;
+  margin: -1.25rem -1.25rem 1rem;
+  padding: 0.3rem;
   border-bottom: 1px solid var(--border-subtle);
-  background: #ffffff;
+  background: var(--bg-pill);
   object-fit: contain;
 }
 
@@ -2553,6 +2555,8 @@ body {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.8rem;
   margin-bottom: 1.15rem;
+  max-width: 1080px;
+  margin-inline: auto;
 }
 
 .credentials-subheading {
@@ -2574,7 +2578,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 178px;
+  height: 220px;
   overflow: hidden;
   border-bottom: 1px solid var(--border-subtle);
   background: var(--bg-pill);
@@ -2588,8 +2592,8 @@ body {
 }
 
 .credential-media--photo {
-  padding: 0.5rem;
-  background: #fff;
+  height: auto;
+  aspect-ratio: 1.48;
 }
 
 .credential-media--photo img {
@@ -2599,8 +2603,12 @@ body {
 .credential-media--poster,
 .credential-media--profile,
 .credential-media--certificate {
-  padding: 0.5rem;
-  background: #fff;
+  padding: 0;
+}
+
+.credential-media--certificate {
+  height: auto;
+  aspect-ratio: 1.45;
 }
 
 .credential-media--poster img,
@@ -2719,6 +2727,8 @@ body {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
   width: 100%;
+  max-width: 1080px;
+  margin-inline: auto;
 }
 
 .cert-capsule-item {
