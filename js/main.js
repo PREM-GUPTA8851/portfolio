@@ -146,9 +146,13 @@ function initSkillMarquees() {
       items.forEach((item, index) => {
         state.positions[index] += direction * distance;
         if (movingRight && state.positions[index] >= state.availableWidth) {
-          state.positions[index] -= state.loopWidth;
+          const nextBadge = Math.min(...state.positions.filter((_, itemIndex) => itemIndex !== index));
+          state.positions[index] = nextBadge - state.widths[index] - state.gap;
         } else if (!movingRight && state.positions[index] + state.widths[index] <= 0) {
-          state.positions[index] += state.loopWidth;
+          const previousBadgeEnd = Math.max(...state.positions.map((position, itemIndex) =>
+            itemIndex === index ? -Infinity : position + state.widths[itemIndex]
+          ));
+          state.positions[index] = previousBadgeEnd + state.gap;
         }
       });
 
