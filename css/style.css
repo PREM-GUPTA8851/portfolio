@@ -884,9 +884,9 @@ button {
 }
 
 .panel-experience {
-  width: 90vw;
-  max-width: 1400px;
-  min-width: 1150px;
+  width: 86vw;
+  max-width: 1280px;
+  min-width: 1080px;
 }
 
 .panel-projects {
@@ -2102,9 +2102,9 @@ body {
 .experience-cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.4rem;
+  gap: 1rem;
   width: 100%;
-  max-width: 1140px;
+  max-width: 1020px;
   margin-inline: auto;
 }
 
@@ -2136,22 +2136,23 @@ body {
   border-radius: 18px;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
-  padding: 1.25rem;
+  padding: 1.1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   backdrop-filter: blur(16px);
   transition: all 0.3s ease;
-  min-height: 430px;
+  min-height: 450px;
 }
 
 .experience-card-image {
   display: block;
-  width: calc(100% + 2.5rem);
-  height: 200px;
-  margin: -1.25rem -1.25rem 1rem;
-  padding: 0.3rem;
-  border-bottom: 1px solid var(--border-subtle);
+  width: min(100%, 260px);
+  height: 190px;
+  margin: 0 auto 0.9rem;
+  padding: 0.25rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
   background: var(--bg-pill);
   object-fit: contain;
 }
@@ -2162,7 +2163,7 @@ body {
 }
 
 .experience-card-image--badge {
-  background: #050b07;
+  background: var(--bg-pill);
 }
 
 .experience-card:hover {
