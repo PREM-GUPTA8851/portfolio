@@ -88,7 +88,7 @@ function initSkillMarquees() {
 
     const items = Array.from(track.children);
     const movingRight = lane.classList.contains('direction-right');
-    const state = { lane, marquee, track, items, movingRight, widths: [], positions: [], gap: 0, lastFrame: 0, isCycling: false };
+    const state = { lane, marquee, track, items, movingRight, widths: [], positions: [], gap: 0, availableWidth: 0, loopWidth: 0, lastFrame: 0, isCycling: false };
 
     const configure = () => {
       track.classList.remove('is-cycling');
@@ -105,18 +105,16 @@ function initSkillMarquees() {
       const availableWidth = marquee.clientWidth
         - (parseFloat(marqueeStyle.paddingLeft) || 0)
         - (parseFloat(marqueeStyle.paddingRight) || 0);
-      const naturalWidth = itemsWidth + baseGap * (items.length - 1);
-      state.gap = naturalWidth < availableWidth
-        ? baseGap + (availableWidth - naturalWidth) / (items.length - 1)
-        : baseGap;
-      const contentWidth = itemsWidth + state.gap * (items.length - 1);
+      state.availableWidth = availableWidth;
+      state.gap = Math.max(baseGap, (availableWidth - itemsWidth) / items.length);
+      state.loopWidth = itemsWidth + state.gap * items.length;
       state.isCycling = !reducedMotion.matches && items.length > 1 && availableWidth > 0;
 
       if (!state.isCycling) return;
 
       track.classList.add('is-cycling');
       state.positions = [];
-      let nextPosition = movingRight ? marquee.clientWidth - contentWidth : 0;
+      let nextPosition = movingRight ? availableWidth - state.loopWidth : 0;
       items.forEach((item, index) => {
         state.positions.push(nextPosition);
         item.style.setProperty('--skill-x', `${nextPosition}px`);
@@ -132,7 +130,7 @@ function initSkillMarquees() {
 
   const animate = (now) => {
     lanes.forEach((state) => {
-      const { lane, marquee, items, movingRight } = state;
+      const { lane, items, movingRight } = state;
       if (!state.isCycling || !skillsPanel?.classList.contains('panel-revealed')) {
         state.lastFrame = now;
         return;
@@ -146,21 +144,12 @@ function initSkillMarquees() {
 
       items.forEach((item, index) => {
         state.positions[index] += direction * distance;
+        if (movingRight && state.positions[index] >= state.availableWidth) {
+          state.positions[index] -= state.loopWidth;
+        } else if (!movingRight && state.positions[index] + state.widths[index] <= 0) {
+          state.positions[index] += state.loopWidth;
+        }
       });
-
-      if (movingRight) {
-        items.forEach((item, index) => {
-          if (state.positions[index] < marquee.clientWidth) return;
-          const leftmost = Math.min(...state.positions);
-          state.positions[index] = leftmost - state.widths[index] - state.gap;
-        });
-      } else {
-        items.forEach((item, index) => {
-          if (state.positions[index] + state.widths[index] > 0) return;
-          const rightmost = Math.max(...state.positions.map((position, itemIndex) => position + state.widths[itemIndex]));
-          state.positions[index] = rightmost + state.gap;
-        });
-      }
 
       items.forEach((item, index) => {
         item.style.setProperty('--skill-x', `${state.positions[index]}px`);
