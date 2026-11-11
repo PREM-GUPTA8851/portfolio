@@ -390,6 +390,48 @@ function initHorizontalScrollEngine() {
     animateToTarget();
   }, { passive: false });
 
+  let touchStart = null;
+  viewport.addEventListener('touchstart', (event) => {
+    const touch = event.changedTouches[0];
+    const panel = event.target instanceof Element ? event.target.closest('.h-panel') : null;
+    if (!touch || !panel) {
+      touchStart = null;
+      return;
+    }
+
+    touchStart = { x: touch.clientX, y: touch.clientY, panel };
+  }, { passive: true });
+
+  viewport.addEventListener('touchend', (event) => {
+    if (!touchStart) return;
+
+    const touch = event.changedTouches[0];
+    const start = touchStart;
+    touchStart = null;
+    if (!touch) return;
+
+    const deltaX = touch.clientX - start.x;
+    const deltaY = touch.clientY - start.y;
+    if (Math.abs(deltaY) < 40 || Math.abs(deltaY) <= Math.abs(deltaX) * 1.2) return;
+
+    const direction = deltaY < 0 ? 1 : -1;
+    window.setTimeout(() => {
+      const reachedPanelEdge = direction > 0
+        ? start.panel.scrollTop + start.panel.clientHeight >= start.panel.scrollHeight - 2
+        : start.panel.scrollTop <= 1;
+      if (!reachedPanelEdge || getActivePanel() !== start.panel) return;
+
+      const orderedPanels = getOrderedPanels();
+      const activeIndex = orderedPanels.indexOf(start.panel);
+      const targetPanel = orderedPanels[activeIndex + direction];
+      if (!targetPanel) return;
+
+      targetPanel.scrollTop = 0;
+      targetScrollLeft = targetPanel.offsetLeft;
+      animateToTarget();
+    }, 180);
+  }, { passive: true });
+
   let isDragging = false;
   let dragStartX = 0;
   let dragStartScrollLeft = 0;

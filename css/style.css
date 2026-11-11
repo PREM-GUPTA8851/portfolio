@@ -3323,6 +3323,13 @@ body {
   }
 }
 
+@media (min-width: 900px) and (max-width: 2560px) {
+  .hero-grid-layout {
+    grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+    gap: clamp(1.25rem, 3vw, 3rem);
+  }
+}
+
 @media (max-width: 520px) {
   .site-header {
     padding: 0 1rem;
