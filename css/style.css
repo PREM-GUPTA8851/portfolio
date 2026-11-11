@@ -354,11 +354,6 @@
   background: #e2e8f0;
 }
 
-[data-theme="light"] .heatmap-cell.level-4.prem-letter-pixel {
-  background: #d7eddf !important;
-  box-shadow: none !important;
-}
-
 /* --------------------------------------------------------------------------
    2. Reset & Core Structure
    -------------------------------------------------------------------------- */
@@ -1842,30 +1837,28 @@ body {
   z-index: 2;
 }
 
-/* Muted contribution greens keep the PREM signature from overpowering the grid. */
-.heatmap-cell.level-1 { background: #07503c; }
-.heatmap-cell.level-2 { background: #087251; }
-.heatmap-cell.level-3 { background: #0d8c60; }
-.heatmap-cell.level-4 { background: #16a06a; }
+/* Keep the matrix subtle so the brighter PREM contribution pattern reads clearly. */
+.heatmap-cell.level-1 { background: #0a2c20; }
+.heatmap-cell.level-2 { background: #10432f; }
+.heatmap-cell.level-3 { background: #165a3c; }
+.heatmap-cell.level-4 { background: #1d7049; }
 
-/* Keep contribution levels distinct without the previous high-saturation greens. */
-[data-theme="light"] .heatmap-cell.level-1 { background: #9be4bf !important; }
-[data-theme="light"] .heatmap-cell.level-2 { background: #6ed3a3 !important; }
-[data-theme="light"] .heatmap-cell.level-3 { background: #45bd88 !important; }
-[data-theme="light"] .heatmap-cell.level-4 { background: #2da875 !important; }
+[data-theme="light"] .heatmap-cell.level-1 { background: #e2efe6 !important; }
+[data-theme="light"] .heatmap-cell.level-2 { background: #c9e2d2 !important; }
+[data-theme="light"] .heatmap-cell.level-3 { background: #a9d2b8 !important; }
+[data-theme="light"] .heatmap-cell.level-4 { background: #88c29e !important; }
 
-/* Keep the PREM signature faintly visible rather than using black cutouts. */
-.heatmap-cell.prem-dark-pixel {
-  background: #123b2c !important;
-  border: 1px solid rgba(110, 231, 183, 0.18) !important;
-  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.16);
+.heatmap-cell.prem-signature {
+  background: #34c987 !important;
+  border: 1px solid rgba(167, 243, 208, 0.55) !important;
+  box-shadow: 0 0 5px rgba(52, 201, 135, 0.22);
   border-radius: 2px;
 }
 
-[data-theme="light"] .heatmap-cell.prem-dark-pixel {
-  background: #e5f2e9 !important;
-  border: 1px solid #d1e5d8 !important;
-  box-shadow: none !important;
+[data-theme="light"] .heatmap-cell.prem-signature {
+  background: #15945d !important;
+  border-color: #087849 !important;
+  box-shadow: 0 0 5px rgba(21, 148, 93, 0.2);
 }
 
 /* 4-Axis GitHub Activity Radar Diagram (Screenshot 2 Match) */

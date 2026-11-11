@@ -779,7 +779,7 @@ function initAllProjectsShowcase() {
 }
 
 /* --------------------------------------------------------------------------
-   7. GITHUB HEATMAP GENERATION (DENSE VIBRANT GREEN COMMIT FILL + SOLID DARK "PREM")
+   7. GITHUB HEATMAP GENERATION (SUBTLE CONTRIBUTIONS + BRIGHT "PREM")
    -------------------------------------------------------------------------- */
 function initGithubHeatmap() {
   const grid = document.getElementById('github-heatmap-grid');
@@ -824,11 +824,10 @@ function initGithubHeatmap() {
     cell.className = 'heatmap-cell';
 
     if (premPixelSet.has(coordKey)) {
-      // PREM Signature: Carved in solid dark black contrast against active emerald matrix
-      cell.classList.add('prem-dark-pixel');
-      cell.setAttribute('title', `Identity Signature: PREM`);
+      cell.classList.add('prem-signature');
+      cell.setAttribute('title', 'Identity signature: PREM');
     } else {
-      // Densely and vibrantly filled active commit grid (Levels 1 to 4) reflecting 3,000+ GitHub contributions
+      // Keep other contribution cells subdued so the PREM signature stays easy to see.
       const rand = Math.random();
       if (rand > 0.65) {
         cell.classList.add('level-4');
