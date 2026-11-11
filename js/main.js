@@ -213,8 +213,8 @@ function initIntroGate() {
   if (replayBtn) {
     replayBtn.addEventListener('click', () => {
       gate.classList.remove('gate-opened');
-      const viewport = document.getElementById('h-viewport');
-      if (viewport) viewport.scrollTo({ left: 0, behavior: 'smooth' });
+      document.getElementById('hero').scrollTop = 0;
+      document.getElementById('h-viewport')?.scrollTo({ left: 0, behavior: 'smooth' });
     });
   }
 }
@@ -327,7 +327,7 @@ function initBackground3DCanvas() {
 }
 
 /* --------------------------------------------------------------------------
-   4. MASTER HORIZONTAL SCROLL ENGINE
+   4. HORIZONTAL SECTION SCROLL ENGINE
    -------------------------------------------------------------------------- */
 function initHorizontalScrollEngine() {
   const viewport = document.getElementById('h-viewport');
@@ -336,156 +336,125 @@ function initHorizontalScrollEngine() {
   const navItems = document.querySelectorAll('.nav-section-item');
   const panels = document.querySelectorAll('.h-panel');
 
-  if (!viewport) return;
+  if (!viewport || !panels.length) return;
 
   const getOrderedPanels = () => Array.from(panels).sort((a, b) => (
-    window.innerWidth > 1024 ? a.offsetLeft - b.offsetLeft : a.offsetTop - b.offsetTop
+    a.offsetLeft - b.offsetLeft
   ));
+  let targetScrollLeft = viewport.scrollLeft;
+  let isAnimating = false;
 
-  const panelAtHorizontalPosition = (scrollLeft) => {
+  const getActivePanel = () => {
     const orderedPanels = getOrderedPanels();
-    const viewportCenter = scrollLeft + viewport.clientWidth / 2;
+    const center = viewport.scrollLeft + viewport.clientWidth / 2;
     return orderedPanels.find((panel) => (
-      viewportCenter >= panel.offsetLeft && viewportCenter < panel.offsetLeft + panel.clientWidth
+      center >= panel.offsetLeft && center < panel.offsetLeft + panel.offsetWidth
     )) || orderedPanels[orderedPanels.length - 1];
   };
 
-  const resetPanelOnEntry = (previousPosition, nextPosition) => {
-    const previousPanel = panelAtHorizontalPosition(previousPosition);
-    const nextPanel = panelAtHorizontalPosition(nextPosition);
-    if (nextPanel && nextPanel !== previousPanel) nextPanel.scrollTop = 0;
-  };
-
   const animateToTarget = () => {
-    if (!isWheelScrolling) {
-      isWheelScrolling = true;
-      requestAnimationFrame(smoothScrollTick);
-    }
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const tick = () => {
+      const difference = targetScrollLeft - viewport.scrollLeft;
+      if (Math.abs(difference) > 0.5) {
+        viewport.scrollLeft += difference * 0.16;
+        requestAnimationFrame(tick);
+      } else {
+        viewport.scrollLeft = targetScrollLeft;
+        isAnimating = false;
+      }
+      updateHUDAndProgress();
+    };
+
+    requestAnimationFrame(tick);
   };
 
-  // Smooth Inertial Wheel to Horizontal Mapping
-  let targetScrollLeft = viewport.scrollLeft;
-  let isWheelScrolling = false;
+  viewport.addEventListener('wheel', (event) => {
+    const panel = event.target instanceof Element ? event.target.closest('.h-panel') : null;
+    const verticalDelta = event.deltaY;
+    const horizontalDelta = event.deltaX;
+    const canScrollPanel = panel && verticalDelta !== 0 && (
+      verticalDelta > 0
+        ? panel.scrollTop + panel.clientHeight < panel.scrollHeight - 1
+        : panel.scrollTop > 1
+    );
+    if (canScrollPanel && horizontalDelta === 0) return;
+    if (verticalDelta === 0 && horizontalDelta === 0) return;
 
-  viewport.addEventListener('wheel', (e) => {
-    // Only map on desktop when horizontal layout is active
-    if (window.innerWidth > 1024) {
-      const panel = e.target.closest('.h-panel');
-      if (panel && e.deltaY !== 0 && panel.scrollHeight > panel.clientHeight) {
-        const canScrollPanel = e.deltaY > 0
-          ? panel.scrollTop + panel.clientHeight < panel.scrollHeight - 1
-          : panel.scrollTop > 0;
-        if (canScrollPanel && e.deltaX === 0) return;
-      }
-
-      e.preventDefault();
-      const delta = e.deltaY !== 0 ? e.deltaY : e.deltaX;
-      const previousTarget = targetScrollLeft;
-      targetScrollLeft = Math.max(
-        0,
-        Math.min(viewport.scrollWidth - viewport.clientWidth, targetScrollLeft + delta * 1.5)
-      );
-      resetPanelOnEntry(previousTarget, targetScrollLeft);
-      animateToTarget();
-    }
+    event.preventDefault();
+    const delta = horizontalDelta !== 0 ? horizontalDelta : verticalDelta;
+    const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+    targetScrollLeft = Math.max(0, Math.min(maxScroll, targetScrollLeft + delta * 1.5));
+    animateToTarget();
   }, { passive: false });
 
-  function smoothScrollTick() {
-    const diff = targetScrollLeft - viewport.scrollLeft;
-    if (Math.abs(diff) > 0.5) {
-      viewport.scrollLeft += diff * 0.15;
-      requestAnimationFrame(smoothScrollTick);
-    } else {
-      viewport.scrollLeft = targetScrollLeft;
-      isWheelScrolling = false;
-    }
-    updateHUDAndProgress();
-  }
-
-  // Drag-to-Scroll Functionality
-  let isDown = false;
-  let startX;
-  let scrollLeftStart;
-
-  viewport.addEventListener('mousedown', (e) => {
-    if (window.innerWidth <= 1024) return;
-    isDown = true;
-    startX = e.pageX - viewport.offsetLeft;
-    scrollLeftStart = viewport.scrollLeft;
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartScrollLeft = 0;
+  viewport.addEventListener('mousedown', (event) => {
+    if (event.button !== 0
+      || (event.target instanceof Element && event.target.closest('a, button, input, textarea, select'))) return;
+    isDragging = true;
+    dragStartX = event.pageX;
+    dragStartScrollLeft = viewport.scrollLeft;
     targetScrollLeft = viewport.scrollLeft;
   });
-
   window.addEventListener('mouseup', () => {
-    isDown = false;
+    isDragging = false;
   });
-
-  viewport.addEventListener('mousemove', (e) => {
-    if (!isDown || window.innerWidth <= 1024) return;
-    e.preventDefault();
-    const x = e.pageX - viewport.offsetLeft;
-    const walk = (x - startX) * 2;
-    const previousPosition = viewport.scrollLeft;
-    viewport.scrollLeft = scrollLeftStart - walk;
+  window.addEventListener('mousemove', (event) => {
+    if (!isDragging || Math.abs(event.pageX - dragStartX) < 4) return;
+    event.preventDefault();
+    viewport.scrollLeft = dragStartScrollLeft - (event.pageX - dragStartX);
     targetScrollLeft = viewport.scrollLeft;
-    resetPanelOnEntry(previousPosition, targetScrollLeft);
     updateHUDAndProgress();
   });
 
-  // Keyboard Navigation
-  window.addEventListener('keydown', (e) => {
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+  // Keyboard navigation between pages
+  window.addEventListener('keydown', (event) => {
+    if (event.target.isContentEditable
+      || ['INPUT', 'TEXTAREA', 'SELECT'].includes(event.target.tagName)) return;
+    const direction = ['ArrowRight', 'PageDown'].includes(event.key) ? 1
+      : ['ArrowLeft', 'PageUp'].includes(event.key) ? -1
+        : 0;
+    if (!direction) return;
 
-    if (e.key === 'ArrowRight' || e.key === 'PageDown') {
-      const previousTarget = targetScrollLeft;
-      targetScrollLeft = Math.min(viewport.scrollWidth - viewport.clientWidth, targetScrollLeft + 650);
-      resetPanelOnEntry(previousTarget, targetScrollLeft);
-      animateToTarget();
-    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
-      const previousTarget = targetScrollLeft;
-      targetScrollLeft = Math.max(0, targetScrollLeft - 650);
-      resetPanelOnEntry(previousTarget, targetScrollLeft);
+    event.preventDefault();
+    const orderedPanels = getOrderedPanels();
+    const activeIndex = orderedPanels.indexOf(getActivePanel());
+    const targetPanel = orderedPanels[activeIndex + direction];
+    if (targetPanel) {
+      targetPanel.scrollTop = 0;
+      targetScrollLeft = targetPanel.offsetLeft;
       animateToTarget();
     }
   });
 
-  // Header Nav Click Support
   navItems.forEach((item) => {
-    const btn = item.querySelector('button');
-    if (btn) {
-      btn.addEventListener('click', () => {
-        const targetPanel = document.getElementById(item.dataset.target);
-        if (targetPanel) {
-          targetPanel.scrollTop = 0;
-          if (window.innerWidth > 1024) {
-            targetScrollLeft = targetPanel.offsetLeft;
-            animateToTarget();
-          } else {
-            targetPanel.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
-      });
-    }
+    const button = item.querySelector('button');
+    button?.addEventListener('click', () => {
+      const targetPanel = document.getElementById(item.dataset.target);
+      if (targetPanel) {
+        targetPanel.scrollTop = 0;
+        targetScrollLeft = targetPanel.offsetLeft;
+        animateToTarget();
+      }
+    });
   });
 
-  // Jump to Start in Bottom HUD
-  const jumpStart = document.getElementById('hud-jump-start');
-  if (jumpStart) {
-    jumpStart.addEventListener('click', () => {
-      const firstPanel = getOrderedPanels()[0];
-      if (firstPanel) firstPanel.scrollTop = 0;
-      targetScrollLeft = 0;
-      animateToTarget();
-    });
-  }
+  document.getElementById('hud-jump-start')?.addEventListener('click', () => {
+    const firstPanel = getOrderedPanels()[0];
+    if (firstPanel) firstPanel.scrollTop = 0;
+    targetScrollLeft = 0;
+    animateToTarget();
+  });
 
   // Update Progress, HUD, and Active Nav
   function updateHUDAndProgress() {
-    const isHorizontal = window.innerWidth > 1024;
-    const maxScroll = isHorizontal
-      ? viewport.scrollWidth - viewport.clientWidth
-      : document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPosition = isHorizontal ? viewport.scrollLeft : window.scrollY;
-    const progress = maxScroll > 0 ? (scrollPosition / maxScroll) * 100 : 0;
+    const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+    const progress = maxScroll > 0 ? (viewport.scrollLeft / maxScroll) * 100 : 0;
 
     if (progressBar) {
       progressBar.style.width = `${progress}%`;
@@ -493,12 +462,7 @@ function initHorizontalScrollEngine() {
 
     // Determine Active Panel
     const orderedPanels = getOrderedPanels();
-    const activePanel = isHorizontal
-      ? panelAtHorizontalPosition(scrollPosition)
-      : orderedPanels.find((panel) => {
-        const rect = panel.getBoundingClientRect();
-        return rect.top <= window.innerHeight * 0.5 && rect.bottom > window.innerHeight * 0.5;
-      }) || orderedPanels[0];
+    const activePanel = getActivePanel();
     const activeIndex = Math.max(0, orderedPanels.indexOf(activePanel));
 
     if (hudIndex && orderedPanels.length) {
@@ -510,9 +474,14 @@ function initHorizontalScrollEngine() {
     });
   }
 
-  viewport.addEventListener('scroll', updateHUDAndProgress, { passive: true });
-  window.addEventListener('scroll', updateHUDAndProgress, { passive: true });
-  window.addEventListener('resize', updateHUDAndProgress);
+  viewport.addEventListener('scroll', () => {
+    if (!isAnimating) targetScrollLeft = viewport.scrollLeft;
+    updateHUDAndProgress();
+  }, { passive: true });
+  window.addEventListener('resize', () => {
+    targetScrollLeft = Math.min(targetScrollLeft, viewport.scrollWidth - viewport.clientWidth);
+    updateHUDAndProgress();
+  });
   updateHUDAndProgress();
 }
 
@@ -554,12 +523,8 @@ function initScrollRevealEngine() {
   if (!viewport || !panels.length) return;
 
   function checkPanels() {
-    const scrollPos = viewport.scrollLeft;
-    const viewWidth = viewport.clientWidth;
-
     panels.forEach((panel) => {
-      // Panel reveals when 25% of it enters the viewport
-      if (scrollPos + viewWidth >= panel.offsetLeft + (panel.clientWidth * 0.15)) {
+      if (panel.getBoundingClientRect().left < viewport.getBoundingClientRect().right) {
         panel.classList.add('panel-revealed');
       }
     });
