@@ -596,6 +596,10 @@ button {
   transition: opacity 0.2s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
 
+#intro-gate:not(.gate-opened) ~ #global-cursor-ring {
+  --cursor-ring-color: #ffffff;
+}
+
 #global-cursor-ring.cursor-visible {
   opacity: 1;
 }
@@ -3244,7 +3248,7 @@ body {
 /* --------------------------------------------------------------------------
    15. RESPONSIVE DESIGN FOR HORIZONTAL & MOBILE
    -------------------------------------------------------------------------- */
-@media (max-width: 2560px) {
+@media (max-width: 899px) {
   .h-scroll-track {
     flex-direction: row;
     align-items: stretch;
@@ -3283,9 +3287,11 @@ body {
     overflow: hidden;
   }
   .prem-cards-grid,
-  .experience-timeline-track,
-  .experience-cards-grid {
+  .experience-timeline-track {
     grid-template-columns: minmax(0, 1fr);
+  }
+  .experience-cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .certs-scroll-grid,
   .achievement-highlights {
@@ -3386,6 +3392,9 @@ body {
   }
   .resume-card {
     grid-template-columns: 1fr;
+  }
+  .experience-cards-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
   .certs-scroll-grid,
   .achievement-highlights {
