@@ -78,24 +78,48 @@ function initGlobalCursor() {
 }
 
 function initSkillMarquees() {
-  const pixelsPerSecond = 24;
+  const pixelsPerSecond = 18;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const tracks = document.querySelectorAll('.skill-marquee-track');
+
+  tracks.forEach((track) => {
+    const skillGroup = document.createElement('div');
+    skillGroup.className = 'skill-marquee-group';
+    skillGroup.append(...Array.from(track.children));
+
+    const repeatedGroup = skillGroup.cloneNode(true);
+    repeatedGroup.setAttribute('aria-hidden', 'true');
+    track.replaceChildren(skillGroup, repeatedGroup);
+  });
+
   const updateDurations = () => {
     tracks.forEach((track) => {
       const marquee = track.parentElement;
-      const paddingLeft = Number.parseFloat(getComputedStyle(track).paddingLeft) || 0;
-      const contentWidth = Math.max(0, track.scrollWidth - paddingLeft);
-      const availableSpace = Math.max(0, marquee.clientWidth - contentWidth);
-      const travelDistance = contentWidth > marquee.clientWidth
-        ? contentWidth - marquee.clientWidth
-        : Math.min(contentWidth * 0.4, availableSpace);
-      track.style.setProperty('--marquee-travel', `${travelDistance}px`);
-      track.style.setProperty('--marquee-duration', `${travelDistance / pixelsPerSecond}s`);
+      const group = track.querySelector('.skill-marquee-group:not([aria-hidden="true"])');
+      const travelDistance = group?.getBoundingClientRect().width || 0;
+      const duration = (travelDistance / pixelsPerSecond) * (reducedMotion.matches ? 2 : 1);
+
+      track.querySelectorAll('.skill-marquee-group[aria-hidden="true"]').forEach((repeatedGroup) => {
+        repeatedGroup.remove();
+      });
+      if (group && travelDistance > 0) {
+        const groupCount = Math.max(2, Math.ceil(marquee.clientWidth / travelDistance) + 1);
+        for (let index = 1; index < groupCount; index++) {
+          const repeatedGroup = group.cloneNode(true);
+          repeatedGroup.setAttribute('aria-hidden', 'true');
+          track.appendChild(repeatedGroup);
+        }
+      }
+
+      track.style.setProperty('--marquee-distance', `${travelDistance}px`);
+      track.style.setProperty('--marquee-duration', `${duration}s`);
+      track.style.setProperty('--marquee-hover-duration', `${duration * 1.8}s`);
     });
   };
 
   updateDurations();
   window.addEventListener('resize', updateDurations, { passive: true });
+  reducedMotion.addEventListener('change', updateDurations);
   if (document.fonts?.ready) document.fonts.ready.then(updateDurations);
 }
 

@@ -1025,16 +1025,18 @@ body {
 .skill-marquee-track {
   display: flex;
   width: max-content;
-  gap: 0.8rem;
-  animation: skill-marquee-left var(--marquee-duration, 0s) linear infinite alternate;
+  animation: skill-marquee-left var(--marquee-duration, 0s) linear infinite;
 }
 
 .skill-lane.direction-right .skill-marquee-track {
   animation-name: skill-marquee-right;
 }
 
-.skill-lane.direction-left .skill-marquee-track {
-  padding-left: var(--marquee-travel, 0px);
+.skill-marquee-group {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.8rem;
+  padding-right: 0.8rem;
 }
 
 .skill-marquee-track span {
@@ -1049,18 +1051,32 @@ body {
   color: var(--text-main);
   font-size: 0.78rem;
   font-family: var(--font-mono);
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
-.skill-lane:hover .skill-marquee-track {
+.skill-marquee-track span:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-green);
+  background: var(--bg-card-hover);
+  color: var(--text-pure);
+}
+
+.skill-lane:hover .skill-marquee-track,
+.skill-lane:focus-within .skill-marquee-track {
+  animation-duration: var(--marquee-hover-duration, var(--marquee-duration, 0s));
+}
+
+#skills:not(.panel-revealed) .skill-marquee-track {
   animation-play-state: paused;
 }
 
 @keyframes skill-marquee-left {
-  to { transform: translateX(calc(-1 * var(--marquee-travel, 0px))); }
+  to { transform: translateX(calc(-1 * var(--marquee-distance, 0px))); }
 }
 
 @keyframes skill-marquee-right {
-  to { transform: translateX(var(--marquee-travel, 0px)); }
+  from { transform: translateX(calc(-1 * var(--marquee-distance, 0px))); }
+  to { transform: translateX(0); }
 }
 
 /* --------------------------------------------------------------------------
@@ -3420,15 +3436,4 @@ body {
     right: 0.7rem;
     bottom: 0.7rem;
   }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .skill-marquee-track {
-    animation: none !important;
-  }
-
-  .skill-lane.direction-left .skill-marquee-track {
-    padding-left: 0;
-  }
-
 }
