@@ -359,7 +359,7 @@ function initHorizontalScrollEngine() {
     const tick = () => {
       const difference = targetScrollLeft - viewport.scrollLeft;
       if (Math.abs(difference) > 0.5) {
-        viewport.scrollLeft += difference * 0.16;
+        viewport.scrollLeft += difference * 0.1;
         requestAnimationFrame(tick);
       } else {
         viewport.scrollLeft = targetScrollLeft;
@@ -386,7 +386,8 @@ function initHorizontalScrollEngine() {
     event.preventDefault();
     const delta = horizontalDelta !== 0 ? horizontalDelta : verticalDelta;
     const maxScroll = viewport.scrollWidth - viewport.clientWidth;
-    targetScrollLeft = Math.max(0, Math.min(maxScroll, targetScrollLeft + delta * 1.5));
+    const wheelDelta = Math.max(-60, Math.min(60, delta));
+    targetScrollLeft = Math.max(0, Math.min(maxScroll, targetScrollLeft + wheelDelta * 0.25));
     animateToTarget();
   }, { passive: false });
 
