@@ -1607,7 +1607,7 @@ body {
 
 .leetcode-badges-row {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 0.75rem;
   margin-top: 1.5rem;
 }
@@ -1699,6 +1699,12 @@ body {
     34.8% 80%, 32.7% 77%, 32.5% 41%,
     34% 37%, 50% 20%
   );
+}
+
+.leetcode-badges-row .leetcode-medal-200 {
+  width: min(100%, 132px);
+  height: 132px;
+  object-fit: contain;
 }
 
 .leetcode-medal-50 {
@@ -2692,6 +2698,12 @@ body {
   width: 240px;
   height: 154px;
   filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.4));
+}
+
+.credential-art--medal .leetcode-medal-200 {
+  width: 154px;
+  height: 154px;
+  object-fit: contain;
 }
 
 .credential-media--leetcode.credential-sql-link {
