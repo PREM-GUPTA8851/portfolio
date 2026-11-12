@@ -1660,7 +1660,9 @@ body {
 }
 
 .badge-medal-wrap {
+  width: 100%;
   height: 132px;
+  overflow: hidden;
 }
 
 .badge-icon-wrap.badge-sql-wrap {
@@ -1703,17 +1705,26 @@ body {
 
 .leetcode-medal-200 {
   clip-path: polygon(
-    58.5% 11.5%, 62% 12.5%, 90% 28.5%, 92% 31%,
-    93% 51%, 92% 55%, 92% 70%, 90% 73%,
-    61% 90%, 58% 91%, 28% 75%, 25% 72%,
-    24% 54%, 24% 33%, 27% 29%, 55% 12%
+    58.5% 11.8%, 62% 12.5%, 90% 25.5%, 92% 28%,
+    93% 32%, 93% 68%, 91% 72%, 61% 90%,
+    58% 91%, 28% 75%, 25% 72%, 24% 68%,
+    24% 32%, 27% 28%, 55% 12%
   );
 }
 
 .leetcode-badges-row .leetcode-medal-200 {
-  width: min(100%, 132px);
+  width: 132px;
   height: 132px;
   object-fit: contain;
+  flex: 0 0 132px;
+}
+
+.leetcode-badges-row .leetcode-medal-100,
+.leetcode-badges-row .leetcode-medal-50 {
+  width: 210px;
+  height: 132px;
+  object-fit: fill;
+  flex: 0 0 210px;
 }
 
 .leetcode-medal-50 {
